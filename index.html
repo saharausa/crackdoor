@@ -709,7 +709,7 @@ body:hover .cursor-glow{opacity:1}
         <section class="wizard-step" data-step="3">
           <div class="step-no">Step 4 of 4</div>
           <h3 class="display">Your project brief.</h3>
-          <p>Copy it or open an email with the brief prefilled. Nothing is submitted automatically.</p>
+          <p>Copy your brief, then continue to Crackdoor on Instagram to start the conversation.</p>
           <div class="summary-box" id="summaryBox"></div>
           <div class="copy-status" id="copyStatus"></div>
         </section>
@@ -835,7 +835,7 @@ body:hover .cursor-glow{opacity:1}
     progress.style.width=((i+1)/steps.length*100)+'%';
     backBtn.style.visibility=i===0?'hidden':'visible';
     copyBtn.style.display=i===3?'inline-flex':'none';
-    nextBtn.textContent=i===3?'Email Crackdoor →':'Continue →';
+    nextBtn.textContent=i===3?'Message Crackdoor →':'Continue →';
     if(i===3)buildSummary();
   }
   function choose(container,input){
@@ -882,16 +882,14 @@ ${mode}`;
       }
       renderStep(step+1);
     }else{
-      const subject=encodeURIComponent('Crackdoor Project Brief');
-      const body=encodeURIComponent(briefText());
-      location.href=`mailto:hello@crackdoor.com?subject=${subject}&body=${body}`;
+      window.open('https://www.instagram.com/crackdoorcom/', '_blank', 'noopener,noreferrer');
     }
   });
   backBtn?.addEventListener('click',()=>{if(step>0)renderStep(step-1)});
   copyBtn?.addEventListener('click',async()=>{
     try{
       await navigator.clipboard.writeText(briefText());
-      copyStatus.textContent='Copied to clipboard.';
+      copyStatus.textContent='Copied. Paste this into your Instagram message to @crackdoorcom.';
     }catch{
       copyStatus.textContent='Select the brief above and copy it manually.';
     }
