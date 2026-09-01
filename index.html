@@ -23,6 +23,8 @@
   --line:#1d1d1d;
   --card:#0a0a0a;
   --max:1120px;
+  --gutter:clamp(20px,4vw,40px);
+  --section-space:clamp(72px,9vw,112px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -30,13 +32,15 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
   overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 button{font:inherit}
-.wrap{width:min(calc(100% - 36px),var(--max));margin:auto}
+.wrap{width:min(calc(100% - (var(--gutter) * 2)),var(--max));margin-inline:auto}
 
 nav{
   position:sticky;top:0;z-index:20;
@@ -45,7 +49,7 @@ nav{
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 .nav-inner{
-  height:68px;display:flex;align-items:center;justify-content:space-between;
+  min-height:68px;display:flex;align-items:center;justify-content:space-between;
 }
 .brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:650;letter-spacing:-.02em}
 .drop{width:22px;height:27px}
@@ -53,10 +57,10 @@ nav{
 .navlinks a{transition:color .2s ease}.navlinks a:hover{color:#fff}
 
 .hero{
-  min-height:76vh;display:flex;align-items:center;
+  min-height:min(780px,calc(100svh - 68px));display:flex;align-items:center;
   border-bottom:1px solid var(--line);position:relative;
 }
-.hero-inner{padding:108px 0 88px}
+.hero-inner{padding:clamp(88px,11vw,136px) 0 clamp(82px,10vw,118px)}
 .kicker{
   display:inline-flex;align-items:center;gap:8px;
   font-size:11px;color:#6f6f6f;text-transform:uppercase;letter-spacing:.14em;margin-bottom:28px;
@@ -64,12 +68,13 @@ nav{
 .dot{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.05)}
 h1{
   margin:0;max-width:930px;
-  font-size:clamp(54px,8.6vw,118px);
-  line-height:.9;letter-spacing:-.07em;font-weight:650;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,system-ui,sans-serif;
+  font-size:clamp(52px,8.4vw,112px);
+  line-height:.91;letter-spacing:-.065em;font-weight:650;
 }
 .hero-sub{
-  margin:34px 0 0;max-width:650px;color:#8d8d8d;
-  font-size:17px;line-height:1.65;
+  margin:32px 0 0;max-width:640px;color:#909090;
+  font-size:clamp(15px,1.5vw,17px);line-height:1.62;letter-spacing:-.01em;
 }
 .hero-sub strong{color:#dedede;font-weight:500}
 .hero-actions{margin-top:34px;display:flex;gap:10px;flex-wrap:wrap}
@@ -82,40 +87,31 @@ h1{
 .btn.primary{background:#f2f2f2;color:#050505;border-color:#f2f2f2}
 .btn.primary:hover{background:#fff}
 
-.marquee{
-  border-bottom:1px solid var(--line);
-  overflow:hidden;white-space:nowrap;
-}
-.marquee-track{
-  display:inline-flex;gap:42px;padding:18px 0;
-  color:#4f4f4f;font-size:11px;text-transform:uppercase;letter-spacing:.14em;
-  animation:scroll 22s linear infinite;
-}
-.marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.section{padding:88px 0;border-bottom:1px solid var(--line)}
+.section{padding:var(--section-space) 0;border-bottom:1px solid var(--line)}
 .section-top{
   display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:38px
 }
 .eyebrow{font-size:11px;color:#5f5f5f;text-transform:uppercase;letter-spacing:.13em}
 h2{
-  margin:0;font-size:clamp(30px,4.5vw,56px);line-height:1.02;
+  margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,system-ui,sans-serif;
+  font-size:clamp(32px,4.5vw,56px);line-height:1.02;
   letter-spacing:-.045em;font-weight:600;max-width:720px
 }
 
 .project-card{
   position:relative;overflow:hidden;
   border:1px solid var(--line);border-radius:22px;background:var(--card);
-  min-height:410px;padding:34px;
+  min-height:clamp(360px,42vw,430px);padding:clamp(26px,3.2vw,36px);
   display:flex;flex-direction:column;justify-content:space-between;
   transition:transform .28s ease,border-color .28s ease,background .28s ease;
 }
-.project-card:hover{transform:translateY(-3px);border-color:#2f2f2f;background:#0d0d0d}
+.project-card:hover{transform:translateY(-2px);border-color:#343434;background:#0d0d0d;box-shadow:0 24px 70px rgba(0,0,0,.28)}
 .project-top{display:flex;justify-content:space-between;gap:20px}
 .project-mark{
-  width:54px;height:54px;border:1px solid #292929;border-radius:14px;
+  width:56px;height:56px;border:1px solid #292929;border-radius:15px;
   display:grid;place-items:center;font-size:21px;font-weight:700;overflow:hidden;
+  flex:0 0 auto;
 }
 .project-mark img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -125,7 +121,7 @@ h2{
   color:#737373;font-size:10px;height:max-content
 }
 .project-bottom{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
-.project-card h3{font-size:42px;margin:0 0 12px;letter-spacing:-.045em}
+.project-card h3{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,system-ui,sans-serif;font-size:clamp(36px,4vw,46px);margin:0 0 12px;letter-spacing:-.045em}
 .project-card p{color:#7f7f7f;max-width:610px;font-size:14px;line-height:1.7;margin:0}
 .arrow{
   width:46px;height:46px;border-radius:50%;border:1px solid #262626;
@@ -158,8 +154,8 @@ h2{
 .principle h3{font-size:17px;margin:0 0 9px}
 .principle p{font-size:12px;line-height:1.65;color:#707070;margin:0}
 
-footer{padding:38px 0 50px}
-.footer{display:flex;justify-content:space-between;gap:20px;color:#4f4f4f;font-size:10px}
+footer{padding:clamp(34px,5vw,48px) 0 calc(clamp(38px,5vw,56px) + env(safe-area-inset-bottom))}
+.footer{display:flex;align-items:center;justify-content:space-between;gap:20px;color:#565656;font-size:11px;line-height:1.4}
 
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -172,23 +168,45 @@ footer{padding:38px 0 50px}
 body:hover .cursor-glow{opacity:1}
 
 @media(max-width:760px){
+  :root{--gutter:20px;--section-space:68px}
+  .nav-inner{min-height:62px}
   .navlinks{display:none}
+  .brand{font-size:13px}
+  .drop{width:20px;height:25px}
   .hero{min-height:auto}
-  .hero-inner{padding:88px 0 70px}
-  .section{padding:68px 0}
-  .section-top{display:block}
-  .section-top .eyebrow{margin-bottom:16px}
-  .project-card{min-height:360px;padding:26px}
+  .hero-inner{padding:82px 0 76px}
+  .kicker{margin-bottom:24px;font-size:10px}
+  h1{font-size:clamp(50px,15.5vw,72px);line-height:.92;letter-spacing:-.06em}
+  .hero-sub{margin-top:26px;font-size:15px;line-height:1.6}
+  .hero-actions{margin-top:28px}
+  .btn{padding:11px 13px}
+  .section-top{display:block;margin-bottom:30px}
+  .section-top .eyebrow{margin-bottom:15px}
+  .project-card{min-height:350px;border-radius:18px}
+  .project-mark{width:52px;height:52px;border-radius:14px}
+  .status-pill{font-size:9px;padding:7px 9px}
   .project-bottom,.founder{grid-template-columns:1fr}
-  .project-bottom{gap:24px}
+  .project-bottom{gap:22px}
+  .project-card p{font-size:13px;line-height:1.65}
   .arrow{display:none}
-  .founder{gap:46px}
+  .founder{gap:42px}
+  .founder-copy{font-size:19px;line-height:1.55}
+  .fact{padding:16px 0}
   .principles{grid-template-columns:1fr}
-  .principle{min-height:170px}
-  .principle .n{margin-bottom:44px}
-  .footer{flex-direction:column}
+  .principle{min-height:160px;padding:24px}
+  .principle .n{margin-bottom:40px}
+  .footer{align-items:flex-start;flex-direction:column;gap:8px}
   .cursor-glow{display:none}
 }
+
+@media(min-width:761px) and (max-width:980px){
+  :root{--gutter:30px}
+  .hero{min-height:680px}
+  .founder{gap:46px}
+  .principles{gap:10px}
+  .principle{padding:22px}
+}
+
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
@@ -231,13 +249,6 @@ body:hover .cursor-glow{opacity:1}
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Crackdoor</span><span>SaaS</span><span>Sahara</span><span>Consumer Internet</span><span>Signal</span><span>Systems</span><span>Network Effects</span><span>Numerics</span><span>Product Strategy</span><span>Iteration</span>
-      <span>Crackdoor</span><span>SaaS</span><span>Sahara</span><span>Consumer Internet</span><span>Signal</span><span>Systems</span><span>Network Effects</span><span>Numerics</span><span>Product Strategy</span><span>Iteration</span>
-    </div>
-  </div>
-
   <section class="section" id="portfolio">
     <div class="wrap reveal">
       <div class="section-top">
@@ -248,7 +259,7 @@ body:hover .cursor-glow{opacity:1}
       <a class="project-card" href="https://www.sahara.app/" target="_blank" rel="noopener">
         <div class="project-top">
           <div class="project-mark"><img src="/apple-touch-icon-2.png" alt="Sahara logo"></div>
-          <div class="status-pill">Launching · Bloomington</div>
+          <div class="status-pill">Bloomington · 2026</div>
         </div>
         <div class="project-bottom">
           <div>
@@ -322,10 +333,12 @@ body:hover .cursor-glow{opacity:1}
 
 <script>
 const glow = document.getElementById('glow');
-window.addEventListener('pointermove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
-});
+if (glow && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  window.addEventListener('pointermove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  }, { passive:true });
+}
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
