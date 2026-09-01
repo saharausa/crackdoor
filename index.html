@@ -38,6 +38,22 @@ a{color:inherit;text-decoration:none}
 button{font:inherit}
 .wrap{width:min(calc(100% - 36px),var(--max));margin:auto}
 
+
+.menu-button{
+  display:none;width:42px;height:42px;border:1px solid #2a2a30;border-radius:11px;
+  background:#0b0b0d;align-items:center;justify-content:center;flex-direction:column;gap:5px;
+}
+.menu-button span{width:18px;height:1.5px;background:#c7c7cc;display:block;transition:.2s}
+.mobile-menu{
+  display:none;position:fixed;inset:62px 0 auto 0;z-index:29;
+  background:rgba(5,5,5,.97);border-bottom:1px solid var(--line);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)
+}
+.mobile-menu.open{display:block}
+.mobile-menu-inner{display:flex;flex-direction:column;padding:12px 0 18px}
+.mobile-menu a{padding:18px 0;border-bottom:1px solid var(--line);font-size:15px;color:#b6b6bc}
+.mobile-menu a:last-child{border-bottom:0}
+
 nav{
   position:sticky;top:0;z-index:20;
   backdrop-filter:blur(16px);
@@ -300,6 +316,15 @@ h2{
 .checkout-actions{display:flex;gap:10px}
 .checkout-actions .btn{flex:1}
 
+
+.mobile-cta{
+  display:none;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));
+  z-index:40;border:1px solid #2e2e34;border-radius:13px;background:rgba(11,11,13,.94);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding:8px;
+  box-shadow:0 18px 60px rgba(0,0,0,.45)
+}
+.mobile-cta a{width:100%}
+
 footer{padding:38px 0 50px}
 .footer{display:flex;justify-content:space-between;gap:20px;color:#4f4f4f;font-size:10px}
 
@@ -377,6 +402,9 @@ body:hover .cursor-glow{opacity:1}
       </svg>
       Crackdoor
     </a>
+    <button class="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <div class="navlinks">
       <a href="#portfolio">Portfolio</a>
       <a href="#pipeline">Path</a>
@@ -386,6 +414,17 @@ body:hover .cursor-glow{opacity:1}
     </div>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="wrap mobile-menu-inner">
+    <a href="#portfolio">Portfolio</a>
+    <a href="#pipeline">Path</a>
+    <a href="#studio">Build with us</a>
+    <a href="#founder">Founder</a>
+    <a href="#approach">Principles</a>
+  </div>
+</div>
+
 
 <main id="top">
   <section class="hero">
@@ -397,8 +436,8 @@ body:hover .cursor-glow{opacity:1}
         First up: Sahara.
       </p>
       <div class="hero-actions">
-        <a class="btn primary" href="#portfolio">See what we're building ↓</a>
-        <a class="btn" href="#pipeline">How we build</a>
+        <a class="btn primary" href="#studio">Build something with us →</a>
+        <a class="btn" href="#portfolio">See the portfolio</a>
       </div>
     </div>
   </section>
@@ -409,6 +448,15 @@ body:hover .cursor-glow{opacity:1}
       <span>Crackdoor</span><span>SaaS</span><span>Sahara</span><span>Consumer Internet</span><span>Signal</span><span>Systems</span><span>Network Effects</span><span>Numerics</span><span>Product Strategy</span><span>Iteration</span>
     </div>
   </div>
+
+
+  <section class="outcomes" aria-label="What Crackdoor does">
+    <div class="wrap outcomes-grid">
+      <div class="outcome"><div class="outcome-inner"><strong>Build our own products</strong><span>Focused companies created inside Crackdoor.</span></div></div>
+      <div class="outcome"><div class="outcome-inner"><strong>Work with outside builders</strong><span>Paid product strategy for ideas with real potential.</span></div></div>
+      <div class="outcome"><div class="outcome-inner"><strong>Stay selective</strong><span>Fewer projects, deeper attention, better decisions.</span></div></div>
+    </div>
+  </section>
 
   <section class="section" id="portfolio">
     <div class="wrap reveal">
@@ -514,14 +562,14 @@ body:hover .cursor-glow{opacity:1}
         <div class="eyebrow">Studio / 03</div>
         <div>
           <h2>Have an idea? Start here.</h2>
-          <p class="section-lead">Crackdoor Studio gives independent builders a paid path from idea to product without turning the company into an agency.</p>
+          <p class="section-lead">Crackdoor Studio is the front door for people who want to turn an idea into a real product without hiring a traditional agency.</p>
         </div>
       </div>
 
       <div class="studio-shell">
         <div class="studio-head">
           <div class="eyebrow">Build with Crackdoor</div>
-          <p>Pick the level of involvement you need. Start with feedback, move into a scoped product plan, or apply for hands-on product development.</p>
+          <p>Start with clarity, move into a buildable plan, and apply for deeper involvement when the idea earns it.</p>
         </div>
 
         <div class="studio-plans">
@@ -531,7 +579,7 @@ body:hover .cursor-glow{opacity:1}
             </div>
             <h3>Idea Review</h3>
             <div class="plan-sub">For someone who has an app idea and wants a sharp outside read before spending months building it.</div>
-            <div class="price">$49</div>
+            <div class="price">$99</div>
             <div class="price-note">one-time</div>
             <ul class="plan-list">
               <li>Problem and audience review</li>
@@ -539,7 +587,7 @@ body:hover .cursor-glow{opacity:1}
               <li>Feature-cut recommendations</li>
               <li>Written next-step memo</li>
             </ul>
-            <a class="btn checkout-trigger" href="#" data-plan="Idea Review" data-price="$49">Start with a review</a>
+            <a class="btn checkout-trigger" href="#" data-plan="Idea Review" data-price="$99">Start with a review</a>
           </article>
 
           <article class="plan featured">
@@ -549,7 +597,7 @@ body:hover .cursor-glow{opacity:1}
             </div>
             <h3>Product Blueprint</h3>
             <div class="plan-sub">For builders ready to turn an idea into a product plan that can actually be built.</div>
-            <div class="price">$249</div>
+            <div class="price">$499</div>
             <div class="price-note">one-time</div>
             <ul class="plan-list">
               <li>Core product loop</li>
@@ -558,7 +606,7 @@ body:hover .cursor-glow{opacity:1}
               <li>Suggested stack and architecture</li>
               <li>Launch and iteration plan</li>
             </ul>
-            <a class="btn primary checkout-trigger" href="#" data-plan="Product Blueprint" data-price="$249">Build my blueprint</a>
+            <a class="btn primary checkout-trigger" href="#" data-plan="Product Blueprint" data-price="$499">Build my blueprint</a>
           </article>
 
           <article class="plan">
@@ -581,8 +629,8 @@ body:hover .cursor-glow{opacity:1}
         </div>
 
         <div class="pay-note">
-          <span>Payments are not live until you connect your checkout provider.</span>
-          <span>Keep Crackdoor selective: paid access does not guarantee a build engagement.</span>
+          <span>Checkout is ready for a Stripe Payment Link when you want to turn payments on.</span>
+          <span>Idea Review and Product Blueprint are paid deliverables. Build Sprint remains selective.</span>
         </div>
       </div>
     </div>
@@ -640,7 +688,7 @@ body:hover .cursor-glow{opacity:1}
 
 <div class="checkout-modal" id="checkoutModal" aria-hidden="true">
   <div class="checkout-card" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-    <h3 id="checkoutTitle">Continue with Crackdoor</h3>
+    <h3 id="checkoutTitle">Start with Crackdoor</h3>
     <p id="checkoutCopy">Select a plan to continue.</p>
     <div class="checkout-summary">
       <span id="checkoutPlan">Plan</span>
@@ -648,9 +696,14 @@ body:hover .cursor-glow{opacity:1}
     </div>
     <div class="checkout-actions">
       <button class="btn" type="button" id="checkoutClose">Cancel</button>
-      <a class="btn primary" id="checkoutContinue" href="mailto:hello@crackdoor.com?subject=Crackdoor%20Studio">Continue</a>
+      <a class="btn primary" id="checkoutContinue" href="mailto:hello@crackdoor.com?subject=Crackdoor%20Studio">Continue →</a>
     </div>
   </div>
+</div>
+
+
+<div class="mobile-cta">
+  <a class="btn primary" href="#studio">Build something with us →</a>
 </div>
 
 <footer>
