@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Crackdoor</title>
-<meta name="description" content="Crackdoor is an independent holding and product company founded by Dylan Betancourt in Bloomington, Indiana.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Crackdoor — Build focused internet products</title>
+<meta name="description" content="Crackdoor builds focused internet products and helps select founders turn sharp ideas into launchable software.">
 <meta name="theme-color" content="#050505">
 
-<!-- Favicons -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -18,485 +16,314 @@
 <style>
 :root{
   --bg:#050505;
-  --text:#f5f5f5;
-  --muted:#858585;
-  --line:#1d1d1d;
-  --card:#0a0a0a;
-  --max:1120px;
+  --bg2:#080808;
+  --surface:#0b0b0c;
+  --surface2:#101012;
+  --text:#f5f5f7;
+  --muted:#96969e;
+  --dim:#63636b;
+  --line:#202024;
+  --line2:#303037;
+  --white:#f3f3f4;
+  --max:1180px;
+  --gutter:clamp(20px,4vw,42px);
+  --section:clamp(84px,10vw,132px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;overflow-x:hidden
 }
+body.modal-open{overflow:hidden}
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-.wrap{width:min(calc(100% - 36px),var(--max));margin:auto}
+button,input,textarea,select{font:inherit}
+button{color:inherit}
+.wrap{width:min(calc(100% - (var(--gutter)*2)),var(--max));margin-inline:auto}
+.display{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,system-ui,sans-serif}
+.muted{color:var(--muted)}
 
-
-.menu-button{
-  display:none;width:42px;height:42px;border:1px solid #2a2a30;border-radius:11px;
-  background:#0b0b0d;align-items:center;justify-content:center;flex-direction:column;gap:5px;
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(5,5,5,.78);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.07)
 }
-.menu-button span{width:18px;height:1.5px;background:#c7c7cc;display:block;transition:.2s}
+.nav-inner{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:650;letter-spacing:-.02em}
+.drop{width:22px;height:27px;flex:0 0 auto}
+.navlinks{display:flex;align-items:center;gap:25px;color:#898990;font-size:12px}
+.navlinks a,.navlinks button{border:0;background:none;padding:0;cursor:pointer;transition:color .18s}
+.navlinks a:hover,.navlinks button:hover{color:#fff}
+.nav-cta{display:inline-flex!important;background:#f2f2f3!important;color:#070707!important;padding:9px 12px!important;border-radius:9px!important}
+.nav-cta:hover{background:#fff!important}
+.menu-btn{
+  display:none;width:42px;height:42px;border:1px solid var(--line2);border-radius:11px;background:#0b0b0d;
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer
+}
+.menu-btn span{display:block;width:18px;height:1.5px;background:#d5d5da;transition:.22s}
+.menu-btn.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 .mobile-menu{
-  display:none;position:fixed;inset:62px 0 auto 0;z-index:29;
-  background:rgba(5,5,5,.97);border-bottom:1px solid var(--line);
+  display:none;position:fixed;z-index:49;left:0;right:0;top:62px;
+  background:rgba(5,5,5,.98);border-bottom:1px solid var(--line);
   -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)
 }
 .mobile-menu.open{display:block}
-.mobile-menu-inner{display:flex;flex-direction:column;padding:12px 0 18px}
-.mobile-menu a{padding:18px 0;border-bottom:1px solid var(--line);font-size:15px;color:#b6b6bc}
-.mobile-menu a:last-child{border-bottom:0}
-
-nav{
-  position:sticky;top:0;z-index:20;
-  backdrop-filter:blur(16px);
-  background:rgba(5,5,5,.78);
-  border-bottom:1px solid rgba(255,255,255,.06);
+.mobile-menu .wrap{padding:12px 0 20px;display:flex;flex-direction:column}
+.mobile-menu a,.mobile-menu button{
+  border:0;background:none;text-align:left;padding:18px 0;border-bottom:1px solid var(--line);
+  color:#bebec4;font-size:15px;cursor:pointer
 }
-.nav-inner{
-  height:68px;display:flex;align-items:center;justify-content:space-between;
-}
-.brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:650;letter-spacing:-.02em}
-.drop{width:22px;height:27px}
-.navlinks{display:flex;align-items:center;gap:24px;font-size:12px;color:#8a8a8a}
-.navlinks a{transition:color .2s ease}.navlinks a:hover{color:#fff}
+.mobile-menu a:last-child,.mobile-menu button:last-child{border-bottom:0}
 
 .hero{
-  min-height:76vh;display:flex;align-items:center;
-  border-bottom:1px solid var(--line);position:relative;
+  position:relative;min-height:min(830px,calc(100svh - 68px));display:flex;align-items:center;
+  border-bottom:1px solid var(--line);overflow:hidden
 }
-.hero-inner{padding:108px 0 88px}
-.kicker{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11px;color:#6f6f6f;text-transform:uppercase;letter-spacing:.14em;margin-bottom:28px;
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;opacity:.38;
+  background-image:
+    linear-gradient(rgba(255,255,255,.026) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.026) 1px,transparent 1px);
+  background-size:68px 68px;
+  mask-image:linear-gradient(to bottom,black,transparent 82%)
 }
+.hero-orb{
+  position:absolute;width:760px;height:760px;border-radius:50%;left:50%;top:-390px;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(255,255,255,.09),rgba(255,255,255,0) 67%);pointer-events:none
+}
+.hero-inner{position:relative;z-index:2;padding:clamp(96px,12vw,150px) 0 clamp(90px,10vw,120px)}
+.kicker,.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:#66666d}
+.kicker{display:flex;align-items:center;gap:9px;margin-bottom:28px}
 .dot{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.05)}
 h1{
-  margin:0;max-width:930px;
-  font-size:clamp(54px,8.6vw,118px);
-  line-height:.9;letter-spacing:-.07em;font-weight:650;
+  margin:0;max-width:970px;font-size:clamp(56px,8.8vw,120px);line-height:.89;
+  letter-spacing:-.068em;font-weight:650
 }
-.hero-sub{
-  margin:34px 0 0;max-width:650px;color:#8d8d8d;
-  font-size:17px;line-height:1.65;
+.hero-copy{
+  max-width:680px;margin:34px 0 0;color:#97979f;font-size:clamp(15px,1.5vw,18px);
+  line-height:1.65;letter-spacing:-.01em
 }
-.hero-sub strong{color:#dedede;font-weight:500}
-.hero-actions{margin-top:34px;display:flex;gap:10px;flex-wrap:wrap}
+.hero-copy strong{color:#e5e5e7;font-weight:500}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
 .btn{
-  border:1px solid #242424;border-radius:10px;padding:11px 14px;
-  font-size:12px;display:inline-flex;align-items:center;gap:8px;
-  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+  border:1px solid #29292f;border-radius:10px;padding:11px 14px;background:transparent;color:#dddde1;
+  font-size:12px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
+  transition:transform .18s,background .18s,border-color .18s,color .18s
 }
-.btn:hover{background:#111;border-color:#363636;transform:translateY(-1px)}
-.btn.primary{background:#f2f2f2;color:#050505;border-color:#f2f2f2}
-.btn.primary:hover{background:#fff}
+.btn:hover{transform:translateY(-1px);background:#111;border-color:#3b3b42}
+.btn.primary{background:#f2f2f3;color:#070707;border-color:#f2f2f3}.btn.primary:hover{background:#fff}
+.btn.full{width:100%}
 
+.signal-bar{border-bottom:1px solid var(--line);background:#070708}
+.signal-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.signal{padding:24px 30px;border-right:1px solid var(--line)}
+.signal:first-child{padding-left:0}.signal:last-child{border-right:0;padding-right:0}
+.signal strong{display:block;font-size:13px;font-weight:550;margin-bottom:5px}
+.signal span{display:block;color:#68686f;font-size:11px;line-height:1.5}
 
-.section{padding:88px 0;border-bottom:1px solid var(--line)}
-.section-top{
-  display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:38px
+.section{padding:var(--section) 0;border-bottom:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:.32fr 1fr;gap:36px;align-items:start;margin-bottom:48px}
+h2{margin:0;max-width:790px;font-size:clamp(36px,5vw,62px);line-height:1;letter-spacing:-.05em;font-weight:600}
+.section-lead{margin:20px 0 0;max-width:720px;color:#92929a;font-size:15px;line-height:1.72}
+
+/* interactive product showcase */
+.showcase{
+  border:1px solid var(--line);border-radius:22px;background:#080809;overflow:hidden
 }
-.eyebrow{font-size:11px;color:#5f5f5f;text-transform:uppercase;letter-spacing:.13em}
-h2{
-  margin:0;font-size:clamp(30px,4.5vw,56px);line-height:1.02;
-  letter-spacing:-.045em;font-weight:600;max-width:720px
+.showcase-stage{position:relative;overflow:hidden;min-height:470px}
+.showcase-track{display:flex;width:300%;transition:transform .48s cubic-bezier(.2,.8,.2,1)}
+.showcase-panel{
+  width:33.333333%;min-height:470px;padding:clamp(28px,4vw,48px);
+  display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(30px,5vw,72px);align-items:center
 }
+.showcase-copy .mini{font-size:10px;color:#67676e;text-transform:uppercase;letter-spacing:.14em;margin-bottom:17px}
+.showcase-copy h3{font-size:clamp(32px,4vw,50px);line-height:1.02;letter-spacing:-.046em;margin:0}
+.showcase-copy p{font-size:14px;line-height:1.7;color:#8b8b92;margin:18px 0 0}
+.app-frame{border:1px solid #2b2b31;border-radius:18px;overflow:hidden;background:#0c0c0e;box-shadow:0 30px 90px rgba(0,0,0,.34)}
+.app-topbar{height:44px;border-bottom:1px solid #242429;display:flex;align-items:center;justify-content:space-between;padding:0 14px}
+.traffic{display:flex;gap:6px}.traffic i{width:7px;height:7px;border-radius:50%;background:#45454d;display:block}
+.app-label{font-size:9px;color:#606067;text-transform:uppercase;letter-spacing:.12em}
+.app-body{padding:18px;min-height:300px}
+.form-row{display:grid;grid-template-columns:120px 1fr;gap:14px;margin-bottom:12px}
+.form-row:last-child{margin-bottom:0}
+.form-key{height:9px;border-radius:999px;background:#1b1b1f;margin-top:10px}
+.form-value{border:1px solid #25252b;border-radius:10px;background:#111113;padding:13px;font-size:11px;color:#8a8a91;min-height:45px}
+.flow{display:grid;gap:10px}
+.flow-card{border:1px solid #26262c;border-radius:12px;background:#101012;padding:14px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.flow-card strong{font-size:12px;font-weight:550}.flow-card span{display:block;font-size:10px;color:#65656d;margin-top:3px}
+.pill{font-size:9px;color:#b0b0b6;border:1px solid #313137;border-radius:999px;padding:6px 8px}
+.progress{height:5px;background:#19191d;border-radius:999px;overflow:hidden;margin-top:12px}
+.progress i{display:block;height:100%;width:72%;background:#d8d8dc;border-radius:999px}
+.showcase-tabs-wrap{display:flex;justify-content:center;transform:translateY(-50%);position:relative;z-index:3}
+.showcase-tabs{
+  display:inline-flex;gap:4px;border:1px solid #2d2d33;border-radius:14px;padding:6px;background:rgba(8,8,9,.96);
+  box-shadow:0 20px 60px rgba(0,0,0,.38);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)
+}
+.showcase-tab{border:0;background:transparent;color:#83838a;padding:10px 15px;border-radius:10px;font-size:11px;cursor:pointer;transition:.2s}
+.showcase-tab.active{background:#f1f1f2;color:#070707}
+.showcase-caption{text-align:center;padding:0 28px 40px}
+.showcase-caption h3{font-size:clamp(24px,3.6vw,42px);letter-spacing:-.042em;margin:0 0 9px}
+.showcase-caption p{max-width:690px;margin:auto;color:#7b7b82;font-size:13px;line-height:1.65}
 
+/* portfolio */
 .project-card{
-  position:relative;overflow:hidden;
-  border:1px solid var(--line);border-radius:22px;background:var(--card);
-  min-height:410px;padding:34px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  transition:transform .28s ease,border-color .28s ease,background .28s ease;
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#0b0b0c,#080809);
+  min-height:430px;padding:clamp(28px,3.5vw,40px);display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .25s,border-color .25s,box-shadow .25s
 }
-.project-card:hover{transform:translateY(-3px);border-color:#2f2f2f;background:#0d0d0d}
-.project-top{display:flex;justify-content:space-between;gap:20px}
-.project-mark{
-  width:54px;height:54px;border:1px solid #292929;border-radius:14px;
-  display:grid;place-items:center;font-size:21px;font-weight:700;overflow:hidden;
-}
-.project-mark img{
-  width:100%;height:100%;object-fit:cover;display:block;
-}
-.status-pill{
-  border:1px solid #242424;border-radius:999px;padding:7px 10px;
-  color:#737373;font-size:10px;height:max-content
-}
-.project-bottom{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
-.project-card h3{font-size:42px;margin:0 0 12px;letter-spacing:-.045em}
-.project-card p{color:#7f7f7f;max-width:610px;font-size:14px;line-height:1.7;margin:0}
-.arrow{
-  width:46px;height:46px;border-radius:50%;border:1px solid #262626;
-  display:grid;place-items:center;font-size:20px;transition:transform .25s ease,background .25s ease
-}
+.project-card:hover{transform:translateY(-3px);border-color:#35353b;box-shadow:0 30px 90px rgba(0,0,0,.32)}
+.project-card:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-180px;top:-200px;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 68%)}
+.project-top{display:flex;justify-content:space-between;gap:20px;position:relative;z-index:2}
+.project-mark{width:58px;height:58px;border-radius:15px;overflow:hidden;border:1px solid #2a2a30}.project-mark img{width:100%;height:100%;object-fit:cover;display:block}
+.status{font-size:10px;color:#76767d;border:1px solid #28282e;border-radius:999px;padding:7px 10px;height:max-content}
+.project-bottom{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;position:relative;z-index:2}
+.project-card h3{font-size:clamp(40px,4.5vw,52px);letter-spacing:-.046em;margin:0 0 12px}
+.project-card p{font-size:14px;line-height:1.72;color:#828289;margin:0;max-width:650px}
+.arrow{width:48px;height:48px;border:1px solid #29292f;border-radius:50%;display:grid;place-items:center;font-size:20px;transition:.2s}
 .project-card:hover .arrow{transform:translate(2px,-2px);background:#111}
 
-.founder{
-  display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:start
+/* course pipeline */
+.path-shell{max-width:930px;margin:auto}
+.path-intro{text-align:center;max-width:740px;margin:0 auto 58px}
+.path-intro h2{margin-inline:auto}.path-intro p{max-width:660px;margin:20px auto 0;color:#909098;font-size:15px;line-height:1.7}
+.pipeline{position:relative;padding-left:60px}
+.pipeline:before{content:"";position:absolute;left:14px;top:22px;bottom:22px;width:1px;background:#35353c}
+.stage{position:relative;margin-bottom:24px}.stage:last-child{margin-bottom:0}
+.stage:before{content:"";position:absolute;left:-52px;top:25px;width:13px;height:13px;border-radius:50%;background:#777780;box-shadow:0 0 0 7px var(--bg)}
+.stage-label{font-size:11px;color:#8a8a91;margin-bottom:10px}
+.stage-card{
+  border:1px solid #29292f;border-radius:19px;background:#0a0a0c;padding:clamp(24px,3vw,34px);cursor:pointer;
+  transition:border-color .2s,background .2s,transform .2s
 }
-.founder-copy{
-  font-size:22px;line-height:1.55;letter-spacing:-.02em;color:#aaa;margin:0
-}
-.founder-copy strong{color:#f0f0f0;font-weight:500}
-.facts{border-top:1px solid var(--line)}
-.fact{
-  display:flex;justify-content:space-between;gap:20px;
-  border-bottom:1px solid var(--line);padding:17px 0;font-size:12px
-}
-.fact span:first-child{color:#5f5f5f}
-.fact span:last-child{color:#aaa;text-align:right}
+.stage-card:hover{border-color:#37373e;background:#0d0d0f}
+.stage-card[aria-expanded="true"]{border-color:#3b3b42;background:#0e0e10}
+.stage-title{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.stage-title h3{margin:0;font-size:clamp(25px,3vw,36px);letter-spacing:-.036em}
+.stage-plus{font-size:22px;color:#707078;transition:transform .24s}.stage-card[aria-expanded="true"] .stage-plus{transform:rotate(45deg);color:#dddde1}
+.stage-card>p{margin:12px 0 0;color:#888890;font-size:14px;line-height:1.68;max-width:690px}
+.stage-details{max-height:0;opacity:0;overflow:hidden;margin-top:0;transition:max-height .35s ease,opacity .25s,margin-top .35s}
+.stage-card[aria-expanded="true"] .stage-details{max-height:220px;opacity:1;margin-top:24px}
+.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.detail{border-top:1px solid #242429;padding-top:12px;font-size:11px;color:#a1a1a8;line-height:1.5}
 
-.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.principle{
-  border:1px solid var(--line);border-radius:16px;padding:26px;min-height:210px;
-  transition:transform .25s ease,border-color .25s ease
-}
-.principle:hover{transform:translateY(-3px);border-color:#303030}
-.principle .n{font-size:10px;color:#555;margin-bottom:70px}
-.principle h3{font-size:17px;margin:0 0 9px}
-.principle p{font-size:12px;line-height:1.65;color:#707070;margin:0}
-
-
-
-/* interactive product engagement */
-.engage-showcase{
-  margin-top:44px;
-  border:1px solid var(--line);
-  border-radius:22px;
-  overflow:hidden;
-  background:#080809;
-}
-.engage-stage{
-  position:relative;
-  min-height:430px;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 20% 0%,rgba(255,255,255,.055),transparent 34%),
-    linear-gradient(180deg,#0d0d0f,#080809);
-}
-.engage-track{
-  display:flex;
-  width:300%;
-  transition:transform .42s cubic-bezier(.2,.8,.2,1);
-  will-change:transform;
-}
-.engage-panel{
-  width:33.333333%;
-  min-height:430px;
-  padding:clamp(28px,4vw,46px);
-  display:grid;
-  grid-template-columns:.88fr 1.12fr;
-  gap:clamp(28px,5vw,70px);
-  align-items:center;
-}
-.engage-copy .mini{
-  color:#696970;font-size:10px;text-transform:uppercase;letter-spacing:.13em;margin-bottom:16px
-}
-.engage-copy h3{
-  margin:0;font-size:clamp(30px,4vw,48px);line-height:1.02;letter-spacing:-.045em
-}
-.engage-copy p{
-  margin:18px 0 0;color:#8d8d94;font-size:14px;line-height:1.7;max-width:520px
-}
-.engage-mock{
-  border:1px solid #2b2b31;border-radius:18px;background:#0b0b0d;
-  box-shadow:0 28px 80px rgba(0,0,0,.32);overflow:hidden
-}
-.mock-bar{
-  height:42px;border-bottom:1px solid #25252a;display:flex;align-items:center;gap:6px;padding:0 14px
-}
-.mock-dot{width:7px;height:7px;border-radius:50%;background:#48484f}
-.mock-body{padding:18px}
-.mock-row{display:grid;grid-template-columns:120px 1fr;gap:14px;margin-bottom:12px}
-.mock-row:last-child{margin-bottom:0}
-.mock-label{height:10px;border-radius:999px;background:#1a1a1e;margin-top:6px}
-.mock-field{
-  min-height:44px;border:1px solid #242429;border-radius:10px;background:#101012;
-  padding:12px;color:#8c8c93;font-size:11px;line-height:1.5
-}
-.mock-stack{display:grid;gap:10px}
-.mock-card{
-  border:1px solid #25252b;border-radius:12px;padding:14px;background:#0f0f11;
-  display:flex;justify-content:space-between;gap:20px;align-items:center
-}
-.mock-card strong{font-size:12px;font-weight:550}.mock-card span{font-size:10px;color:#696970}
-.mock-pill{border:1px solid #303037;border-radius:999px;padding:6px 8px;color:#aaaab0;font-size:9px}
-.engage-tabs-wrap{
-  display:flex;justify-content:center;transform:translateY(-50%);position:relative;z-index:4
-}
-.engage-tabs{
-  display:inline-flex;gap:4px;padding:6px;border:1px solid #2b2b31;border-radius:14px;
-  background:rgba(8,8,9,.96);box-shadow:0 18px 50px rgba(0,0,0,.36);
-  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)
-}
-.engage-tab{
-  border:0;background:transparent;color:#8b8b91;border-radius:10px;padding:10px 14px;
-  font:inherit;font-size:11px;cursor:pointer;transition:.2s
-}
-.engage-tab.active{background:#f2f2f3;color:#070708}
-.engage-caption{
-  text-align:center;padding:0 clamp(24px,4vw,42px) 38px
-}
-.engage-caption h3{
-  margin:0 auto 8px;font-size:clamp(24px,3.5vw,40px);letter-spacing:-.04em;max-width:760px
-}
-.engage-caption p{margin:0 auto;color:#7f7f86;font-size:13px;line-height:1.65;max-width:680px}
-
-/* interactive pipeline */
-.stage-card{cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
-.stage-card:hover{border-color:#35353b;background:#0d0d0f}
-.stage-card[aria-expanded="true"]{border-color:#3a3a40;background:#0e0e10}
-.stage-points{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .35s ease,opacity .25s ease,margin-top .35s ease}
-.stage-card[aria-expanded="true"] .stage-points{max-height:170px;opacity:1;margin-top:25px}
-.stage-card h3{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.stage-chevron{font-size:18px;color:#66666d;transition:transform .25s}
-.stage-card[aria-expanded="true"] .stage-chevron{transform:rotate(45deg);color:#d7d7db}
-
-/* free entry point */
-.free-entry{
-  margin-top:18px;border:1px solid var(--line);border-radius:18px;padding:22px;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;background:#09090a
-}
-.free-entry strong{font-size:14px;font-weight:550}
-.free-entry p{margin:5px 0 0;color:#717178;font-size:11px;line-height:1.5}
-
-/* studio engagement toggle */
-.engagement-toggle{
-  display:flex;justify-content:center;align-items:center;gap:12px;margin:0 0 28px;color:#77777e;font-size:11px
-}
-.toggle-shell{
-  width:48px;height:28px;border:1px solid #2d2d33;border-radius:999px;background:#121214;
-  position:relative;cursor:pointer;transition:.2s
-}
-.toggle-knob{
-  position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#f4f4f5;
-  transition:transform .25s
-}
-.toggle-shell.active .toggle-knob{transform:translateX(20px)}
-.toggle-label.active{color:#f0f0f2}
-.plan[data-mode="guided"] .guided-only,.plan[data-mode="collab"] .collab-only{display:list-item}
-.plan .guided-only,.plan .collab-only{display:none}
-
-/* studio / paid engagement */
-.studio-shell{
-  border:1px solid var(--line);
-  border-radius:24px;
-  overflow:hidden;
-  background:#080809;
-}
-.studio-head{
-  display:grid;
-  grid-template-columns:.7fr 1.3fr;
-  gap:34px;
-  padding:clamp(28px,4vw,44px);
-  border-bottom:1px solid var(--line);
-}
-.studio-head p{
-  margin:0;
-  color:#8f8f96;
-  font-size:15px;
-  line-height:1.7;
-  max-width:620px;
-}
-.studio-plans{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-}
-.plan{
-  padding:clamp(26px,3vw,34px);
-  min-height:430px;
-  display:flex;
-  flex-direction:column;
-  border-right:1px solid var(--line);
-}
-.plan:last-child{border-right:0}
-.plan.featured{
-  background:#0c0c0e;
-  box-shadow:inset 0 2px 0 #f1f1f3;
-}
+/* studio */
+.studio-toolbar{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-bottom:26px;flex-wrap:wrap}
+.mode-toggle{display:flex;align-items:center;gap:11px;font-size:11px;color:#717178}
+.mode-label.active{color:#f0f0f2}
+.switch{width:48px;height:28px;border:1px solid #2e2e34;border-radius:999px;background:#121214;position:relative;cursor:pointer}
+.switch span{position:absolute;width:20px;height:20px;left:3px;top:3px;border-radius:50%;background:#f2f2f3;transition:transform .24s}
+.switch.on span{transform:translateX(20px)}
+.free-brief{display:flex;align-items:center;justify-content:space-between;gap:24px;border:1px solid var(--line);border-radius:18px;background:#09090a;padding:22px;margin-bottom:18px}
+.free-brief strong{font-size:14px}.free-brief p{font-size:11px;color:#6f6f76;margin:5px 0 0;line-height:1.5}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#080809}
+.plan{padding:clamp(26px,3vw,34px);min-height:470px;display:flex;flex-direction:column;border-right:1px solid var(--line)}
+.plan:last-child{border-right:0}.plan.featured{background:#0c0c0e;box-shadow:inset 0 2px 0 #f0f0f2}
 .plan-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.plan-kicker{
-  font-size:10px;
-  color:#67676f;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-}
-.plan-badge{
-  font-size:9px;
-  color:#d8d8dc;
-  border:1px solid #33333a;
-  border-radius:999px;
-  padding:6px 8px;
-}
-.plan h3{
-  margin:20px 0 8px;
-  font-size:clamp(25px,2.8vw,34px);
-  letter-spacing:-.035em;
-}
-.plan-sub{
-  color:#85858d;
-  font-size:13px;
-  line-height:1.6;
-  min-height:62px;
-}
-.price{
-  margin:28px 0 4px;
-  font-size:clamp(34px,4vw,48px);
-  font-weight:650;
-  letter-spacing:-.045em;
-}
-.price-note{
-  color:#6f6f76;
-  font-size:11px;
-}
-.plan-list{
-  list-style:none;
-  padding:0;
-  margin:28px 0 30px;
-  display:grid;
-  gap:12px;
-}
-.plan-list li{
-  position:relative;
-  padding-left:18px;
-  color:#aaaab0;
-  font-size:12px;
-  line-height:1.55;
-}
-.plan-list li:before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:.52em;
-  width:6px;height:6px;
-  border-radius:50%;
-  background:#d7d7db;
-}
-.plan .btn{margin-top:auto;width:100%}
-.pay-note{
-  padding:18px clamp(26px,3vw,34px);
-  border-top:1px solid var(--line);
-  color:#64646b;
-  font-size:10px;
-  line-height:1.5;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-}
-.checkout-modal{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:none;
-  place-items:center;
-  padding:20px;
-  background:rgba(0,0,0,.72);
-  -webkit-backdrop-filter:blur(12px);
-  backdrop-filter:blur(12px);
-}
-.checkout-modal.open{display:grid}
-.checkout-card{
-  width:min(100%,480px);
-  border:1px solid #303037;
-  border-radius:20px;
-  background:#0b0b0d;
-  padding:28px;
-  box-shadow:0 30px 100px rgba(0,0,0,.5);
-}
-.checkout-card h3{margin:0 0 8px;font-size:26px;letter-spacing:-.035em}
-.checkout-card p{margin:0;color:#8c8c93;font-size:13px;line-height:1.6}
-.checkout-summary{
-  margin:24px 0;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:16px 0;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  font-size:12px;
-}
-.checkout-actions{display:flex;gap:10px}
-.checkout-actions .btn{flex:1}
+.plan-kicker{font-size:10px;color:#66666d;text-transform:uppercase;letter-spacing:.12em}
+.badge{font-size:9px;color:#d5d5d9;border:1px solid #33333a;border-radius:999px;padding:6px 8px}
+.plan h3{font-size:clamp(26px,3vw,35px);letter-spacing:-.038em;margin:20px 0 8px}
+.plan-desc{min-height:64px;color:#85858c;font-size:13px;line-height:1.62}
+.price{font-size:clamp(38px,4.2vw,52px);letter-spacing:-.05em;font-weight:650;margin:28px 0 3px}
+.price-note{font-size:10px;color:#68686f}
+.plan ul{list-style:none;padding:0;margin:28px 0 30px;display:grid;gap:12px}
+.plan li{font-size:12px;line-height:1.55;color:#a8a8ae;padding-left:18px;position:relative}
+.plan li:before{content:"";position:absolute;left:0;top:.53em;width:6px;height:6px;border-radius:50%;background:#d3d3d7}
+.plan .btn{margin-top:auto}
+.mode-collab{display:none}
+body.collab-mode .mode-guided{display:none}
+body.collab-mode .mode-collab{display:list-item}
 
+/* founder */
+.founder{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:start}
+.founder-copy{font-size:clamp(20px,2.2vw,24px);line-height:1.55;letter-spacing:-.02em;color:#aaaab0;margin:0}
+.founder-copy strong{color:#f1f1f3;font-weight:500}
+.facts{border-top:1px solid var(--line)}
+.fact{display:flex;justify-content:space-between;gap:22px;border-bottom:1px solid var(--line);padding:17px 0;font-size:12px}
+.fact span:first-child{color:#626269}.fact span:last-child{color:#aaaab0;text-align:right}
 
-.mobile-cta{
-  display:none;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));
-  z-index:40;border:1px solid #2e2e34;border-radius:13px;background:rgba(11,11,13,.94);
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding:8px;
-  box-shadow:0 18px 60px rgba(0,0,0,.45)
+/* principles */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.principle{border:1px solid var(--line);border-radius:17px;padding:27px;min-height:220px;transition:transform .22s,border-color .22s}
+.principle:hover{transform:translateY(-2px);border-color:#333339}
+.principle .n{font-size:10px;color:#58585f;margin-bottom:72px}.principle h3{font-size:17px;margin:0 0 9px}.principle p{font-size:12px;line-height:1.65;color:#74747b;margin:0}
+
+/* modal wizard */
+.modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.76);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.modal.open{display:grid}
+.modal-card{width:min(100%,620px);max-height:min(820px,calc(100svh - 40px));overflow:auto;border:1px solid #303037;border-radius:21px;background:#0b0b0d;box-shadow:0 35px 120px rgba(0,0,0,.55)}
+.modal-head{padding:24px 26px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.modal-head strong{font-size:14px}.close{width:36px;height:36px;border-radius:9px;border:1px solid #29292f;background:#101012;color:#aaaab0;cursor:pointer}
+.wizard-progress{height:2px;background:#18181c}.wizard-progress i{display:block;height:100%;width:25%;background:#f0f0f2;transition:width .25s}
+.modal-body{padding:28px 26px}
+.wizard-step{display:none}.wizard-step.active{display:block}
+.wizard-step .step-no{font-size:10px;color:#65656c;text-transform:uppercase;letter-spacing:.13em;margin-bottom:12px}
+.wizard-step h3{font-size:clamp(28px,5vw,42px);letter-spacing:-.045em;margin:0 0 10px}
+.wizard-step p{color:#86868e;font-size:13px;line-height:1.65;margin:0 0 24px}
+.field{display:grid;gap:8px;margin-bottom:16px}.field label{font-size:11px;color:#86868e}
+.field input,.field textarea,.field select{
+  width:100%;border:1px solid #29292f;border-radius:11px;background:#111113;color:#e7e7e9;padding:12px 13px;outline:none
 }
-.mobile-cta a{width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#494950}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.choice{border:1px solid #29292f;border-radius:12px;background:#101012;padding:14px;cursor:pointer;transition:.18s}
+.choice:hover,.choice.selected{border-color:#57575f;background:#141416}.choice strong{display:block;font-size:12px}.choice span{display:block;font-size:10px;color:#717178;margin-top:4px;line-height:1.45}
+.wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:24px}
+.wizard-actions .right{display:flex;gap:10px}
+.summary-box{border:1px solid #29292f;border-radius:14px;background:#101012;padding:16px;font-size:12px;line-height:1.7;color:#aaaab0;white-space:pre-wrap}
+.copy-status{font-size:10px;color:#77777e;margin-top:8px;min-height:15px}
 
-footer{padding:38px 0 50px}
-.footer{display:flex;justify-content:space-between;gap:20px;color:#4f4f4f;font-size:10px}
-
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:none}
-
+/* misc */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .58s ease,transform .58s ease}.reveal.visible{opacity:1;transform:none}
+footer{padding:clamp(38px,5vw,52px) 0 calc(clamp(42px,5vw,60px) + env(safe-area-inset-bottom))}
+.footer{display:flex;justify-content:space-between;gap:20px;color:#5b5b62;font-size:11px}
+.mobile-cta{display:none}
 .cursor-glow{
-  position:fixed;pointer-events:none;z-index:0;width:360px;height:360px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.055),rgba(255,255,255,0) 70%);
-  transform:translate(-50%,-50%);opacity:0;transition:opacity .2s ease;
+  position:fixed;pointer-events:none;z-index:0;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.045),transparent 70%);transform:translate(-50%,-50%);opacity:0
 }
 body:hover .cursor-glow{opacity:1}
 
-@media(max-width:760px){
-  .navlinks{display:none}
-  .hero{min-height:auto}
-  .hero-inner{padding:88px 0 70px}
-  .section{padding:68px 0}
-  .section-top{display:block}
-  .section-top .eyebrow{margin-bottom:16px}
-  .project-card{min-height:360px;padding:26px}
-  .project-bottom,.founder{grid-template-columns:1fr}
-  .project-bottom{gap:24px}
-  .arrow{display:none}
-  .founder{gap:46px}
-  .principles{grid-template-columns:1fr}
-  .principle{min-height:170px}
-  .principle .n{margin-bottom:44px}
-  .footer{flex-direction:column}
+@media(max-width:800px){
+  :root{--gutter:20px;--section:76px}
+  .nav-inner{min-height:62px}.navlinks{display:none}.menu-btn{display:flex}.brand{font-size:13px}.drop{width:20px;height:25px}
+  .hero{min-height:auto}.hero-inner{padding:86px 0 80px}
+  h1{font-size:clamp(52px,15.5vw,76px);line-height:.92}
+  .hero-copy{font-size:15px;margin-top:28px}
+  .signal-grid{grid-template-columns:1fr}.signal{padding:18px 0;border-right:0;border-bottom:1px solid var(--line)}.signal:last-child{border-bottom:0}
+  .section-head{display:block;margin-bottom:34px}.section-head .eyebrow{margin-bottom:16px}
+  h2{font-size:clamp(36px,10.5vw,50px)}
+  .showcase{border-radius:18px}.showcase-stage{min-height:600px}
+  .showcase-panel{min-height:600px;grid-template-columns:1fr;gap:30px;padding:24px}
+  .showcase-copy h3{font-size:36px}.app-body{min-height:260px}.form-row{grid-template-columns:1fr;gap:6px}.form-key{width:90px}
+  .showcase-tabs{width:calc(100% - 24px);justify-content:space-between}.showcase-tab{flex:1;padding:10px 6px;font-size:10px}
+  .showcase-caption{text-align:left;padding:0 22px 32px}
+  .project-card{min-height:370px;border-radius:19px}.project-bottom{grid-template-columns:1fr}.arrow{display:none}.project-card p{font-size:13px}
+  .path-intro{text-align:left;margin-bottom:38px}.path-intro h2{margin:0}.path-intro p{margin-left:0}
+  .pipeline{padding-left:38px}.pipeline:before{left:8px}.stage:before{left:-36px;width:11px;height:11px}
+  .stage-card{padding:24px}.detail-grid{grid-template-columns:1fr}
+  .studio-toolbar{align-items:flex-start}.free-brief{flex-direction:column;align-items:flex-start}.free-brief .btn{width:100%}
+  .plans{grid-template-columns:1fr;border-radius:19px}.plan{min-height:auto;border-right:0;border-bottom:1px solid var(--line);padding:25px}.plan:last-child{border-bottom:0}.plan-desc{min-height:0}
+  .founder{grid-template-columns:1fr;gap:44px}.principles{grid-template-columns:1fr}.principle{min-height:170px;padding:24px}.principle .n{margin-bottom:44px}
+  .choice-grid{grid-template-columns:1fr}
+  .wizard-actions{align-items:stretch}.wizard-actions,.wizard-actions .right{flex-direction:column}.wizard-actions .right{width:100%}.wizard-actions .btn{width:100%}
+  .footer{flex-direction:column;gap:8px}
   .cursor-glow{display:none}
-
-  .pipeline-intro{text-align:left;margin-bottom:38px}
-  .pipeline-intro h2{margin:0}
-  .pipeline-intro p{margin-left:0}
-  .pipeline{padding-left:36px}
-  .pipeline:before{left:7px}
-  .stage:before{left:-35px;width:11px;height:11px}
-  .stage-card{border-radius:17px;padding:24px}
-  .stage-points{grid-template-columns:1fr;gap:0}
-  .stage-point{padding:11px 0;border-top:1px solid #242429}
+  .mobile-cta{
+    display:block;position:fixed;z-index:45;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));
+    background:rgba(10,10,12,.94);border:1px solid #303037;border-radius:13px;padding:8px;
+    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 18px 60px rgba(0,0,0,.45)
+  }
+  .mobile-cta .btn{width:100%}
 }
 @media(prefers-reduced-motion:reduce){
-  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
+  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}
 }
-
-.pipeline-wrap{max-width:900px;margin:0 auto}
-.pipeline-intro{text-align:center;margin:0 auto 58px;max-width:740px}
-.pipeline-intro h2{margin-inline:auto}
-.pipeline-intro p{margin:20px auto 0;color:#92929a;line-height:1.7;max-width:650px;font-size:15px}
-.pipeline{position:relative;padding-left:58px}
-.pipeline:before{content:"";position:absolute;left:13px;top:18px;bottom:18px;width:1px;background:#34343b}
-.stage{position:relative;margin-bottom:28px}
-.stage:last-child{margin-bottom:0}
-.stage:before{content:"";position:absolute;left:-51px;top:23px;width:13px;height:13px;border-radius:50%;background:#777781;box-shadow:0 0 0 6px var(--bg)}
-.stage-label{font-size:12px;color:#a4a4aa;margin:0 0 12px}
-.stage-card{border:1px solid #2a2a30;border-radius:20px;background:#0b0b0c;padding:clamp(25px,3vw,34px)}
-.stage-n{font-size:10px;color:#5f5f66;letter-spacing:.12em;text-transform:uppercase}
-.stage-card h3{margin:17px 0 9px;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em}
-.stage-card p{margin:0;color:#8b8b92;font-size:14px;line-height:1.68;max-width:680px}
-.stage-points{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:25px}
-.stage-point{border-top:1px solid #242429;padding-top:12px;color:#a2a2a8;font-size:12px;line-height:1.5}
-
 </style>
 </head>
 <body>
@@ -504,139 +331,135 @@ body:hover .cursor-glow{opacity:1}
 
 <nav>
   <div class="wrap nav-inner">
-    <a class="brand" href="#top">
-      <svg class="drop" viewBox="0 0 32 40" aria-label="Crackdoor">
+    <a class="brand" href="#top" aria-label="Crackdoor home">
+      <svg class="drop" viewBox="0 0 32 40" aria-hidden="true">
         <path d="M16 1C12 8 4 16 4 25a12 12 0 0 0 24 0C28 16 20 8 16 1Z" fill="none" stroke="white" stroke-width="2.5"/>
         <path d="M11 27c1 4 4 6 8 6" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
       Crackdoor
     </a>
-    <button class="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
+
+    <div class="navlinks">
+      <a href="#product">How it works</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#path">Path</a>
+      <a href="#founder">Founder</a>
+      <button class="nav-cta open-wizard" type="button">Build with us</button>
+    </div>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <div class="navlinks">
-      <a href="#portfolio">Portfolio</a>
-      <a href="#product">How it works</a>
-      <a href="#pipeline">Path</a>
-      <a href="#studio">Build with us</a>
-      <a href="#founder">Founder</a>
-      <a href="#approach">Principles</a>
-    </div>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <div class="wrap mobile-menu-inner">
-    <a href="#portfolio">Portfolio</a>
+  <div class="wrap">
     <a href="#product">How it works</a>
-    <a href="#pipeline">Path</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#path">Path</a>
     <a href="#studio">Build with us</a>
     <a href="#founder">Founder</a>
-    <a href="#approach">Principles</a>
+    <a href="#principles">Principles</a>
   </div>
 </div>
 
-
 <main id="top">
   <section class="hero">
+    <div class="hero-grid"></div><div class="hero-orb"></div>
     <div class="wrap hero-inner">
       <div class="kicker"><span class="dot"></span> Bloomington, Indiana</div>
-      <h1>Small company.<br>Big swings.</h1>
-      <p class="hero-sub">
-        <strong>Crackdoor</strong> is a holding and product company building focused internet products from Bloomington.
-        First up: Sahara.
-      </p>
-      <div class="hero-actions">
-        <a class="btn primary" href="#studio">Build something with us →</a>
+      <h1 class="display">Small company.<br>Big swings.</h1>
+      <p class="hero-copy"><strong>Crackdoor</strong> builds focused internet products and selectively helps independent founders turn sharp ideas into something real, useful and launchable.</p>
+      <div class="actions">
+        <button class="btn primary open-wizard" type="button">Start a project →</button>
         <a class="btn" href="#portfolio">See the portfolio</a>
       </div>
     </div>
   </section>
 
-
-  <section class="outcomes" aria-label="What Crackdoor does">
-    <div class="wrap outcomes-grid">
-      <div class="outcome"><div class="outcome-inner"><strong>Build our own products</strong><span>Focused companies created inside Crackdoor.</span></div></div>
-      <div class="outcome"><div class="outcome-inner"><strong>Work with outside builders</strong><span>Paid product strategy for ideas with real potential.</span></div></div>
-      <div class="outcome"><div class="outcome-inner"><strong>Stay selective</strong><span>Fewer projects, deeper attention, better decisions.</span></div></div>
+  <section class="signal-bar">
+    <div class="wrap signal-grid">
+      <div class="signal"><strong>Build our own companies</strong><span>Products created, tested and operated inside Crackdoor.</span></div>
+      <div class="signal"><strong>Work with outside builders</strong><span>A structured path from idea clarity to a buildable MVP.</span></div>
+      <div class="signal"><strong>Stay selective</strong><span>Fewer products. More attention. Better decisions.</span></div>
     </div>
   </section>
-
 
   <section class="section" id="product">
     <div class="wrap reveal">
       <div class="section-head">
-        <div class="eyebrow">How it works / 01</div>
+        <div class="eyebrow">Product / 01</div>
         <div>
-          <h2>Move an idea forward, one decision at a time.</h2>
-          <p class="section-lead">Explore the same three moments every Crackdoor engagement is built around: sharpen the idea, turn it into a real product system, then prepare it to ship.</p>
+          <h2 class="display">Move the idea forward, one decision at a time.</h2>
+          <p class="section-lead">The Crackdoor process is built around three moments: pressure-test the idea, define the product system, then ship a version that can teach you something.</p>
         </div>
       </div>
 
-      <div class="engage-showcase" id="engageShowcase">
-        <div class="engage-stage">
-          <div class="engage-track" id="engageTrack">
-            <div class="engage-panel">
-              <div class="engage-copy">
+      <div class="showcase" id="showcase">
+        <div class="showcase-stage">
+          <div class="showcase-track" id="showcaseTrack">
+            <article class="showcase-panel">
+              <div class="showcase-copy">
                 <div class="mini">01 · Discover</div>
-                <h3>Pressure-test the idea.</h3>
-                <p>Define the user, isolate the actual problem, and cut through the features that do not belong in version one.</p>
+                <h3 class="display">Pressure-test the idea.</h3>
+                <p>Get specific about the customer, the behavior and the smallest product that would still be worth using.</p>
               </div>
-              <div class="engage-mock" aria-hidden="true">
-                <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
-                <div class="mock-body">
-                  <div class="mock-row"><div class="mock-label"></div><div class="mock-field">Who is this for?</div></div>
-                  <div class="mock-row"><div class="mock-label"></div><div class="mock-field">What behavior are you trying to change?</div></div>
-                  <div class="mock-row"><div class="mock-label"></div><div class="mock-field">What is the smallest version someone would still use?</div></div>
+              <div class="app-frame">
+                <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Project brief</div></div>
+                <div class="app-body">
+                  <div class="form-row"><div class="form-key"></div><div class="form-value">Who is this actually for?</div></div>
+                  <div class="form-row"><div class="form-key"></div><div class="form-value">What repeated behavior or friction are you solving?</div></div>
+                  <div class="form-row"><div class="form-key"></div><div class="form-value">What can version one safely leave out?</div></div>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <div class="engage-panel">
-              <div class="engage-copy">
+            <article class="showcase-panel">
+              <div class="showcase-copy">
                 <div class="mini">02 · Define</div>
-                <h3>Turn the idea into a system.</h3>
-                <p>Map the core loop, screen flow, product rules, and technical direction so the product can move from concept to build without guesswork.</p>
+                <h3 class="display">Turn it into a product system.</h3>
+                <p>Map the core loop, screens, product rules and technical direction until the idea becomes something a team can actually build.</p>
               </div>
-              <div class="engage-mock" aria-hidden="true">
-                <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
-                <div class="mock-body mock-stack">
-                  <div class="mock-card"><div><strong>Entry</strong><br><span>User reaches the product</span></div><div class="mock-pill">01</div></div>
-                  <div class="mock-card"><div><strong>Core action</strong><br><span>The behavior that creates value</span></div><div class="mock-pill">02</div></div>
-                  <div class="mock-card"><div><strong>Return loop</strong><br><span>The reason to come back</span></div><div class="mock-pill">03</div></div>
+              <div class="app-frame">
+                <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Product blueprint</div></div>
+                <div class="app-body flow">
+                  <div class="flow-card"><div><strong>Entry</strong><span>How the user reaches value</span></div><div class="pill">01</div></div>
+                  <div class="flow-card"><div><strong>Core action</strong><span>The behavior the product is built around</span></div><div class="pill">02</div></div>
+                  <div class="flow-card"><div><strong>Return loop</strong><span>The reason someone comes back</span></div><div class="pill">03</div></div>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <div class="engage-panel">
-              <div class="engage-copy">
+            <article class="showcase-panel">
+              <div class="showcase-copy">
                 <div class="mini">03 · Ship</div>
-                <h3>Launch the version that matters.</h3>
-                <p>Reduce the plan to a buildable first release, establish what to measure, and create the next iteration from real usage instead of assumptions.</p>
+                <h3 class="display">Launch the version that matters.</h3>
+                <p>Cut the plan to a real MVP, define what to measure and let actual usage decide what gets built next.</p>
               </div>
-              <div class="engage-mock" aria-hidden="true">
-                <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
-                <div class="mock-body mock-stack">
-                  <div class="mock-card"><div><strong>MVP scope</strong><br><span>Locked</span></div><div class="mock-pill">Ready</div></div>
-                  <div class="mock-card"><div><strong>Launch checklist</strong><br><span>Product, auth, analytics, feedback</span></div><div class="mock-pill">4 items</div></div>
-                  <div class="mock-card"><div><strong>Next signal</strong><br><span>Retention before expansion</span></div><div class="mock-pill">Measure</div></div>
+              <div class="app-frame">
+                <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Launch</div></div>
+                <div class="app-body flow">
+                  <div class="flow-card"><div><strong>MVP scope</strong><span>Core loop locked</span></div><div class="pill">Ready</div></div>
+                  <div class="flow-card"><div><strong>Launch checklist</strong><span>Product · Auth · Analytics · Feedback</span></div><div class="pill">4 items</div></div>
+                  <div class="flow-card"><div style="flex:1"><strong>First signal</strong><span>Retention before expansion</span><div class="progress"><i></i></div></div><div class="pill">Measure</div></div>
                 </div>
               </div>
-            </div>
+            </article>
           </div>
         </div>
 
-        <div class="engage-tabs-wrap">
-          <div class="engage-tabs" role="tablist" aria-label="Crackdoor engagement stages">
-            <button class="engage-tab active" type="button" data-index="0" role="tab" aria-selected="true">Discover</button>
-            <button class="engage-tab" type="button" data-index="1" role="tab" aria-selected="false">Define</button>
-            <button class="engage-tab" type="button" data-index="2" role="tab" aria-selected="false">Ship</button>
+        <div class="showcase-tabs-wrap">
+          <div class="showcase-tabs" role="tablist" aria-label="Crackdoor product process">
+            <button class="showcase-tab active" type="button" data-index="0" role="tab" aria-selected="true">Discover</button>
+            <button class="showcase-tab" type="button" data-index="1" role="tab" aria-selected="false">Define</button>
+            <button class="showcase-tab" type="button" data-index="2" role="tab" aria-selected="false">Ship</button>
           </div>
         </div>
 
-        <div class="engage-caption">
-          <h3 id="engageTitle">Pressure-test the idea before you build it.</h3>
-          <p id="engageText">Start with the signal. Clarify the customer, problem, product promise, and what should not make it into the MVP.</p>
+        <div class="showcase-caption">
+          <h3 class="display" id="showcaseTitle">Pressure-test the idea before you build it.</h3>
+          <p id="showcaseText">Start with the signal. Clarify who the product is for, what matters in version one and what should be cut.</p>
         </div>
       </div>
     </div>
@@ -644,23 +467,20 @@ body:hover .cursor-glow{opacity:1}
 
   <section class="section" id="portfolio">
     <div class="wrap reveal">
-      <div class="section-top">
+      <div class="section-head">
         <div class="eyebrow">Portfolio / 02</div>
-        <h2>One product at a time.</h2>
+        <div><h2 class="display">One product at a time.</h2><p class="section-lead">Crackdoor starts by proving its own process on products built from firsthand problems.</p></div>
       </div>
 
       <a class="project-card" href="https://www.sahara.app/" target="_blank" rel="noopener">
         <div class="project-top">
           <div class="project-mark"><img src="/apple-touch-icon-2.png" alt="Sahara logo"></div>
-          <div class="status-pill">Launching · Bloomington</div>
+          <div class="status">Bloomington · 2026</div>
         </div>
         <div class="project-bottom">
           <div>
-            <h3>Sahara</h3>
-            <p>
-              A curated campus social network beginning at Indiana University.
-              Built around intentional discovery, Pings and mutual connections.
-            </p>
+            <h3 class="display">Sahara</h3>
+            <p>A curated campus social network beginning at Indiana University. Built around intentional discovery, Pings and mutual connections.</p>
           </div>
           <div class="arrow">↗</div>
         </div>
@@ -668,267 +488,424 @@ body:hover .cursor-glow{opacity:1}
     </div>
   </section>
 
-
-  <section class="section" id="pipeline">
+  <section class="section" id="path">
     <div class="wrap reveal">
-      <div class="pipeline-wrap">
-        <div class="pipeline-intro">
+      <div class="path-shell">
+        <div class="path-intro">
           <div class="eyebrow" style="margin-bottom:18px">The path / 03</div>
-          <h2>From signal to something people keep.</h2>
-          <p>Crackdoor works through a simple product pipeline: get close to a real behavior, reduce it to a focused product, then earn the right to scale it.</p>
+          <h2 class="display">From signal to something people keep.</h2>
+          <p>Open each stage. The point is not more process — it is making the next decision obvious.</p>
         </div>
 
         <div class="pipeline">
           <div class="stage">
             <div class="stage-label">Stage 01 · Observe</div>
-            <div class="stage-card">
-              <div class="stage-n">Signal</div>
-              <h3>Start close.</h3>
-              <p>Look for repeated behavior, friction, or an overlooked social pattern in a market we can understand firsthand.</p>
-              <div class="stage-points">
-                <div class="stage-point">Notice real behavior</div>
-                <div class="stage-point">Find the sharpest problem</div>
-                <div class="stage-point">Define who it is for</div>
-              </div>
+            <div class="stage-card" tabindex="0" role="button" aria-expanded="true">
+              <div class="stage-title"><h3 class="display">Start close.</h3><span class="stage-plus">+</span></div>
+              <p>Find a repeated behavior, friction or overlooked social pattern in a market you can understand firsthand.</p>
+              <div class="stage-details"><div class="detail-grid">
+                <div class="detail">Notice real behavior instead of inventing demand.</div>
+                <div class="detail">Define the sharpest version of the problem.</div>
+                <div class="detail">Know exactly who the first user is.</div>
+              </div></div>
             </div>
           </div>
 
           <div class="stage">
             <div class="stage-label">Stage 02 · Build</div>
-            <div class="stage-card">
-              <div class="stage-n">System</div>
-              <h3>Make the smallest useful thing.</h3>
-              <p>Turn the signal into a focused product with a clear loop. Fewer features, fewer assumptions, and a reason to come back.</p>
-              <div class="stage-points">
-                <div class="stage-point">Build the core loop</div>
-                <div class="stage-point">Remove unnecessary layers</div>
-                <div class="stage-point">Ship into real use</div>
-              </div>
+            <div class="stage-card" tabindex="0" role="button" aria-expanded="false">
+              <div class="stage-title"><h3 class="display">Make the smallest useful thing.</h3><span class="stage-plus">+</span></div>
+              <p>Turn the signal into a focused product with one clear loop and a reason to come back.</p>
+              <div class="stage-details"><div class="detail-grid">
+                <div class="detail">Build the core loop before the feature list.</div>
+                <div class="detail">Remove assumptions and unnecessary layers.</div>
+                <div class="detail">Get the product into real use quickly.</div>
+              </div></div>
             </div>
           </div>
 
           <div class="stage">
             <div class="stage-label">Stage 03 · Learn</div>
-            <div class="stage-card">
-              <div class="stage-n">Iteration</div>
-              <h3>Watch what survives contact.</h3>
-              <p>Measure what people actually do, not what the product was supposed to do. Keep the behavior that compounds and cut what does not.</p>
-              <div class="stage-points">
-                <div class="stage-point">Read usage signals</div>
-                <div class="stage-point">Tighten the product</div>
-                <div class="stage-point">Protect simplicity</div>
-              </div>
+            <div class="stage-card" tabindex="0" role="button" aria-expanded="false">
+              <div class="stage-title"><h3 class="display">Watch what survives contact.</h3><span class="stage-plus">+</span></div>
+              <p>Measure what people actually do and keep the behavior that compounds.</p>
+              <div class="stage-details"><div class="detail-grid">
+                <div class="detail">Read usage signals instead of vanity metrics.</div>
+                <div class="detail">Tighten the product around repeated behavior.</div>
+                <div class="detail">Protect simplicity as feedback arrives.</div>
+              </div></div>
             </div>
           </div>
 
           <div class="stage">
             <div class="stage-label">Stage 04 · Scale</div>
-            <div class="stage-card">
-              <div class="stage-n">Network</div>
-              <h3>Earn the next thing.</h3>
-              <p>Scale only after the product gives us a reason. Expand the network, deepen the system, and let traction justify complexity.</p>
-              <div class="stage-points">
-                <div class="stage-point">Strengthen retention</div>
-                <div class="stage-point">Expand deliberately</div>
-                <div class="stage-point">Compound what works</div>
-              </div>
+            <div class="stage-card" tabindex="0" role="button" aria-expanded="false">
+              <div class="stage-title"><h3 class="display">Earn the next thing.</h3><span class="stage-plus">+</span></div>
+              <p>Expand only when traction creates a reason for more product, more market or more complexity.</p>
+              <div class="stage-details"><div class="detail-grid">
+                <div class="detail">Strengthen retention before acquisition.</div>
+                <div class="detail">Expand deliberately into adjacent users.</div>
+                <div class="detail">Let traction justify complexity.</div>
+              </div></div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
 
   <section class="section" id="studio">
     <div class="wrap reveal">
       <div class="section-head">
         <div class="eyebrow">Studio / 04</div>
         <div>
-          <h2>Have an idea? Start here.</h2>
-          <p class="section-lead">Crackdoor Studio is the front door for people who want to turn an idea into a real product without hiring a traditional agency.</p>
+          <h2 class="display">Have an idea? Start here.</h2>
+          <p class="section-lead">Crackdoor Studio is the front door for outside builders. Start free, buy a defined deliverable, or apply for deeper involvement.</p>
         </div>
       </div>
 
-
-      <div class="free-entry">
-        <div>
-          <strong>Not ready to pay yet? Start with a free Project Brief.</strong>
-          <p>Answer a few product questions and use the structure to clarify what you are actually trying to build.</p>
+      <div class="studio-toolbar">
+        <div class="free-brief" style="flex:1;margin:0">
+          <div><strong>Free Project Brief</strong><p>Use the same intake structure Crackdoor uses to clarify an idea before money changes hands.</p></div>
+          <button class="btn open-wizard" type="button">Start free →</button>
         </div>
-        <a class="btn" href="mailto:hello@crackdoor.com?subject=Free%20Project%20Brief">Get the brief →</a>
+        <div class="mode-toggle">
+          <span class="mode-label active" id="guidedLabel">Guided</span>
+          <button class="switch" id="modeSwitch" type="button" role="switch" aria-checked="false" aria-label="Toggle engagement mode"><span></span></button>
+          <span class="mode-label" id="collabLabel">Collaborative</span>
+        </div>
       </div>
 
-      <div class="studio-shell">
-        <div class="studio-head">
-          <div class="eyebrow">Build with Crackdoor</div>
-          <p>Start with clarity, move into a buildable plan, and apply for deeper involvement when the idea earns it.</p>
-        </div>
+      <div class="plans">
+        <article class="plan">
+          <div class="plan-top"><div class="plan-kicker">01 · Review</div></div>
+          <h3 class="display">Idea Review</h3>
+          <div class="plan-desc">For someone who wants a sharp outside read before spending weeks building the wrong thing.</div>
+          <div class="price">$99</div><div class="price-note">one-time</div>
+          <ul>
+            <li>Problem and audience review</li>
+            <li>MVP pressure test</li>
+            <li>Feature-cut recommendations</li>
+            <li>Written next-step memo</li>
+            <li class="mode-guided">Async delivery built for speed</li>
+            <li class="mode-collab">30-minute collaborative review call</li>
+          </ul>
+          <button class="btn plan-button" type="button" data-plan="Idea Review" data-price="$99">Start Idea Review</button>
+        </article>
 
+        <article class="plan featured">
+          <div class="plan-top"><div class="plan-kicker">02 · Blueprint</div><div class="badge">Best starting point</div></div>
+          <h3 class="display">Product Blueprint</h3>
+          <div class="plan-desc">For a builder ready to turn the idea into a product system that can actually be built.</div>
+          <div class="price">$499</div><div class="price-note">one-time</div>
+          <ul>
+            <li>Core product loop</li>
+            <li>MVP feature scope</li>
+            <li>User flow and screen map</li>
+            <li>Suggested stack and architecture</li>
+            <li>Launch and iteration plan</li>
+            <li class="mode-guided">Complete working blueprint delivered to you</li>
+            <li class="mode-collab">Live working session to refine the blueprint</li>
+          </ul>
+          <button class="btn primary plan-button" type="button" data-plan="Product Blueprint" data-price="$499">Build my blueprint →</button>
+        </article>
 
-        <div class="engagement-toggle">
-          <span class="toggle-label active" id="guidedLabel">Guided</span>
-          <button class="toggle-shell" id="engagementToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle engagement style">
-            <span class="toggle-knob"></span>
-          </button>
-          <span class="toggle-label" id="collabLabel">Collaborative</span>
-        </div>
-
-        <div class="studio-plans">
-          <article class="plan" data-mode="guided">
-            <div class="plan-top">
-              <div class="plan-kicker">01 · Review</div>
-            </div>
-            <h3>Idea Review</h3>
-            <div class="plan-sub">For someone who has an app idea and wants a sharp outside read before spending months building it.</div>
-            <div class="price">$99</div>
-            <div class="price-note">one-time</div>
-            <ul class="plan-list">
-              <li>Problem and audience review</li>
-              <li>MVP pressure test</li>
-              <li>Feature-cut recommendations</li>
-              <li>Written next-step memo</li><li class="guided-only">Async delivery built for speed</li><li class="collab-only">Collaborative review call included</li>
-            </ul>
-            <a class="btn checkout-trigger" href="#" data-plan="Idea Review" data-price="$99">Start with a review</a>
-          </article>
-
-          <article class="plan featured" data-mode="guided">
-            <div class="plan-top">
-              <div class="plan-kicker">02 · Blueprint</div>
-              <div class="plan-badge">Best starting point</div>
-            </div>
-            <h3>Product Blueprint</h3>
-            <div class="plan-sub">For builders ready to turn an idea into a product plan that can actually be built.</div>
-            <div class="price">$499</div>
-            <div class="price-note">one-time</div>
-            <ul class="plan-list">
-              <li>Core product loop</li>
-              <li>MVP feature scope</li>
-              <li>User flow and screen map</li>
-              <li>Suggested stack and architecture</li>
-              <li>Launch and iteration plan</li><li class="guided-only">Delivered as a complete working blueprint</li><li class="collab-only">Live working session to refine the blueprint</li>
-            </ul>
-            <a class="btn primary checkout-trigger" href="#" data-plan="Product Blueprint" data-price="$499">Build my blueprint</a>
-          </article>
-
-          <article class="plan" data-mode="guided">
-            <div class="plan-top">
-              <div class="plan-kicker">03 · Build</div>
-            </div>
-            <h3>Build Sprint</h3>
-            <div class="plan-sub">For a small number of products where Crackdoor is a strong fit to help shape and ship the first version.</div>
-            <div class="price">Apply</div>
-            <div class="price-note">custom scope</div>
-            <ul class="plan-list">
-              <li>Product strategy</li>
-              <li>Interface direction</li>
-              <li>MVP build planning</li>
-              <li>Launch support</li>
-              <li>Selective ongoing involvement</li><li class="guided-only">Crackdoor-led product direction</li><li class="collab-only">Founder works directly inside the process</li>
-            </ul>
-            <a class="btn checkout-trigger" href="#" data-plan="Build Sprint" data-price="Application">Apply to build</a>
-          </article>
-        </div>
-
-        <div class="pay-note">
-          <span>Checkout is ready for a Stripe Payment Link when you want to turn payments on.</span>
-          <span>Idea Review and Product Blueprint are paid deliverables. Build Sprint remains selective.</span>
-        </div>
+        <article class="plan">
+          <div class="plan-top"><div class="plan-kicker">03 · Build</div></div>
+          <h3 class="display">Build Sprint</h3>
+          <div class="plan-desc">For a small number of products where Crackdoor is a strong fit to help shape and ship version one.</div>
+          <div class="price">Apply</div><div class="price-note">custom scope</div>
+          <ul>
+            <li>Product strategy</li>
+            <li>Interface direction</li>
+            <li>MVP build planning</li>
+            <li>Launch support</li>
+            <li>Selective ongoing involvement</li>
+            <li class="mode-guided">Crackdoor-led product direction</li>
+            <li class="mode-collab">Founder works directly inside the process</li>
+          </ul>
+          <button class="btn plan-button" type="button" data-plan="Build Sprint" data-price="Application">Apply to build</button>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="section" id="founder">
     <div class="wrap reveal">
-      <div class="section-top">
-        <div class="eyebrow">Founder / 05</div>
-        <h2>Built from campus.</h2>
-      </div>
+      <div class="section-head"><div class="eyebrow">Founder / 05</div><h2 class="display">Built from campus.</h2></div>
       <div class="founder">
-        <p class="founder-copy">
-          Crackdoor was founded by <strong>Dylan Betancourt</strong>, a student at
-          <strong>Indiana University Bloomington</strong>. The goal is simple:
-          notice things, build things, and keep the good ones.
-        </p>
+        <p class="founder-copy">Crackdoor was founded by <strong>Dylan Betancourt</strong>, a student at <strong>Indiana University Bloomington</strong>. The goal is simple: notice things, build things, and keep the good ones.</p>
         <div class="facts">
           <div class="fact"><span>Founder</span><span>Dylan Betancourt</span></div>
           <div class="fact"><span>Based</span><span>Bloomington, Indiana</span></div>
           <div class="fact"><span>University</span><span>Indiana University Bloomington</span></div>
-          <div class="fact"><span>First company</span><span>Sahara</span></div>
+          <div class="fact"><span>First product</span><span>Sahara</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="approach">
+  <section class="section" id="principles">
     <div class="wrap reveal">
-      <div class="section-top">
-        <div class="eyebrow">Principles / 06</div>
-        <h2>Useful before impressive.</h2>
-      </div>
+      <div class="section-head"><div class="eyebrow">Principles / 06</div><h2 class="display">Useful before impressive.</h2></div>
       <div class="principles">
-        <div class="principle">
-          <div class="n">01</div>
-          <h3>Start close.</h3>
-          <p>Build around people and behaviors we understand firsthand.</p>
-        </div>
-        <div class="principle">
-          <div class="n">02</div>
-          <h3>Stay simple.</h3>
-          <p>Use fewer features, fewer layers and better decisions.</p>
-        </div>
-        <div class="principle">
-          <div class="n">03</div>
-          <h3>Earn the next thing.</h3>
-          <p>Ship, learn and only add complexity when the product deserves it.</p>
-        </div>
+        <div class="principle"><div class="n">01</div><h3>Start close.</h3><p>Build around people and behaviors we understand firsthand.</p></div>
+        <div class="principle"><div class="n">02</div><h3>Stay simple.</h3><p>Use fewer features, fewer layers and better decisions.</p></div>
+        <div class="principle"><div class="n">03</div><h3>Earn the next thing.</h3><p>Ship, learn and only add complexity when the product deserves it.</p></div>
       </div>
     </div>
   </section>
 </main>
 
-
-<div class="checkout-modal" id="checkoutModal" aria-hidden="true">
-  <div class="checkout-card" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-    <h3 id="checkoutTitle">Start with Crackdoor</h3>
-    <p id="checkoutCopy">Select a plan to continue.</p>
-    <div class="checkout-summary">
-      <span id="checkoutPlan">Plan</span>
-      <span id="checkoutPrice">Price</span>
-    </div>
-    <div class="checkout-actions">
-      <button class="btn" type="button" id="checkoutClose">Cancel</button>
-      <a class="btn primary" id="checkoutContinue" href="mailto:hello@crackdoor.com?subject=Crackdoor%20Studio">Continue →</a>
-    </div>
-  </div>
-</div>
-
-
-<div class="mobile-cta">
-  <a class="btn primary" href="#studio">Build something with us →</a>
-</div>
+<div class="mobile-cta"><button class="btn primary open-wizard" type="button">Start a project →</button></div>
 
 <footer>
-  <div class="wrap footer">
-    <span>© 2026 Crackdoor</span>
-    <span>Bloomington, Indiana</span>
-  </div>
+  <div class="wrap footer"><span>© 2026 Crackdoor</span><span>Bloomington, Indiana</span></div>
 </footer>
 
+<div class="modal" id="wizardModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="wizardTitle">
+    <div class="modal-head">
+      <strong>Crackdoor Project Brief</strong>
+      <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="wizard-progress"><i id="wizardProgress"></i></div>
+    <div class="modal-body">
+      <form id="projectForm">
+        <section class="wizard-step active" data-step="0">
+          <div class="step-no">Step 1 of 4</div>
+          <h3 class="display" id="wizardTitle">What are you building?</h3>
+          <p>Keep it simple. A sentence is enough to start.</p>
+          <div class="field"><label for="idea">The idea</label><textarea id="idea" required placeholder="I want to build an app that..."></textarea></div>
+          <div class="field"><label for="audience">Who is it for?</label><input id="audience" required placeholder="Students, local businesses, creators..."></div>
+        </section>
+
+        <section class="wizard-step" data-step="1">
+          <div class="step-no">Step 2 of 4</div>
+          <h3 class="display">Where are you right now?</h3>
+          <p>Pick the closest answer. You can change it later.</p>
+          <div class="choice-grid" id="stageChoices">
+            <button class="choice" type="button" data-value="Just an idea"><strong>Just an idea</strong><span>I have the concept but nothing built yet.</span></button>
+            <button class="choice" type="button" data-value="Some screens or notes"><strong>Screens or notes</strong><span>I have sketches, flows or a rough spec.</span></button>
+            <button class="choice" type="button" data-value="Prototype"><strong>Prototype</strong><span>Something exists, but it is not really launched.</span></button>
+            <button class="choice" type="button" data-value="Already live"><strong>Already live</strong><span>People can use it and I want to improve it.</span></button>
+          </div>
+          <input id="projectStage" type="hidden" required>
+        </section>
+
+        <section class="wizard-step" data-step="2">
+          <div class="step-no">Step 3 of 4</div>
+          <h3 class="display">What do you want from Crackdoor?</h3>
+          <p>Choose the engagement that feels closest to what you need.</p>
+          <div class="choice-grid" id="serviceChoices">
+            <button class="choice" type="button" data-value="Free Project Brief"><strong>Free Project Brief</strong><span>I want to clarify the idea first.</span></button>
+            <button class="choice" type="button" data-value="Idea Review — $99"><strong>Idea Review · $99</strong><span>I want a sharp outside read.</span></button>
+            <button class="choice" type="button" data-value="Product Blueprint — $499"><strong>Product Blueprint · $499</strong><span>I want a buildable product plan.</span></button>
+            <button class="choice" type="button" data-value="Build Sprint application"><strong>Build Sprint</strong><span>I want Crackdoor involved in shipping it.</span></button>
+          </div>
+          <input id="service" type="hidden" required>
+        </section>
+
+        <section class="wizard-step" data-step="3">
+          <div class="step-no">Step 4 of 4</div>
+          <h3 class="display">Your project brief.</h3>
+          <p>Copy it or open an email with the brief prefilled. Nothing is submitted automatically.</p>
+          <div class="summary-box" id="summaryBox"></div>
+          <div class="copy-status" id="copyStatus"></div>
+        </section>
+
+        <div class="wizard-actions">
+          <button class="btn" id="backBtn" type="button" style="visibility:hidden">← Back</button>
+          <div class="right">
+            <button class="btn" id="copyBtn" type="button" style="display:none">Copy brief</button>
+            <button class="btn primary" id="nextBtn" type="button">Continue →</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
-const glow = document.getElementById('glow');
-window.addEventListener('pointermove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
-});
+(()=>{
+  const qs=(s,c=document)=>c.querySelector(s);
+  const qsa=(s,c=document)=>[...c.querySelectorAll(s)];
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+  /* hover glow */
+  const glow=qs('#glow');
+  if(glow && matchMedia('(hover:hover) and (pointer:fine)').matches){
+    addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true});
+  }
+
+  /* mobile nav */
+  const menuBtn=qs('#menuBtn'), mobileMenu=qs('#mobileMenu');
+  const setMenu=open=>{
+    menuBtn?.classList.toggle('open',open);
+    mobileMenu?.classList.toggle('open',open);
+    menuBtn?.setAttribute('aria-expanded',String(open));
+    mobileMenu?.setAttribute('aria-hidden',String(!open));
+  };
+  menuBtn?.addEventListener('click',()=>setMenu(!mobileMenu.classList.contains('open')));
+  qsa('a',mobileMenu).forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+
+  /* interactive showcase */
+  const track=qs('#showcaseTrack');
+  const tabs=qsa('.showcase-tab');
+  const showcaseTitle=qs('#showcaseTitle');
+  const showcaseText=qs('#showcaseText');
+  const showcaseCopy=[
+    ['Pressure-test the idea before you build it.','Start with the signal. Clarify who the product is for, what matters in version one and what should be cut.'],
+    ['Turn the idea into something another person can build.','Map the loop, screens, rules, technical direction and MVP scope until the concept becomes an executable product system.'],
+    ['Ship a version that can teach you something.','Launch small, measure the behavior that matters and let real use determine what deserves to be built next.']
+  ];
+  let currentShowcase=0;
+  function showPanel(i){
+    currentShowcase=i;
+    if(track)track.style.transform=`translateX(-${i*33.333333}%)`;
+    tabs.forEach((t,n)=>{t.classList.toggle('active',n===i);t.setAttribute('aria-selected',String(n===i))});
+    if(showcaseTitle)showcaseTitle.textContent=showcaseCopy[i][0];
+    if(showcaseText)showcaseText.textContent=showcaseCopy[i][1];
+  }
+  tabs.forEach(t=>t.addEventListener('click',()=>showPanel(Number(t.dataset.index))));
+  let touchStart=null;
+  qs('#showcase')?.addEventListener('touchstart',e=>{touchStart=e.touches[0].clientX},{passive:true});
+  qs('#showcase')?.addEventListener('touchend',e=>{
+    if(touchStart===null)return;
+    const dx=e.changedTouches[0].clientX-touchStart;
+    if(Math.abs(dx)>50)showPanel(Math.max(0,Math.min(2,currentShowcase+(dx<0?1:-1))));
+    touchStart=null;
+  },{passive:true});
+
+  /* path accordions */
+  qsa('.stage-card').forEach(card=>{
+    const toggle=()=>card.setAttribute('aria-expanded',String(card.getAttribute('aria-expanded')!=='true'));
+    card.addEventListener('click',toggle);
+    card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
   });
-}, { threshold: 0.12 });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  /* engagement mode */
+  const modeSwitch=qs('#modeSwitch'), guidedLabel=qs('#guidedLabel'), collabLabel=qs('#collabLabel');
+  modeSwitch?.addEventListener('click',()=>{
+    const collab=!document.body.classList.contains('collab-mode');
+    document.body.classList.toggle('collab-mode',collab);
+    modeSwitch.classList.toggle('on',collab);
+    modeSwitch.setAttribute('aria-checked',String(collab));
+    guidedLabel.classList.toggle('active',!collab);
+    collabLabel.classList.toggle('active',collab);
+  });
+
+  /* reveal */
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>entries.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}}),{threshold:.08});
+    qsa('.reveal').forEach(el=>io.observe(el));
+  }else{
+    qsa('.reveal').forEach(el=>el.classList.add('visible'));
+  }
+
+  /* modal wizard */
+  const modal=qs('#wizardModal'), closeModal=qs('#closeModal');
+  const steps=qsa('.wizard-step');
+  const nextBtn=qs('#nextBtn'), backBtn=qs('#backBtn'), copyBtn=qs('#copyBtn'), progress=qs('#wizardProgress');
+  const idea=qs('#idea'), audience=qs('#audience'), projectStage=qs('#projectStage'), service=qs('#service');
+  const summaryBox=qs('#summaryBox'), copyStatus=qs('#copyStatus');
+  let step=0;
+
+  function openWizard(prefill=''){
+    if(prefill)service.value=prefill;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    renderStep(0);
+    setTimeout(()=>idea?.focus(),80);
+  }
+  function closeWizard(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+  }
+  qsa('.open-wizard').forEach(b=>b.addEventListener('click',()=>openWizard('')));
+  qsa('.plan-button').forEach(b=>b.addEventListener('click',()=>openWizard(`${b.dataset.plan}${b.dataset.price==='Application'?' application':' — '+b.dataset.price}`)));
+  closeModal?.addEventListener('click',closeWizard);
+  modal?.addEventListener('click',e=>{if(e.target===modal)closeWizard()});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&modal?.classList.contains('open'))closeWizard()});
+
+  function renderStep(i){
+    step=i;
+    steps.forEach((s,n)=>s.classList.toggle('active',n===i));
+    progress.style.width=((i+1)/steps.length*100)+'%';
+    backBtn.style.visibility=i===0?'hidden':'visible';
+    copyBtn.style.display=i===3?'inline-flex':'none';
+    nextBtn.textContent=i===3?'Email Crackdoor →':'Continue →';
+    if(i===3)buildSummary();
+  }
+  function choose(container,input){
+    qsa('.choice',container).forEach(btn=>btn.addEventListener('click',()=>{
+      qsa('.choice',container).forEach(x=>x.classList.remove('selected'));
+      btn.classList.add('selected'); input.value=btn.dataset.value;
+    }));
+  }
+  choose(qs('#stageChoices'),projectStage);
+  choose(qs('#serviceChoices'),service);
+
+  function valid(){
+    if(step===0)return idea.value.trim()&&audience.value.trim();
+    if(step===1)return projectStage.value;
+    if(step===2)return service.value;
+    return true;
+  }
+  function briefText(){
+    const mode=document.body.classList.contains('collab-mode')?'Collaborative':'Guided';
+    return `CRACKDOOR PROJECT BRIEF
+
+Idea
+${idea.value.trim()}
+
+Audience
+${audience.value.trim()}
+
+Current stage
+${projectStage.value || 'Not selected'}
+
+Requested engagement
+${service.value || 'Free Project Brief'}
+
+Working style
+${mode}`;
+  }
+  function buildSummary(){summaryBox.textContent=briefText()}
+  nextBtn?.addEventListener('click',()=>{
+    if(step<3){
+      if(!valid()){
+        const active=steps[step];
+        active.animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:220});
+        return;
+      }
+      renderStep(step+1);
+    }else{
+      const subject=encodeURIComponent('Crackdoor Project Brief');
+      const body=encodeURIComponent(briefText());
+      location.href=`mailto:hello@crackdoor.com?subject=${subject}&body=${body}`;
+    }
+  });
+  backBtn?.addEventListener('click',()=>{if(step>0)renderStep(step-1)});
+  copyBtn?.addEventListener('click',async()=>{
+    try{
+      await navigator.clipboard.writeText(briefText());
+      copyStatus.textContent='Copied to clipboard.';
+    }catch{
+      copyStatus.textContent='Select the brief above and copy it manually.';
+    }
+  });
+
+  /* if plan prefilled, reflect selection when reaching service step */
+  const originalRender=renderStep;
+  renderStep=function(i){
+    originalRender(i);
+    if(i===2 && service.value){
+      qsa('.choice',qs('#serviceChoices')).forEach(btn=>btn.classList.toggle('selected',service.value.startsWith(btn.dataset.value.split(' — ')[0])));
+    }
+  };
+})();
 </script>
 </body>
 </html>
