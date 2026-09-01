@@ -158,6 +158,148 @@ h2{
 .principle h3{font-size:17px;margin:0 0 9px}
 .principle p{font-size:12px;line-height:1.65;color:#707070;margin:0}
 
+
+/* studio / paid engagement */
+.studio-shell{
+  border:1px solid var(--line);
+  border-radius:24px;
+  overflow:hidden;
+  background:#080809;
+}
+.studio-head{
+  display:grid;
+  grid-template-columns:.7fr 1.3fr;
+  gap:34px;
+  padding:clamp(28px,4vw,44px);
+  border-bottom:1px solid var(--line);
+}
+.studio-head p{
+  margin:0;
+  color:#8f8f96;
+  font-size:15px;
+  line-height:1.7;
+  max-width:620px;
+}
+.studio-plans{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+}
+.plan{
+  padding:clamp(26px,3vw,34px);
+  min-height:430px;
+  display:flex;
+  flex-direction:column;
+  border-right:1px solid var(--line);
+}
+.plan:last-child{border-right:0}
+.plan.featured{
+  background:#0c0c0e;
+  box-shadow:inset 0 2px 0 #f1f1f3;
+}
+.plan-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.plan-kicker{
+  font-size:10px;
+  color:#67676f;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+.plan-badge{
+  font-size:9px;
+  color:#d8d8dc;
+  border:1px solid #33333a;
+  border-radius:999px;
+  padding:6px 8px;
+}
+.plan h3{
+  margin:20px 0 8px;
+  font-size:clamp(25px,2.8vw,34px);
+  letter-spacing:-.035em;
+}
+.plan-sub{
+  color:#85858d;
+  font-size:13px;
+  line-height:1.6;
+  min-height:62px;
+}
+.price{
+  margin:28px 0 4px;
+  font-size:clamp(34px,4vw,48px);
+  font-weight:650;
+  letter-spacing:-.045em;
+}
+.price-note{
+  color:#6f6f76;
+  font-size:11px;
+}
+.plan-list{
+  list-style:none;
+  padding:0;
+  margin:28px 0 30px;
+  display:grid;
+  gap:12px;
+}
+.plan-list li{
+  position:relative;
+  padding-left:18px;
+  color:#aaaab0;
+  font-size:12px;
+  line-height:1.55;
+}
+.plan-list li:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.52em;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:#d7d7db;
+}
+.plan .btn{margin-top:auto;width:100%}
+.pay-note{
+  padding:18px clamp(26px,3vw,34px);
+  border-top:1px solid var(--line);
+  color:#64646b;
+  font-size:10px;
+  line-height:1.5;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+.checkout-modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  place-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+.checkout-modal.open{display:grid}
+.checkout-card{
+  width:min(100%,480px);
+  border:1px solid #303037;
+  border-radius:20px;
+  background:#0b0b0d;
+  padding:28px;
+  box-shadow:0 30px 100px rgba(0,0,0,.5);
+}
+.checkout-card h3{margin:0 0 8px;font-size:26px;letter-spacing:-.035em}
+.checkout-card p{margin:0;color:#8c8c93;font-size:13px;line-height:1.6}
+.checkout-summary{
+  margin:24px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:16px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  font-size:12px;
+}
+.checkout-actions{display:flex;gap:10px}
+.checkout-actions .btn{flex:1}
+
 footer{padding:38px 0 50px}
 .footer{display:flex;justify-content:space-between;gap:20px;color:#4f4f4f;font-size:10px}
 
@@ -238,6 +380,7 @@ body:hover .cursor-glow{opacity:1}
     <div class="navlinks">
       <a href="#portfolio">Portfolio</a>
       <a href="#pipeline">Path</a>
+      <a href="#studio">Build with us</a>
       <a href="#founder">Founder</a>
       <a href="#approach">Principles</a>
     </div>
@@ -364,10 +507,91 @@ body:hover .cursor-glow{opacity:1}
     </div>
   </section>
 
+
+  <section class="section" id="studio">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">Studio / 03</div>
+        <div>
+          <h2>Have an idea? Start here.</h2>
+          <p class="section-lead">Crackdoor Studio gives independent builders a paid path from idea to product without turning the company into an agency.</p>
+        </div>
+      </div>
+
+      <div class="studio-shell">
+        <div class="studio-head">
+          <div class="eyebrow">Build with Crackdoor</div>
+          <p>Pick the level of involvement you need. Start with feedback, move into a scoped product plan, or apply for hands-on product development.</p>
+        </div>
+
+        <div class="studio-plans">
+          <article class="plan">
+            <div class="plan-top">
+              <div class="plan-kicker">01 · Review</div>
+            </div>
+            <h3>Idea Review</h3>
+            <div class="plan-sub">For someone who has an app idea and wants a sharp outside read before spending months building it.</div>
+            <div class="price">$49</div>
+            <div class="price-note">one-time</div>
+            <ul class="plan-list">
+              <li>Problem and audience review</li>
+              <li>MVP pressure test</li>
+              <li>Feature-cut recommendations</li>
+              <li>Written next-step memo</li>
+            </ul>
+            <a class="btn checkout-trigger" href="#" data-plan="Idea Review" data-price="$49">Start with a review</a>
+          </article>
+
+          <article class="plan featured">
+            <div class="plan-top">
+              <div class="plan-kicker">02 · Blueprint</div>
+              <div class="plan-badge">Best starting point</div>
+            </div>
+            <h3>Product Blueprint</h3>
+            <div class="plan-sub">For builders ready to turn an idea into a product plan that can actually be built.</div>
+            <div class="price">$249</div>
+            <div class="price-note">one-time</div>
+            <ul class="plan-list">
+              <li>Core product loop</li>
+              <li>MVP feature scope</li>
+              <li>User flow and screen map</li>
+              <li>Suggested stack and architecture</li>
+              <li>Launch and iteration plan</li>
+            </ul>
+            <a class="btn primary checkout-trigger" href="#" data-plan="Product Blueprint" data-price="$249">Build my blueprint</a>
+          </article>
+
+          <article class="plan">
+            <div class="plan-top">
+              <div class="plan-kicker">03 · Build</div>
+            </div>
+            <h3>Build Sprint</h3>
+            <div class="plan-sub">For a small number of products where Crackdoor is a strong fit to help shape and ship the first version.</div>
+            <div class="price">Apply</div>
+            <div class="price-note">custom scope</div>
+            <ul class="plan-list">
+              <li>Product strategy</li>
+              <li>Interface direction</li>
+              <li>MVP build planning</li>
+              <li>Launch support</li>
+              <li>Selective ongoing involvement</li>
+            </ul>
+            <a class="btn checkout-trigger" href="#" data-plan="Build Sprint" data-price="Application">Apply to build</a>
+          </article>
+        </div>
+
+        <div class="pay-note">
+          <span>Payments are not live until you connect your checkout provider.</span>
+          <span>Keep Crackdoor selective: paid access does not guarantee a build engagement.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="founder">
     <div class="wrap reveal">
       <div class="section-top">
-        <div class="eyebrow">Founder / 03</div>
+        <div class="eyebrow">Founder / 04</div>
         <h2>Built from campus.</h2>
       </div>
       <div class="founder">
@@ -389,7 +613,7 @@ body:hover .cursor-glow{opacity:1}
   <section class="section" id="approach">
     <div class="wrap reveal">
       <div class="section-top">
-        <div class="eyebrow">Principles / 04</div>
+        <div class="eyebrow">Principles / 05</div>
         <h2>Useful before impressive.</h2>
       </div>
       <div class="principles">
@@ -412,6 +636,22 @@ body:hover .cursor-glow{opacity:1}
     </div>
   </section>
 </main>
+
+
+<div class="checkout-modal" id="checkoutModal" aria-hidden="true">
+  <div class="checkout-card" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <h3 id="checkoutTitle">Continue with Crackdoor</h3>
+    <p id="checkoutCopy">Select a plan to continue.</p>
+    <div class="checkout-summary">
+      <span id="checkoutPlan">Plan</span>
+      <span id="checkoutPrice">Price</span>
+    </div>
+    <div class="checkout-actions">
+      <button class="btn" type="button" id="checkoutClose">Cancel</button>
+      <a class="btn primary" id="checkoutContinue" href="mailto:hello@crackdoor.com?subject=Crackdoor%20Studio">Continue</a>
+    </div>
+  </div>
+</div>
 
 <footer>
   <div class="wrap footer">
