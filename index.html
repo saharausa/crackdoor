@@ -23,8 +23,6 @@
   --line:#1d1d1d;
   --card:#0a0a0a;
   --max:1120px;
-  --gutter:clamp(20px,4vw,40px);
-  --section-space:clamp(72px,9vw,112px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -32,15 +30,13 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,system-ui,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  text-rendering:optimizeLegibility;
   overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 button{font:inherit}
-.wrap{width:min(calc(100% - (var(--gutter) * 2)),var(--max));margin-inline:auto}
+.wrap{width:min(calc(100% - 36px),var(--max));margin:auto}
 
 nav{
   position:sticky;top:0;z-index:20;
@@ -49,7 +45,7 @@ nav{
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 .nav-inner{
-  min-height:68px;display:flex;align-items:center;justify-content:space-between;
+  height:68px;display:flex;align-items:center;justify-content:space-between;
 }
 .brand{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:650;letter-spacing:-.02em}
 .drop{width:22px;height:27px}
@@ -57,10 +53,10 @@ nav{
 .navlinks a{transition:color .2s ease}.navlinks a:hover{color:#fff}
 
 .hero{
-  min-height:min(780px,calc(100svh - 68px));display:flex;align-items:center;
+  min-height:76vh;display:flex;align-items:center;
   border-bottom:1px solid var(--line);position:relative;
 }
-.hero-inner{padding:clamp(88px,11vw,136px) 0 clamp(82px,10vw,118px)}
+.hero-inner{padding:108px 0 88px}
 .kicker{
   display:inline-flex;align-items:center;gap:8px;
   font-size:11px;color:#6f6f6f;text-transform:uppercase;letter-spacing:.14em;margin-bottom:28px;
@@ -68,13 +64,12 @@ nav{
 .dot{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.05)}
 h1{
   margin:0;max-width:930px;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,system-ui,sans-serif;
-  font-size:clamp(52px,8.4vw,112px);
-  line-height:.91;letter-spacing:-.065em;font-weight:650;
+  font-size:clamp(54px,8.6vw,118px);
+  line-height:.9;letter-spacing:-.07em;font-weight:650;
 }
 .hero-sub{
-  margin:32px 0 0;max-width:640px;color:#909090;
-  font-size:clamp(15px,1.5vw,17px);line-height:1.62;letter-spacing:-.01em;
+  margin:34px 0 0;max-width:650px;color:#8d8d8d;
+  font-size:17px;line-height:1.65;
 }
 .hero-sub strong{color:#dedede;font-weight:500}
 .hero-actions{margin-top:34px;display:flex;gap:10px;flex-wrap:wrap}
@@ -87,31 +82,40 @@ h1{
 .btn.primary{background:#f2f2f2;color:#050505;border-color:#f2f2f2}
 .btn.primary:hover{background:#fff}
 
+.marquee{
+  border-bottom:1px solid var(--line);
+  overflow:hidden;white-space:nowrap;
+}
+.marquee-track{
+  display:inline-flex;gap:42px;padding:18px 0;
+  color:#4f4f4f;font-size:11px;text-transform:uppercase;letter-spacing:.14em;
+  animation:scroll 22s linear infinite;
+}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.section{padding:var(--section-space) 0;border-bottom:1px solid var(--line)}
+.section{padding:88px 0;border-bottom:1px solid var(--line)}
 .section-top{
   display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:38px
 }
 .eyebrow{font-size:11px;color:#5f5f5f;text-transform:uppercase;letter-spacing:.13em}
 h2{
-  margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,system-ui,sans-serif;
-  font-size:clamp(32px,4.5vw,56px);line-height:1.02;
+  margin:0;font-size:clamp(30px,4.5vw,56px);line-height:1.02;
   letter-spacing:-.045em;font-weight:600;max-width:720px
 }
 
 .project-card{
   position:relative;overflow:hidden;
   border:1px solid var(--line);border-radius:22px;background:var(--card);
-  min-height:clamp(360px,42vw,430px);padding:clamp(26px,3.2vw,36px);
+  min-height:410px;padding:34px;
   display:flex;flex-direction:column;justify-content:space-between;
   transition:transform .28s ease,border-color .28s ease,background .28s ease;
 }
-.project-card:hover{transform:translateY(-2px);border-color:#343434;background:#0d0d0d;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.project-card:hover{transform:translateY(-3px);border-color:#2f2f2f;background:#0d0d0d}
 .project-top{display:flex;justify-content:space-between;gap:20px}
 .project-mark{
-  width:56px;height:56px;border:1px solid #292929;border-radius:15px;
+  width:54px;height:54px;border:1px solid #292929;border-radius:14px;
   display:grid;place-items:center;font-size:21px;font-weight:700;overflow:hidden;
-  flex:0 0 auto;
 }
 .project-mark img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -121,7 +125,7 @@ h2{
   color:#737373;font-size:10px;height:max-content
 }
 .project-bottom{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}
-.project-card h3{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,system-ui,sans-serif;font-size:clamp(36px,4vw,46px);margin:0 0 12px;letter-spacing:-.045em}
+.project-card h3{font-size:42px;margin:0 0 12px;letter-spacing:-.045em}
 .project-card p{color:#7f7f7f;max-width:610px;font-size:14px;line-height:1.7;margin:0}
 .arrow{
   width:46px;height:46px;border-radius:50%;border:1px solid #262626;
@@ -154,8 +158,8 @@ h2{
 .principle h3{font-size:17px;margin:0 0 9px}
 .principle p{font-size:12px;line-height:1.65;color:#707070;margin:0}
 
-footer{padding:clamp(34px,5vw,48px) 0 calc(clamp(38px,5vw,56px) + env(safe-area-inset-bottom))}
-.footer{display:flex;align-items:center;justify-content:space-between;gap:20px;color:#565656;font-size:11px;line-height:1.4}
+footer{padding:38px 0 50px}
+.footer{display:flex;justify-content:space-between;gap:20px;color:#4f4f4f;font-size:10px}
 
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -168,49 +172,55 @@ footer{padding:clamp(34px,5vw,48px) 0 calc(clamp(38px,5vw,56px) + env(safe-area-
 body:hover .cursor-glow{opacity:1}
 
 @media(max-width:760px){
-  :root{--gutter:20px;--section-space:68px}
-  .nav-inner{min-height:62px}
   .navlinks{display:none}
-  .brand{font-size:13px}
-  .drop{width:20px;height:25px}
   .hero{min-height:auto}
-  .hero-inner{padding:82px 0 76px}
-  .kicker{margin-bottom:24px;font-size:10px}
-  h1{font-size:clamp(50px,15.5vw,72px);line-height:.92;letter-spacing:-.06em}
-  .hero-sub{margin-top:26px;font-size:15px;line-height:1.6}
-  .hero-actions{margin-top:28px}
-  .btn{padding:11px 13px}
-  .section-top{display:block;margin-bottom:30px}
-  .section-top .eyebrow{margin-bottom:15px}
-  .project-card{min-height:350px;border-radius:18px}
-  .project-mark{width:52px;height:52px;border-radius:14px}
-  .status-pill{font-size:9px;padding:7px 9px}
+  .hero-inner{padding:88px 0 70px}
+  .section{padding:68px 0}
+  .section-top{display:block}
+  .section-top .eyebrow{margin-bottom:16px}
+  .project-card{min-height:360px;padding:26px}
   .project-bottom,.founder{grid-template-columns:1fr}
-  .project-bottom{gap:22px}
-  .project-card p{font-size:13px;line-height:1.65}
+  .project-bottom{gap:24px}
   .arrow{display:none}
-  .founder{gap:42px}
-  .founder-copy{font-size:19px;line-height:1.55}
-  .fact{padding:16px 0}
-  .principles{grid-template-columns:1fr}
-  .principle{min-height:160px;padding:24px}
-  .principle .n{margin-bottom:40px}
-  .footer{align-items:flex-start;flex-direction:column;gap:8px}
-  .cursor-glow{display:none}
-}
-
-@media(min-width:761px) and (max-width:980px){
-  :root{--gutter:30px}
-  .hero{min-height:680px}
   .founder{gap:46px}
-  .principles{gap:10px}
-  .principle{padding:22px}
-}
+  .principles{grid-template-columns:1fr}
+  .principle{min-height:170px}
+  .principle .n{margin-bottom:44px}
+  .footer{flex-direction:column}
+  .cursor-glow{display:none}
 
+  .pipeline-intro{text-align:left;margin-bottom:38px}
+  .pipeline-intro h2{margin:0}
+  .pipeline-intro p{margin-left:0}
+  .pipeline{padding-left:36px}
+  .pipeline:before{left:7px}
+  .stage:before{left:-35px;width:11px;height:11px}
+  .stage-card{border-radius:17px;padding:24px}
+  .stage-points{grid-template-columns:1fr;gap:0}
+  .stage-point{padding:11px 0;border-top:1px solid #242429}
+}
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+
+.pipeline-wrap{max-width:900px;margin:0 auto}
+.pipeline-intro{text-align:center;margin:0 auto 58px;max-width:740px}
+.pipeline-intro h2{margin-inline:auto}
+.pipeline-intro p{margin:20px auto 0;color:#92929a;line-height:1.7;max-width:650px;font-size:15px}
+.pipeline{position:relative;padding-left:58px}
+.pipeline:before{content:"";position:absolute;left:13px;top:18px;bottom:18px;width:1px;background:#34343b}
+.stage{position:relative;margin-bottom:28px}
+.stage:last-child{margin-bottom:0}
+.stage:before{content:"";position:absolute;left:-51px;top:23px;width:13px;height:13px;border-radius:50%;background:#777781;box-shadow:0 0 0 6px var(--bg)}
+.stage-label{font-size:12px;color:#a4a4aa;margin:0 0 12px}
+.stage-card{border:1px solid #2a2a30;border-radius:20px;background:#0b0b0c;padding:clamp(25px,3vw,34px)}
+.stage-n{font-size:10px;color:#5f5f66;letter-spacing:.12em;text-transform:uppercase}
+.stage-card h3{margin:17px 0 9px;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em}
+.stage-card p{margin:0;color:#8b8b92;font-size:14px;line-height:1.68;max-width:680px}
+.stage-points{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:25px}
+.stage-point{border-top:1px solid #242429;padding-top:12px;color:#a2a2a8;font-size:12px;line-height:1.5}
+
 </style>
 </head>
 <body>
@@ -227,8 +237,9 @@ body:hover .cursor-glow{opacity:1}
     </a>
     <div class="navlinks">
       <a href="#portfolio">Portfolio</a>
+      <a href="#pipeline">Path</a>
       <a href="#founder">Founder</a>
-      <a href="#approach">Approach</a>
+      <a href="#approach">Principles</a>
     </div>
   </div>
 </nav>
@@ -244,10 +255,17 @@ body:hover .cursor-glow{opacity:1}
       </p>
       <div class="hero-actions">
         <a class="btn primary" href="#portfolio">See what we're building ↓</a>
-        <a class="btn" href="#founder">About the founder</a>
+        <a class="btn" href="#pipeline">How we build</a>
       </div>
     </div>
   </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Crackdoor</span><span>SaaS</span><span>Sahara</span><span>Consumer Internet</span><span>Signal</span><span>Systems</span><span>Network Effects</span><span>Numerics</span><span>Product Strategy</span><span>Iteration</span>
+      <span>Crackdoor</span><span>SaaS</span><span>Sahara</span><span>Consumer Internet</span><span>Signal</span><span>Systems</span><span>Network Effects</span><span>Numerics</span><span>Product Strategy</span><span>Iteration</span>
+    </div>
+  </div>
 
   <section class="section" id="portfolio">
     <div class="wrap reveal">
@@ -259,7 +277,7 @@ body:hover .cursor-glow{opacity:1}
       <a class="project-card" href="https://www.sahara.app/" target="_blank" rel="noopener">
         <div class="project-top">
           <div class="project-mark"><img src="/apple-touch-icon-2.png" alt="Sahara logo"></div>
-          <div class="status-pill">Bloomington · 2026</div>
+          <div class="status-pill">Launching · Bloomington</div>
         </div>
         <div class="project-bottom">
           <div>
@@ -275,10 +293,81 @@ body:hover .cursor-glow{opacity:1}
     </div>
   </section>
 
+
+  <section class="section" id="pipeline">
+    <div class="wrap reveal">
+      <div class="pipeline-wrap">
+        <div class="pipeline-intro">
+          <div class="eyebrow" style="margin-bottom:18px">The path / 02</div>
+          <h2>From signal to something people keep.</h2>
+          <p>Crackdoor works through a simple product pipeline: get close to a real behavior, reduce it to a focused product, then earn the right to scale it.</p>
+        </div>
+
+        <div class="pipeline">
+          <div class="stage">
+            <div class="stage-label">Stage 01 · Observe</div>
+            <div class="stage-card">
+              <div class="stage-n">Signal</div>
+              <h3>Start close.</h3>
+              <p>Look for repeated behavior, friction, or an overlooked social pattern in a market we can understand firsthand.</p>
+              <div class="stage-points">
+                <div class="stage-point">Notice real behavior</div>
+                <div class="stage-point">Find the sharpest problem</div>
+                <div class="stage-point">Define who it is for</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <div class="stage-label">Stage 02 · Build</div>
+            <div class="stage-card">
+              <div class="stage-n">System</div>
+              <h3>Make the smallest useful thing.</h3>
+              <p>Turn the signal into a focused product with a clear loop. Fewer features, fewer assumptions, and a reason to come back.</p>
+              <div class="stage-points">
+                <div class="stage-point">Build the core loop</div>
+                <div class="stage-point">Remove unnecessary layers</div>
+                <div class="stage-point">Ship into real use</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <div class="stage-label">Stage 03 · Learn</div>
+            <div class="stage-card">
+              <div class="stage-n">Iteration</div>
+              <h3>Watch what survives contact.</h3>
+              <p>Measure what people actually do, not what the product was supposed to do. Keep the behavior that compounds and cut what does not.</p>
+              <div class="stage-points">
+                <div class="stage-point">Read usage signals</div>
+                <div class="stage-point">Tighten the product</div>
+                <div class="stage-point">Protect simplicity</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <div class="stage-label">Stage 04 · Scale</div>
+            <div class="stage-card">
+              <div class="stage-n">Network</div>
+              <h3>Earn the next thing.</h3>
+              <p>Scale only after the product gives us a reason. Expand the network, deepen the system, and let traction justify complexity.</p>
+              <div class="stage-points">
+                <div class="stage-point">Strengthen retention</div>
+                <div class="stage-point">Expand deliberately</div>
+                <div class="stage-point">Compound what works</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="founder">
     <div class="wrap reveal">
       <div class="section-top">
-        <div class="eyebrow">Founder / 02</div>
+        <div class="eyebrow">Founder / 03</div>
         <h2>Built from campus.</h2>
       </div>
       <div class="founder">
@@ -300,8 +389,8 @@ body:hover .cursor-glow{opacity:1}
   <section class="section" id="approach">
     <div class="wrap reveal">
       <div class="section-top">
-        <div class="eyebrow">Approach / 03</div>
-        <h2>Keep it useful. Keep it moving.</h2>
+        <div class="eyebrow">Principles / 04</div>
+        <h2>Useful before impressive.</h2>
       </div>
       <div class="principles">
         <div class="principle">
@@ -333,12 +422,10 @@ body:hover .cursor-glow{opacity:1}
 
 <script>
 const glow = document.getElementById('glow');
-if (glow && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
-  window.addEventListener('pointermove', e => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
-  }, { passive:true });
-}
+window.addEventListener('pointermove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
