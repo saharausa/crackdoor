@@ -12,11 +12,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-
-<!-- Apple -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
-<!-- Web App Manifest -->
 <link rel="manifest" href="/site.webmanifest">
 
 <style>
@@ -119,7 +115,10 @@ h2{
 .project-top{display:flex;justify-content:space-between;gap:20px}
 .project-mark{
   width:54px;height:54px;border:1px solid #292929;border-radius:14px;
-  display:grid;place-items:center;font-size:21px;font-weight:700;
+  display:grid;place-items:center;font-size:21px;font-weight:700;overflow:hidden;
+}
+.project-mark img{
+  width:100%;height:100%;object-fit:cover;display:block;
 }
 .status-pill{
   border:1px solid #242424;border-radius:999px;padding:7px 10px;
@@ -248,7 +247,7 @@ body:hover .cursor-glow{opacity:1}
 
       <a class="project-card" href="https://www.sahara.app/" target="_blank" rel="noopener">
         <div class="project-top">
-          <div class="project-mark">S</div>
+          <div class="project-mark"><img src="/apple-touch-icon-2.png" alt="Sahara logo"></div>
           <div class="status-pill">Launching · Bloomington</div>
         </div>
         <div class="project-bottom">
