@@ -98,17 +98,6 @@ h1{
 .btn.primary{background:#f2f2f2;color:#050505;border-color:#f2f2f2}
 .btn.primary:hover{background:#fff}
 
-.marquee{
-  border-bottom:1px solid var(--line);
-  overflow:hidden;white-space:nowrap;
-}
-.marquee-track{
-  display:inline-flex;gap:42px;padding:18px 0;
-  color:#4f4f4f;font-size:11px;text-transform:uppercase;letter-spacing:.14em;
-  animation:scroll 22s linear infinite;
-}
-.marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 .section{padding:88px 0;border-bottom:1px solid var(--line)}
 .section-top{
@@ -174,6 +163,126 @@ h2{
 .principle h3{font-size:17px;margin:0 0 9px}
 .principle p{font-size:12px;line-height:1.65;color:#707070;margin:0}
 
+
+
+/* interactive product engagement */
+.engage-showcase{
+  margin-top:44px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  background:#080809;
+}
+.engage-stage{
+  position:relative;
+  min-height:430px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 0%,rgba(255,255,255,.055),transparent 34%),
+    linear-gradient(180deg,#0d0d0f,#080809);
+}
+.engage-track{
+  display:flex;
+  width:300%;
+  transition:transform .42s cubic-bezier(.2,.8,.2,1);
+  will-change:transform;
+}
+.engage-panel{
+  width:33.333333%;
+  min-height:430px;
+  padding:clamp(28px,4vw,46px);
+  display:grid;
+  grid-template-columns:.88fr 1.12fr;
+  gap:clamp(28px,5vw,70px);
+  align-items:center;
+}
+.engage-copy .mini{
+  color:#696970;font-size:10px;text-transform:uppercase;letter-spacing:.13em;margin-bottom:16px
+}
+.engage-copy h3{
+  margin:0;font-size:clamp(30px,4vw,48px);line-height:1.02;letter-spacing:-.045em
+}
+.engage-copy p{
+  margin:18px 0 0;color:#8d8d94;font-size:14px;line-height:1.7;max-width:520px
+}
+.engage-mock{
+  border:1px solid #2b2b31;border-radius:18px;background:#0b0b0d;
+  box-shadow:0 28px 80px rgba(0,0,0,.32);overflow:hidden
+}
+.mock-bar{
+  height:42px;border-bottom:1px solid #25252a;display:flex;align-items:center;gap:6px;padding:0 14px
+}
+.mock-dot{width:7px;height:7px;border-radius:50%;background:#48484f}
+.mock-body{padding:18px}
+.mock-row{display:grid;grid-template-columns:120px 1fr;gap:14px;margin-bottom:12px}
+.mock-row:last-child{margin-bottom:0}
+.mock-label{height:10px;border-radius:999px;background:#1a1a1e;margin-top:6px}
+.mock-field{
+  min-height:44px;border:1px solid #242429;border-radius:10px;background:#101012;
+  padding:12px;color:#8c8c93;font-size:11px;line-height:1.5
+}
+.mock-stack{display:grid;gap:10px}
+.mock-card{
+  border:1px solid #25252b;border-radius:12px;padding:14px;background:#0f0f11;
+  display:flex;justify-content:space-between;gap:20px;align-items:center
+}
+.mock-card strong{font-size:12px;font-weight:550}.mock-card span{font-size:10px;color:#696970}
+.mock-pill{border:1px solid #303037;border-radius:999px;padding:6px 8px;color:#aaaab0;font-size:9px}
+.engage-tabs-wrap{
+  display:flex;justify-content:center;transform:translateY(-50%);position:relative;z-index:4
+}
+.engage-tabs{
+  display:inline-flex;gap:4px;padding:6px;border:1px solid #2b2b31;border-radius:14px;
+  background:rgba(8,8,9,.96);box-shadow:0 18px 50px rgba(0,0,0,.36);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)
+}
+.engage-tab{
+  border:0;background:transparent;color:#8b8b91;border-radius:10px;padding:10px 14px;
+  font:inherit;font-size:11px;cursor:pointer;transition:.2s
+}
+.engage-tab.active{background:#f2f2f3;color:#070708}
+.engage-caption{
+  text-align:center;padding:0 clamp(24px,4vw,42px) 38px
+}
+.engage-caption h3{
+  margin:0 auto 8px;font-size:clamp(24px,3.5vw,40px);letter-spacing:-.04em;max-width:760px
+}
+.engage-caption p{margin:0 auto;color:#7f7f86;font-size:13px;line-height:1.65;max-width:680px}
+
+/* interactive pipeline */
+.stage-card{cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.stage-card:hover{border-color:#35353b;background:#0d0d0f}
+.stage-card[aria-expanded="true"]{border-color:#3a3a40;background:#0e0e10}
+.stage-points{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .35s ease,opacity .25s ease,margin-top .35s ease}
+.stage-card[aria-expanded="true"] .stage-points{max-height:170px;opacity:1;margin-top:25px}
+.stage-card h3{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.stage-chevron{font-size:18px;color:#66666d;transition:transform .25s}
+.stage-card[aria-expanded="true"] .stage-chevron{transform:rotate(45deg);color:#d7d7db}
+
+/* free entry point */
+.free-entry{
+  margin-top:18px;border:1px solid var(--line);border-radius:18px;padding:22px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;background:#09090a
+}
+.free-entry strong{font-size:14px;font-weight:550}
+.free-entry p{margin:5px 0 0;color:#717178;font-size:11px;line-height:1.5}
+
+/* studio engagement toggle */
+.engagement-toggle{
+  display:flex;justify-content:center;align-items:center;gap:12px;margin:0 0 28px;color:#77777e;font-size:11px
+}
+.toggle-shell{
+  width:48px;height:28px;border:1px solid #2d2d33;border-radius:999px;background:#121214;
+  position:relative;cursor:pointer;transition:.2s
+}
+.toggle-knob{
+  position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#f4f4f5;
+  transition:transform .25s
+}
+.toggle-shell.active .toggle-knob{transform:translateX(20px)}
+.toggle-label.active{color:#f0f0f2}
+.plan[data-mode="guided"] .guided-only,.plan[data-mode="collab"] .collab-only{display:list-item}
+.plan .guided-only,.plan .collab-only{display:none}
 
 /* studio / paid engagement */
 .studio-shell{
@@ -407,6 +516,7 @@ body:hover .cursor-glow{opacity:1}
     </button>
     <div class="navlinks">
       <a href="#portfolio">Portfolio</a>
+      <a href="#product">How it works</a>
       <a href="#pipeline">Path</a>
       <a href="#studio">Build with us</a>
       <a href="#founder">Founder</a>
@@ -418,6 +528,7 @@ body:hover .cursor-glow{opacity:1}
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="wrap mobile-menu-inner">
     <a href="#portfolio">Portfolio</a>
+    <a href="#product">How it works</a>
     <a href="#pipeline">Path</a>
     <a href="#studio">Build with us</a>
     <a href="#founder">Founder</a>
@@ -442,13 +553,6 @@ body:hover .cursor-glow{opacity:1}
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Crackdoor</span><span>SaaS</span><span>Sahara</span><span>Consumer Internet</span><span>Signal</span><span>Systems</span><span>Network Effects</span><span>Numerics</span><span>Product Strategy</span><span>Iteration</span>
-      <span>Crackdoor</span><span>SaaS</span><span>Sahara</span><span>Consumer Internet</span><span>Signal</span><span>Systems</span><span>Network Effects</span><span>Numerics</span><span>Product Strategy</span><span>Iteration</span>
-    </div>
-  </div>
-
 
   <section class="outcomes" aria-label="What Crackdoor does">
     <div class="wrap outcomes-grid">
@@ -458,10 +562,90 @@ body:hover .cursor-glow{opacity:1}
     </div>
   </section>
 
+
+  <section class="section" id="product">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div class="eyebrow">How it works / 01</div>
+        <div>
+          <h2>Move an idea forward, one decision at a time.</h2>
+          <p class="section-lead">Explore the same three moments every Crackdoor engagement is built around: sharpen the idea, turn it into a real product system, then prepare it to ship.</p>
+        </div>
+      </div>
+
+      <div class="engage-showcase" id="engageShowcase">
+        <div class="engage-stage">
+          <div class="engage-track" id="engageTrack">
+            <div class="engage-panel">
+              <div class="engage-copy">
+                <div class="mini">01 · Discover</div>
+                <h3>Pressure-test the idea.</h3>
+                <p>Define the user, isolate the actual problem, and cut through the features that do not belong in version one.</p>
+              </div>
+              <div class="engage-mock" aria-hidden="true">
+                <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-body">
+                  <div class="mock-row"><div class="mock-label"></div><div class="mock-field">Who is this for?</div></div>
+                  <div class="mock-row"><div class="mock-label"></div><div class="mock-field">What behavior are you trying to change?</div></div>
+                  <div class="mock-row"><div class="mock-label"></div><div class="mock-field">What is the smallest version someone would still use?</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="engage-panel">
+              <div class="engage-copy">
+                <div class="mini">02 · Define</div>
+                <h3>Turn the idea into a system.</h3>
+                <p>Map the core loop, screen flow, product rules, and technical direction so the product can move from concept to build without guesswork.</p>
+              </div>
+              <div class="engage-mock" aria-hidden="true">
+                <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-body mock-stack">
+                  <div class="mock-card"><div><strong>Entry</strong><br><span>User reaches the product</span></div><div class="mock-pill">01</div></div>
+                  <div class="mock-card"><div><strong>Core action</strong><br><span>The behavior that creates value</span></div><div class="mock-pill">02</div></div>
+                  <div class="mock-card"><div><strong>Return loop</strong><br><span>The reason to come back</span></div><div class="mock-pill">03</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="engage-panel">
+              <div class="engage-copy">
+                <div class="mini">03 · Ship</div>
+                <h3>Launch the version that matters.</h3>
+                <p>Reduce the plan to a buildable first release, establish what to measure, and create the next iteration from real usage instead of assumptions.</p>
+              </div>
+              <div class="engage-mock" aria-hidden="true">
+                <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-body mock-stack">
+                  <div class="mock-card"><div><strong>MVP scope</strong><br><span>Locked</span></div><div class="mock-pill">Ready</div></div>
+                  <div class="mock-card"><div><strong>Launch checklist</strong><br><span>Product, auth, analytics, feedback</span></div><div class="mock-pill">4 items</div></div>
+                  <div class="mock-card"><div><strong>Next signal</strong><br><span>Retention before expansion</span></div><div class="mock-pill">Measure</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="engage-tabs-wrap">
+          <div class="engage-tabs" role="tablist" aria-label="Crackdoor engagement stages">
+            <button class="engage-tab active" type="button" data-index="0" role="tab" aria-selected="true">Discover</button>
+            <button class="engage-tab" type="button" data-index="1" role="tab" aria-selected="false">Define</button>
+            <button class="engage-tab" type="button" data-index="2" role="tab" aria-selected="false">Ship</button>
+          </div>
+        </div>
+
+        <div class="engage-caption">
+          <h3 id="engageTitle">Pressure-test the idea before you build it.</h3>
+          <p id="engageText">Start with the signal. Clarify the customer, problem, product promise, and what should not make it into the MVP.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="portfolio">
     <div class="wrap reveal">
       <div class="section-top">
-        <div class="eyebrow">Portfolio / 01</div>
+        <div class="eyebrow">Portfolio / 02</div>
         <h2>One product at a time.</h2>
       </div>
 
@@ -489,7 +673,7 @@ body:hover .cursor-glow{opacity:1}
     <div class="wrap reveal">
       <div class="pipeline-wrap">
         <div class="pipeline-intro">
-          <div class="eyebrow" style="margin-bottom:18px">The path / 02</div>
+          <div class="eyebrow" style="margin-bottom:18px">The path / 03</div>
           <h2>From signal to something people keep.</h2>
           <p>Crackdoor works through a simple product pipeline: get close to a real behavior, reduce it to a focused product, then earn the right to scale it.</p>
         </div>
@@ -559,11 +743,20 @@ body:hover .cursor-glow{opacity:1}
   <section class="section" id="studio">
     <div class="wrap reveal">
       <div class="section-head">
-        <div class="eyebrow">Studio / 03</div>
+        <div class="eyebrow">Studio / 04</div>
         <div>
           <h2>Have an idea? Start here.</h2>
           <p class="section-lead">Crackdoor Studio is the front door for people who want to turn an idea into a real product without hiring a traditional agency.</p>
         </div>
+      </div>
+
+
+      <div class="free-entry">
+        <div>
+          <strong>Not ready to pay yet? Start with a free Project Brief.</strong>
+          <p>Answer a few product questions and use the structure to clarify what you are actually trying to build.</p>
+        </div>
+        <a class="btn" href="mailto:hello@crackdoor.com?subject=Free%20Project%20Brief">Get the brief →</a>
       </div>
 
       <div class="studio-shell">
@@ -572,8 +765,17 @@ body:hover .cursor-glow{opacity:1}
           <p>Start with clarity, move into a buildable plan, and apply for deeper involvement when the idea earns it.</p>
         </div>
 
+
+        <div class="engagement-toggle">
+          <span class="toggle-label active" id="guidedLabel">Guided</span>
+          <button class="toggle-shell" id="engagementToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle engagement style">
+            <span class="toggle-knob"></span>
+          </button>
+          <span class="toggle-label" id="collabLabel">Collaborative</span>
+        </div>
+
         <div class="studio-plans">
-          <article class="plan">
+          <article class="plan" data-mode="guided">
             <div class="plan-top">
               <div class="plan-kicker">01 · Review</div>
             </div>
@@ -585,12 +787,12 @@ body:hover .cursor-glow{opacity:1}
               <li>Problem and audience review</li>
               <li>MVP pressure test</li>
               <li>Feature-cut recommendations</li>
-              <li>Written next-step memo</li>
+              <li>Written next-step memo</li><li class="guided-only">Async delivery built for speed</li><li class="collab-only">Collaborative review call included</li>
             </ul>
             <a class="btn checkout-trigger" href="#" data-plan="Idea Review" data-price="$99">Start with a review</a>
           </article>
 
-          <article class="plan featured">
+          <article class="plan featured" data-mode="guided">
             <div class="plan-top">
               <div class="plan-kicker">02 · Blueprint</div>
               <div class="plan-badge">Best starting point</div>
@@ -604,12 +806,12 @@ body:hover .cursor-glow{opacity:1}
               <li>MVP feature scope</li>
               <li>User flow and screen map</li>
               <li>Suggested stack and architecture</li>
-              <li>Launch and iteration plan</li>
+              <li>Launch and iteration plan</li><li class="guided-only">Delivered as a complete working blueprint</li><li class="collab-only">Live working session to refine the blueprint</li>
             </ul>
             <a class="btn primary checkout-trigger" href="#" data-plan="Product Blueprint" data-price="$499">Build my blueprint</a>
           </article>
 
-          <article class="plan">
+          <article class="plan" data-mode="guided">
             <div class="plan-top">
               <div class="plan-kicker">03 · Build</div>
             </div>
@@ -622,7 +824,7 @@ body:hover .cursor-glow{opacity:1}
               <li>Interface direction</li>
               <li>MVP build planning</li>
               <li>Launch support</li>
-              <li>Selective ongoing involvement</li>
+              <li>Selective ongoing involvement</li><li class="guided-only">Crackdoor-led product direction</li><li class="collab-only">Founder works directly inside the process</li>
             </ul>
             <a class="btn checkout-trigger" href="#" data-plan="Build Sprint" data-price="Application">Apply to build</a>
           </article>
@@ -639,7 +841,7 @@ body:hover .cursor-glow{opacity:1}
   <section class="section" id="founder">
     <div class="wrap reveal">
       <div class="section-top">
-        <div class="eyebrow">Founder / 04</div>
+        <div class="eyebrow">Founder / 05</div>
         <h2>Built from campus.</h2>
       </div>
       <div class="founder">
@@ -661,7 +863,7 @@ body:hover .cursor-glow{opacity:1}
   <section class="section" id="approach">
     <div class="wrap reveal">
       <div class="section-top">
-        <div class="eyebrow">Principles / 05</div>
+        <div class="eyebrow">Principles / 06</div>
         <h2>Useful before impressive.</h2>
       </div>
       <div class="principles">
