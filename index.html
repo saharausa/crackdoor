@@ -594,9 +594,56 @@ body.collab-mode .mode-collab{display:list-item}
 }
 .platform-choice strong{font-size:12px;font-weight:550;color:#d4d4d8}
 .platform-choice span{display:block;margin-top:3px;font-size:9.5px;color:#66666e}
-.platform-other{display:none;margin-top:9px}
-.platform-other.show{display:block}
-.platform-other input{font-size:13px!important}
+.platform-other{
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  margin-top:0;
+  transition:grid-template-rows .2s ease,opacity .18s ease,margin-top .2s ease
+}
+.platform-other.show{
+  grid-template-rows:1fr;
+  opacity:1;
+  margin-top:9px
+}
+.platform-other-inner{
+  min-height:0;
+  overflow:hidden
+}
+.platform-other-shell{
+  border:1px solid #303037;
+  border-radius:14px;
+  background:#101012;
+  padding:12px 13px;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:11px
+}
+.platform-other-mark{
+  width:28px;height:28px;border:1px solid #34343a;border-radius:9px;
+  display:grid;place-items:center;background:#0b0b0d;
+  color:#bcbcc2;font-size:12px;font-weight:650
+}
+.platform-other-copy{min-width:0}
+.platform-other-copy label{
+  display:block;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#686870;margin-bottom:4px
+}
+.platform-other input{
+  width:100%;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  padding:0!important;
+  color:#e7e7e9!important;
+  font-size:13px!important;
+  outline:none!important
+}
+.platform-other input::placeholder{color:#55555d}
+.platform-choice[data-platform="Other"].selected{
+  border-color:#4a4a51;
+  background:#131315
+}
 @media(max-width:800px){
   .platform-grid{grid-template-columns:repeat(2,1fr)}
   .platform-choice{min-height:86px}
@@ -1441,7 +1488,15 @@ body:hover .cursor-glow{opacity:1}
             </div>
             <input id="audience" type="hidden" required>
             <div class="platform-other" id="platformOther">
-              <input id="platformOtherInput" type="text" placeholder="Facebook Dating, Raya, Coffee Meets Bagel...">
+              <div class="platform-other-inner">
+                <div class="platform-other-shell">
+                  <div class="platform-other-mark">+</div>
+                  <div class="platform-other-copy">
+                    <label for="platformOtherInput">Other platform</label>
+                    <input id="platformOtherInput" type="text" placeholder="Type the platform name">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1698,7 +1753,14 @@ body:hover .cursor-glow{opacity:1}
       btn.classList.toggle('selected',active);
       btn.setAttribute('aria-pressed',String(active));
       syncPlatforms();
-      if(value==='Other'&&active)setTimeout(()=>platformOtherInput?.focus(),0);
+      if(value==='Other'){
+        if(active){
+          setTimeout(()=>platformOtherInput?.focus(),80);
+        }else{
+          if(platformOtherInput)platformOtherInput.value='';
+          syncPlatforms();
+        }
+      }
     });
   });
   platformOtherInput?.addEventListener('input',syncPlatforms);
