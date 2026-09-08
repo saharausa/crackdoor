@@ -138,6 +138,44 @@ h1{
 h2{margin:0;max-width:790px;font-size:clamp(36px,5vw,62px);line-height:1;letter-spacing:-.05em;font-weight:600}
 .section-lead{margin:20px 0 0;max-width:720px;color:#92929a;font-size:15px;line-height:1.72}
 
+
+/* quiet navigation feedback */
+.navlinks a{position:relative}
+.navlinks a:after{
+  content:"";position:absolute;left:0;right:100%;bottom:-9px;height:1px;
+  background:#f2f2f3;transition:right .22s ease
+}
+.navlinks a.active{color:#f2f2f3}
+.navlinks a.active:after{right:0}
+.scroll-progress{position:absolute;left:0;right:0;bottom:-1px;height:1px;overflow:hidden;pointer-events:none}
+.scroll-progress i{display:block;width:100%;height:100%;background:#f2f2f3;transform:scaleX(0);transform-origin:left center;will-change:transform}
+
+/* sample audit visual */
+.audit-demo{display:grid;align-content:center;gap:10px}
+.audit-head,.audit-note{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.audit-head{padding:0 2px 5px;color:#67676e;font-size:9px;text-transform:uppercase;letter-spacing:.12em}
+.audit-head strong{font-weight:550;color:#a9a9b0}
+.audit-row{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;
+  border:1px solid #26262c;border-radius:12px;background:#101012;padding:13px 14px
+}
+.audit-meta strong{display:block;font-size:12px;font-weight:550}
+.audit-meta span{display:block;font-size:10px;color:#686870;margin-top:3px}
+.audit-score{font-size:22px;font-weight:600;letter-spacing:-.045em;color:#e8e8eb;align-self:center}
+.audit-meter{grid-column:1/-1;height:4px;background:#1b1b1f;border-radius:999px;overflow:hidden}
+.audit-meter i{
+  display:block;width:var(--score);height:100%;border-radius:999px;background:#d8d8dc;
+  transform-origin:left center;animation:auditIn .8s cubic-bezier(.2,.8,.2,1) both
+}
+.audit-row:nth-of-type(3) .audit-meter i{animation-delay:.08s}
+.audit-row:nth-of-type(4) .audit-meter i{animation-delay:.16s}
+.audit-note{
+  margin-top:3px;border-top:1px solid #242429;padding:13px 2px 0;
+  font-size:10px;color:#67676e
+}
+.audit-note strong{color:#b9b9bf;font-weight:550;text-align:right}
+@keyframes auditIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
 /* interactive product showcase */
 .showcase{
   border:1px solid var(--line);border-radius:22px;background:#080809;overflow:hidden
@@ -387,6 +425,10 @@ body:hover .cursor-glow{opacity:1}
   .signal-grid{grid-template-columns:1fr}.signal{padding:18px 0;border-right:0;border-bottom:1px solid var(--line)}.signal:last-child{border-bottom:0}
   .section-head{display:block;margin-bottom:34px}.section-head .eyebrow{margin-bottom:16px}
   h2{font-size:clamp(36px,10.5vw,50px)}
+
+  .audit-row{padding:12px}
+  .audit-score{font-size:20px}
+  .audit-note{align-items:flex-start}
   .showcase{border-radius:18px}.showcase-stage{min-height:600px}
   .showcase-panel{min-height:600px;grid-template-columns:1fr;gap:30px;padding:24px}
   .showcase-copy h3{font-size:36px}.app-body{min-height:260px}.form-row{grid-template-columns:1fr;gap:6px}.form-key{width:90px}
@@ -535,6 +577,7 @@ body:hover .cursor-glow{opacity:1}
       <span></span><span></span><span></span>
     </button>
   </div>
+  <div class="scroll-progress" aria-hidden="true"><i id="scrollProgress"></i></div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
@@ -573,7 +616,7 @@ body:hover .cursor-glow{opacity:1}
   <section class="section" id="product">
     <div class="wrap reveal">
       <div class="section-head">
-        <div class="eyebrow">Profile / 01</div>
+        <div class="eyebrow">Profile review</div>
         <div>
           <h2 class="display">Your profile is making decisions before you ever speak.</h2>
           <p class="section-lead">We review the profile the way a stranger experiences it: first impression, photo sequence and the story the whole thing tells. Then we tell you what to keep, cut and replace.</p>
@@ -591,10 +634,24 @@ body:hover .cursor-glow{opacity:1}
               </div>
               <div class="app-frame">
                 <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Profile read</div></div>
-                <div class="app-body">
-                  <div class="form-row"><div class="form-key"></div><div class="form-value">What does photo one say?</div></div>
-                  <div class="form-row"><div class="form-key"></div><div class="form-value">Where does the profile lose momentum?</div></div>
-                  <div class="form-row"><div class="form-key"></div><div class="form-value">What should stay, move or go?</div></div>
+                <div class="app-body audit-demo">
+                  <div class="audit-head"><span>Sample profile read</span><strong>3 signals</strong></div>
+                  <div class="audit-row">
+                    <div class="audit-meta"><strong>Lead photo</strong><span>Clear first impression</span></div>
+                    <div class="audit-score">88</div>
+                    <div class="audit-meter"><i style="--score:88%"></i></div>
+                  </div>
+                  <div class="audit-row">
+                    <div class="audit-meta"><strong>Sequence</strong><span>Good range, one repeat</span></div>
+                    <div class="audit-score">74</div>
+                    <div class="audit-meter"><i style="--score:74%"></i></div>
+                  </div>
+                  <div class="audit-row">
+                    <div class="audit-meta"><strong>Story</strong><span>Needs a stronger closer</span></div>
+                    <div class="audit-score">61</div>
+                    <div class="audit-meter"><i style="--score:61%"></i></div>
+                  </div>
+                  <div class="audit-note"><span>Next move</span><strong>Keep 4 · Move 1 · Replace 1</strong></div>
                 </div>
               </div>
             </article>
@@ -652,7 +709,7 @@ body:hover .cursor-glow{opacity:1}
   <section class="section" id="portfolio">
     <div class="wrap reveal">
       <div class="section-head">
-        <div class="eyebrow">Sahara / 02</div>
+        <div class="eyebrow">Sahara</div>
         <div><h2 class="display">The network behind Crackdoor.</h2><p class="section-lead">Crackdoor also builds products around the same problem from another angle: making it easier for people in the same city to actually find one another.</p></div>
       </div>
 
@@ -716,7 +773,7 @@ body:hover .cursor-glow{opacity:1}
     <div class="wrap reveal">
       <div class="path-shell">
         <div class="path-intro">
-          <div class="eyebrow" style="margin-bottom:18px">The reset / 03</div>
+          <div class="eyebrow" style="margin-bottom:18px">The reset</div>
           <h2 class="display">When dating starts feeling like a loop, change the inputs.</h2>
           <p>Crackdoor is not dating coaching forever. It is a reset: diagnose what is stale, make the useful changes and get you moving again.</p>
         </div>
@@ -781,7 +838,7 @@ body:hover .cursor-glow{opacity:1}
   <section class="section" id="studio">
     <div class="wrap reveal">
       <div class="section-head">
-        <div class="eyebrow">Services / 04</div>
+        <div class="eyebrow">Services</div>
         <div>
           <h2 class="display">Need a reset? Start here.</h2>
           <p class="section-lead">No account. No subscription. Send the profile, choose the depth you want and get a clear outside read you can actually use.</p>
@@ -855,11 +912,11 @@ body:hover .cursor-glow{opacity:1}
 
   <section class="section" id="founder">
     <div class="wrap reveal">
-      <div class="section-head"><div class="eyebrow">About / 05</div><h2 class="display">Built around modern dating.</h2></div>
+      <div class="section-head"><div class="eyebrow">About</div><h2 class="display">Built around modern dating.</h2></div>
       <div class="founder">
         <p class="founder-copy">Crackdoor was founded by <strong>Dylan Betancourt</strong> at <strong>Indiana University Bloomington</strong>. The company focuses on the parts of modern dating people can actually improve: presentation, momentum and the environments where connection happens.</p>
         <div class="facts">
-          <div class="fact"><span>About</span><span>Dylan Betancourt</span></div>
+          <div class="fact"><span>Founder</span><span>Dylan Betancourt</span></div>
           <div class="fact"><span>Based</span><span>Bloomington, Indiana</span></div>
           <div class="fact"><span>University</span><span>Indiana University Bloomington</span></div>
           <div class="fact"><span>Network product</span><span>Sahara</span></div>
@@ -870,7 +927,7 @@ body:hover .cursor-glow{opacity:1}
 
   <section class="section" id="principles">
     <div class="wrap reveal">
-      <div class="section-head"><div class="eyebrow">Principles / 06</div><h2 class="display">Better signals. Less noise.</h2></div>
+      <div class="section-head"><div class="eyebrow">Principles</div><h2 class="display">Better signals. Less noise.</h2></div>
       <div class="principles">
         <div class="principle"><div class="n">01</div><h3>See it clearly.</h3><p>Review the profile as it is experienced, not as you intended it.</p></div>
         <div class="principle"><div class="n">02</div><h3>Change less.</h3><p>Keep what works, remove what does not and avoid turning dating into a full-time optimization project.</p></div>
@@ -970,6 +1027,47 @@ body:hover .cursor-glow{opacity:1}
   };
   menuBtn?.addEventListener('click',()=>setMenu(!mobileMenu.classList.contains('open')));
   qsa('a',mobileMenu).forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+
+  /* hashless in-page navigation */
+  const sectionLinks=qsa('a[href^="#"]');
+  function scrollToSection(link){
+    const href=link.getAttribute('href');
+    const target=href && href.length>1 ? qs(href) : qs('#top');
+    if(!target)return;
+    target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    if(location.hash)history.replaceState(null,'',location.pathname+location.search);
+  }
+  sectionLinks.forEach(link=>link.addEventListener('click',e=>{
+    const href=link.getAttribute('href');
+    if(!href || !href.startsWith('#'))return;
+    e.preventDefault();
+    setMenu(false);
+    scrollToSection(link);
+  }));
+
+  /* scroll position feedback without changing the URL */
+  const scrollProgress=qs('#scrollProgress');
+  const navSectionLinks=qsa('.navlinks a[href^="#"]');
+  const observedSections=navSectionLinks
+    .map(a=>({a,el:qs(a.getAttribute('href'))}))
+    .filter(x=>x.el);
+
+  function updateScrollUI(){
+    const root=document.documentElement;
+    const max=Math.max(1,root.scrollHeight-innerHeight);
+    const ratio=Math.min(1,Math.max(0,scrollY/max));
+    if(scrollProgress)scrollProgress.style.transform=`scaleX(${ratio})`;
+
+    let active=null;
+    const marker=innerHeight*.32;
+    observedSections.forEach(item=>{
+      if(item.el.getBoundingClientRect().top<=marker)active=item;
+    });
+    navSectionLinks.forEach(a=>a.classList.toggle('active',active?.a===a));
+  }
+  addEventListener('scroll',updateScrollUI,{passive:true});
+  addEventListener('resize',updateScrollUI,{passive:true});
+  updateScrollUI();
 
   /* interactive showcase */
   const track=qs('#showcaseTrack');
@@ -1145,6 +1243,16 @@ ${mode}`;
       qsa('.choice',qs('#serviceChoices')).forEach(btn=>btn.classList.toggle('selected',service.value.startsWith(btn.dataset.value.split(' — ')[0])));
     }
   };
+
+  /* honor old bookmarked hashes once, then return to a clean URL */
+  if(location.hash){
+    const initialTarget=qs(location.hash);
+    if(initialTarget){
+      requestAnimationFrame(()=>initialTarget.scrollIntoView({block:'start'}));
+      history.replaceState(null,'',location.pathname+location.search);
+    }
+  }
+
 })();
 </script>
 </body>
