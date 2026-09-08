@@ -252,31 +252,50 @@ h2{margin:0;max-width:790px;font-size:clamp(36px,5vw,62px);line-height:1;letter-
 .showcase-caption p{max-width:690px;margin:auto;color:#7b7b82;font-size:13px;line-height:1.65}
 
 
-/* Equalize Read / Rebuild / Reset visual proportions without clipping */
+/* Read / Rebuild / Reset — one product system, three views */
+.showcase-panel{
+  --product-frame-h:370px;
+}
 .showcase-panel .app-frame{
   width:100%;
-  min-height:360px;
+  height:var(--product-frame-h);
+  min-height:var(--product-frame-h);
   display:flex;
   flex-direction:column;
 }
-.showcase-panel .app-topbar{flex:0 0 44px}
+.showcase-panel .app-topbar{
+  flex:0 0 44px;
+}
 .showcase-panel .app-body{
   flex:1 1 auto;
   min-height:0;
+  height:auto;
 }
-.showcase-panel .app-body.flow{
-  display:flex;
-  flex-direction:column;
+.showcase-panel .app-body.audit-demo{
+  display:grid;
+  grid-template-rows:auto repeat(3,1fr) auto;
+  align-content:stretch;
   gap:10px;
 }
-.showcase-panel .app-body.flow .flow-card{
-  flex:1 1 0;
-  min-height:72px;
+.showcase-panel .app-body.flow{
+  display:grid;
+  grid-template-rows:repeat(3,1fr) auto;
+  align-content:stretch;
+  gap:10px;
 }
-.flow-summary{
-  margin-top:2px;
+.showcase-panel .audit-row,
+.showcase-panel .flow-card{
+  min-height:0;
+}
+.showcase-panel .flow-card{
+  height:100%;
+}
+.showcase-panel .audit-note,
+.showcase-panel .flow-summary{
+  min-height:40px;
+  margin-top:0;
   border-top:1px solid #242429;
-  padding:13px 2px 0;
+  padding:12px 2px 0;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -284,21 +303,38 @@ h2{margin:0;max-width:790px;font-size:clamp(36px,5vw,62px);line-height:1;letter-
   font-size:10px;
   color:#67676e;
 }
-.flow-summary strong{
+.showcase-panel .audit-note strong,
+.showcase-panel .flow-summary strong{
   color:#b9b9bf;
   font-weight:550;
   text-align:right;
 }
 @media(max-width:800px){
-  .showcase-panel .app-frame{min-height:348px}
-  .showcase-panel .app-body.flow .flow-card{min-height:68px}
+  .showcase-panel{--product-frame-h:350px}
 }
 @media(max-width:430px){
-  .showcase-panel .app-frame{min-height:336px}
+  .showcase-panel{--product-frame-h:338px}
   .showcase-panel .app-body{padding:15px}
+  .showcase-panel .app-body.audit-demo,
   .showcase-panel .app-body.flow{gap:8px}
-  .showcase-panel .app-body.flow .flow-card{padding:12px;min-height:66px}
-  .flow-summary{padding-top:11px;align-items:flex-start}
+  .showcase-panel .flow-card{padding:12px}
+  .showcase-panel .audit-note,
+  .showcase-panel .flow-summary{
+    min-height:38px;
+    padding-top:10px;
+    align-items:flex-start;
+  }
+}
+
+
+/* Keep the three showcase slides visually locked to the same baseline */
+@media(min-width:801px){
+  .showcase-copy{
+    min-height:170px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
 }
 
 /* portfolio */
