@@ -6,6 +6,8 @@
 <title>Crackdoor — Dating, reviewed</title>
 <meta name="description" content="Crackdoor is a dating company for profile reviews, dating resets and products built around better real-world connection.">
 <meta name="theme-color" content="#050505">
+<meta name="color-scheme" content="dark">
+<meta name="format-detection" content="telephone=no">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -41,6 +43,11 @@ body.modal-open{overflow:hidden}
 a{color:inherit;text-decoration:none}
 button,input,textarea,select{font:inherit}
 button{color:inherit}
+button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}
+button{touch-action:manipulation}
+img,svg{max-width:100%}
+:focus-visible{outline:2px solid #f3f3f4;outline-offset:3px}
+::selection{background:#f3f3f4;color:#050505}
 .wrap{width:min(calc(100% - (var(--gutter)*2)),var(--max));margin-inline:auto}
 .display{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,system-ui,sans-serif}
 .muted{color:var(--muted)}
@@ -60,7 +67,7 @@ nav{
 .nav-cta{display:inline-flex!important;background:#f2f2f3!important;color:#070707!important;padding:9px 12px!important;border-radius:9px!important}
 .nav-cta:hover{background:#fff!important}
 .menu-btn{
-  display:none;width:42px;height:42px;border:1px solid var(--line2);border-radius:11px;background:#0b0b0d;
+  display:none;width:44px;height:44px;border:1px solid var(--line2);border-radius:11px;background:#0b0b0d;
   align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer
 }
 .menu-btn span{display:block;width:18px;height:1.5px;background:#d5d5da;transition:.22s}
@@ -288,11 +295,18 @@ h2{margin:0;max-width:790px;font-size:clamp(36px,5vw,62px);line-height:1;letter-
 
 /* studio */
 .studio-toolbar{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-bottom:26px;flex-wrap:wrap}
-.mode-toggle{display:flex;align-items:center;gap:11px;font-size:11px;color:#717178}
-.mode-label.active{color:#f0f0f2}
-.switch{width:48px;height:28px;border:1px solid #2e2e34;border-radius:999px;background:#121214;position:relative;cursor:pointer}
-.switch span{position:absolute;width:20px;height:20px;left:3px;top:3px;border-radius:50%;background:#f2f2f3;transition:transform .24s}
-.switch.on span{transform:translateX(20px)}
+.mode-toggle{
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4px;
+  min-width:190px;padding:5px;border:1px solid #2e2e34;border-radius:13px;
+  background:#0b0b0d;font-size:11px;color:#77777f
+}
+.mode-option{
+  min-height:38px;border:0;border-radius:9px;background:transparent;color:inherit;
+  display:flex;align-items:center;justify-content:center;padding:0 16px;cursor:pointer;
+  transition:background .18s,color .18s,transform .18s
+}
+.mode-option.active{background:#f2f2f3;color:#070707}
+.mode-option:active{transform:scale(.985)}
 .free-brief{display:flex;align-items:center;justify-content:space-between;gap:24px;border:1px solid var(--line);border-radius:18px;background:#09090a;padding:22px;margin-bottom:18px}
 .free-brief strong{font-size:14px}.free-brief p{font-size:11px;color:#6f6f76;margin:5px 0 0;line-height:1.5}
 .plans{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#080809}
@@ -346,7 +360,7 @@ body.collab-mode .mode-collab{display:list-item}
 .field textarea{min-height:120px;resize:vertical}
 .field input:focus,.field textarea:focus,.field select:focus{border-color:#494950}
 .choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.choice{border:1px solid #29292f;border-radius:12px;background:#101012;padding:14px;cursor:pointer;transition:.18s}
+.choice{border:1px solid #29292f;border-radius:12px;background:#101012;padding:14px;min-height:64px;text-align:left;color:inherit;cursor:pointer;transition:.18s}
 .choice:hover,.choice.selected{border-color:#57575f;background:#141416}.choice strong{display:block;font-size:12px}.choice span{display:block;font-size:10px;color:#717178;margin-top:4px;line-height:1.45}
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:24px}
 .wizard-actions .right{display:flex;gap:10px}
@@ -437,6 +451,58 @@ body:hover .cursor-glow{opacity:1}
     min-width:0;
     min-height:0;
   }
+}
+
+
+@media(max-width:800px){
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .hero-inner{padding-left:max(0px,env(safe-area-inset-left));padding-right:max(0px,env(safe-area-inset-right))}
+  .actions{display:grid;grid-template-columns:1fr;gap:9px}
+  .actions .btn{width:100%;min-height:46px}
+  .studio-toolbar{display:grid;grid-template-columns:1fr;gap:12px}
+  .mode-toggle{width:100%;min-width:0}
+  .mode-option{min-height:44px;font-size:12px}
+  .plan .btn,.free-brief .btn{min-height:46px}
+  .showcase-tabs{overflow:hidden}
+  .showcase-tab{min-height:40px;white-space:nowrap}
+  .modal{padding:0;align-items:end}
+  .modal-card{
+    width:100%;max-height:calc(100dvh - max(10px,env(safe-area-inset-top)));
+    border-radius:21px 21px 0 0;border-bottom:0
+  }
+  .modal-head{padding:18px 20px}
+  .modal-body{padding:22px 20px calc(22px + env(safe-area-inset-bottom))}
+  .close{min-width:44px;min-height:44px}
+  .field input,.field textarea,.field select{font-size:16px}
+  .wizard-actions{position:sticky;bottom:0;background:linear-gradient(to top,#0b0b0d 76%,rgba(11,11,13,0));padding-top:14px}
+}
+@media(max-width:430px){
+  :root{--gutter:18px}
+  h1{font-size:clamp(48px,14.5vw,66px);letter-spacing:-.058em}
+  .hero-copy{line-height:1.58}
+  .showcase-panel{padding:20px}
+  .showcase-copy h3{font-size:33px}
+  .showcase-tabs{width:calc(100% - 16px);padding:4px}
+  .showcase-tab{font-size:9.5px}
+  .project-card{padding-left:22px;padding-right:22px}
+  .plan{padding:23px}
+  .mode-toggle{padding:4px}
+  .fact{align-items:flex-start}
+  .fact span:last-child{max-width:58%}
+}
+@media(max-width:360px){
+  :root{--gutter:16px}
+  h1{font-size:45px}
+  .showcase-copy h3{font-size:30px}
+  .showcase-tab{font-size:9px;padding-inline:3px}
+  .modal-body{padding-left:16px;padding-right:16px}
+}
+@media(hover:hover) and (pointer:fine){
+  .mode-option:hover:not(.active){background:#121214;color:#d7d7dc}
+}
+@media(hover:none){
+  .cursor-glow{display:none!important}
+  .project-card:hover,.principle:hover,.btn:hover{transform:none}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -569,9 +635,9 @@ body:hover .cursor-glow{opacity:1}
 
         <div class="showcase-tabs-wrap">
           <div class="showcase-tabs" role="tablist" aria-label="Crackdoor product process">
-            <button class="showcase-tab active" type="button" data-index="0" role="tab" aria-selected="true">Discover</button>
-            <button class="showcase-tab" type="button" data-index="1" role="tab" aria-selected="false">Define</button>
-            <button class="showcase-tab" type="button" data-index="2" role="tab" aria-selected="false">Ship</button>
+            <button class="showcase-tab active" type="button" data-index="0" role="tab" aria-selected="true" tabindex="0">Read</button>
+            <button class="showcase-tab" type="button" data-index="1" role="tab" aria-selected="false" tabindex="-1">Rebuild</button>
+            <button class="showcase-tab" type="button" data-index="2" role="tab" aria-selected="false" tabindex="-1">Reset</button>
           </div>
         </div>
 
@@ -590,7 +656,7 @@ body:hover .cursor-glow{opacity:1}
         <div><h2 class="display">The network behind Crackdoor.</h2><p class="section-lead">Crackdoor also builds products around the same problem from another angle: making it easier for people in the same city to actually find one another.</p></div>
       </div>
 
-      <a class="project-card" href="https://www.sahara.app/" target="_blank" rel="noopener">
+      <a class="project-card" href="https://www.sahara.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Sahara.app">
 
         <div class="sahara-network" aria-hidden="true">
           <svg viewBox="0 0 1000 430" preserveAspectRatio="xMidYMid meet">
@@ -686,7 +752,7 @@ body:hover .cursor-glow{opacity:1}
             <div class="stage-label">Stage 03 · Capture</div>
             <div class="stage-card" tabindex="0" role="button" aria-expanded="false">
               <div class="stage-title"><h3 class="display">Fill the actual gaps.</h3><span class="stage-plus">+</span></div>
-              <p>Go what people actually do and keep the behavior that compounds.</p>
+              <p>Create only the photos the profile is actually missing.</p>
               <div class="stage-details"><div class="detail-grid">
                 <div class="detail">Know which photo types you actually need.</div>
                 <div class="detail">Capture range: face, full body, social, activity, environment.</div>
@@ -727,10 +793,9 @@ body:hover .cursor-glow{opacity:1}
           <div><strong>Quick Check</strong><p>Not sure what you need? Send a short inquiry and we’ll point you to the simplest useful option.</p></div>
           <button class="btn open-wizard" type="button">Inquire →</button>
         </div>
-        <div class="mode-toggle">
-          <span class="mode-label active" id="guidedLabel">Written</span>
-          <button class="switch" id="modeSwitch" type="button" role="switch" aria-checked="false" aria-label="Toggle engagement mode"><span></span></button>
-          <span class="mode-label" id="collabLabel">Call</span>
+        <div class="mode-toggle" role="group" aria-label="Review format">
+          <button class="mode-option active" id="writtenMode" type="button" aria-pressed="true">Written</button>
+          <button class="mode-option" id="callMode" type="button" aria-pressed="false">Call</button>
         </div>
       </div>
 
@@ -780,9 +845,9 @@ body:hover .cursor-glow{opacity:1}
             <li>Dating reset support</li>
             <li>One follow-up after you make the changes</li>
             <li class="mode-guided">Built to get you moving, not dependent</li>
-            <li class="mode-collab">About works directly inside the process</li>
+            <li class="mode-collab">Live working session focused on your reset</li>
           </ul>
-          <button class="btn plan-button" type="button" data-plan="Back in Motion" data-price="Application">$149 to build</button>
+          <button class="btn plan-button" type="button" data-plan="Back in Motion" data-price="$149">Start Back in Motion</button>
         </article>
       </div>
     </div>
@@ -859,7 +924,7 @@ body:hover .cursor-glow{opacity:1}
             <button class="choice" type="button" data-value="Quick Check"><strong>Quick Check</strong><span>I am not sure which service I need.</span></button>
             <button class="choice" type="button" data-value="Profile Review — $49"><strong>Profile Review · $49</strong><span>I want a photo-by-photo profile review.</span></button>
             <button class="choice" type="button" data-value="Full Reset — $99"><strong>Full Reset · $99</strong><span>I want the full profile and next-photo plan.</span></button>
-            <button class="choice" type="button" data-value="Back in Motion application"><strong>Back in Motion</strong><span>I want help getting out of the app loop too.</span></button>
+            <button class="choice" type="button" data-value="Back in Motion — $149"><strong>Back in Motion · $149</strong><span>I want help getting out of the app loop too.</span></button>
           </div>
           <input id="service" type="hidden" required>
         </section>
@@ -912,19 +977,29 @@ body:hover .cursor-glow{opacity:1}
   const showcaseTitle=qs('#showcaseTitle');
   const showcaseText=qs('#showcaseText');
   const showcaseCopy=[
-    ['See the profile before your matches do.','We give you the outside perspective your friends usually cannot: what lands immediately, what weakens the profile and what is missing.'],
-    ['Turn the idea into something another person can build.','Map the loop, screens, rules, technical direction and Profile order until the concept becomes an executable product system.'],
-    ['Ship a version that can teach you something.','Dating reset small, measure the behavior that matters and let real use determine what deserves to be built next.']
+    ['See the profile before your matches do.','Get the outside perspective friends usually cannot give you: what lands immediately, what creates drag and what is missing.'],
+    ['Build a sequence that earns the next look.','Reorder the strongest signals, remove repetition and identify the exact photo types your profile still needs.'],
+    ['Make the changes, then get back out there.','Leave with a finished order, a focused shot list and a simple reset plan instead of endlessly editing the same profile.']
   ];
   let currentShowcase=0;
   function showPanel(i){
     currentShowcase=i;
     if(track)track.style.transform=`translateX(-${i*33.333333}%)`;
-    tabs.forEach((t,n)=>{t.classList.toggle('active',n===i);t.setAttribute('aria-selected',String(n===i))});
+    tabs.forEach((t,n)=>{t.classList.toggle('active',n===i);t.setAttribute('aria-selected',String(n===i));t.tabIndex=n===i?0:-1});
     if(showcaseTitle)showcaseTitle.textContent=showcaseCopy[i][0];
     if(showcaseText)showcaseText.textContent=showcaseCopy[i][1];
   }
-  tabs.forEach(t=>t.addEventListener('click',()=>showPanel(Number(t.dataset.index))));
+  tabs.forEach(t=>{
+    t.addEventListener('click',()=>showPanel(Number(t.dataset.index)));
+    t.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        e.preventDefault();
+        const next=(currentShowcase+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+        showPanel(next);
+        tabs[next]?.focus();
+      }
+    });
+  });
   let touchStart=null;
   qs('#showcase')?.addEventListener('touchstart',e=>{touchStart=e.touches[0].clientX},{passive:true});
   qs('#showcase')?.addEventListener('touchend',e=>{
@@ -941,16 +1016,18 @@ body:hover .cursor-glow{opacity:1}
     card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
   });
 
-  /* engagement mode */
-  const modeSwitch=qs('#modeSwitch'), guidedLabel=qs('#guidedLabel'), collabLabel=qs('#collabLabel');
-  modeSwitch?.addEventListener('click',()=>{
-    const collab=!document.body.classList.contains('collab-mode');
-    document.body.classList.toggle('collab-mode',collab);
-    modeSwitch.classList.toggle('on',collab);
-    modeSwitch.setAttribute('aria-checked',String(collab));
-    guidedLabel.classList.toggle('active',!collab);
-    collabLabel.classList.toggle('active',collab);
-  });
+  /* review format */
+  const writtenMode=qs('#writtenMode'), callMode=qs('#callMode');
+  function setReviewMode(mode){
+    const isCall=mode==='call';
+    document.body.classList.toggle('collab-mode',isCall);
+    writtenMode?.classList.toggle('active',!isCall);
+    callMode?.classList.toggle('active',isCall);
+    writtenMode?.setAttribute('aria-pressed',String(!isCall));
+    callMode?.setAttribute('aria-pressed',String(isCall));
+  }
+  writtenMode?.addEventListener('click',()=>setReviewMode('written'));
+  callMode?.addEventListener('click',()=>setReviewMode('call'));
 
   /* reveal */
   if('IntersectionObserver' in window){
@@ -1044,6 +1121,13 @@ ${mode}`;
     }
   });
   backBtn?.addEventListener('click',()=>{if(step>0)renderStep(step-1)});
+  modal?.addEventListener('click',e=>{if(e.target===modal)closeWizard()});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(modal?.classList.contains('open')) closeWizard();
+      if(mobileMenu?.classList.contains('open')) setMenu(false);
+    }
+  });
   copyBtn?.addEventListener('click',async()=>{
     try{
       await navigator.clipboard.writeText(briefText());
