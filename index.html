@@ -715,6 +715,16 @@ body.collab-mode .mode-collab{display:list-item}
   .route-metrics{grid-template-columns:1fr}
 }
 
+
+.funnel-strip-six{
+  grid-template-columns:repeat(6,minmax(0,1fr));
+}
+@media(max-width:800px){
+  .funnel-strip-six{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
 /* modal wizard */
 .modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.76);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .modal.open{display:grid}
@@ -1491,11 +1501,13 @@ body:hover .cursor-glow{opacity:1}
     <div class="wizard-progress"><i id="wizardProgress"></i></div>
     <div class="modal-body">
       <form id="projectForm">
-        <div class="funnel-strip" id="funnelStrip" aria-label="Dating funnel">
+        <div class="funnel-strip funnel-strip-six" id="funnelStrip" aria-label="Dating funnel">
           <div class="funnel-node active" data-funnel="0"><span>01</span><strong>Platform</strong></div>
           <div class="funnel-node" data-funnel="1"><span>02</span><strong>Leak</strong></div>
           <div class="funnel-node" data-funnel="2"><span>03</span><strong>Goal</strong></div>
           <div class="funnel-node" data-funnel="3"><span>04</span><strong>Route</strong></div>
+          <div class="funnel-node" data-funnel="4"><span>05</span><strong>Contact</strong></div>
+          <div class="funnel-node" data-funnel="5"><span>06</span><strong>Pay</strong></div>
         </div>
 
         <section class="wizard-step active" data-step="0">
@@ -1594,9 +1606,23 @@ body:hover .cursor-glow{opacity:1}
         </section>
 
         <section class="wizard-step" data-step="4">
-          <div class="step-no">Step 5 of 5 · Send the brief</div>
+          <div class="step-no">Step 5 of 6 · Contact</div>
+          <h3 class="display">How do we reach you?</h3>
+          <p>Keep it simple. Give us your name and the best place to follow up after payment.</p>
+          <div class="field">
+            <label for="contactName">Name</label>
+            <input id="contactName" type="text" required placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="contactHandle">Best contact</label>
+            <input id="contactHandle" type="text" required placeholder="@Instagram, phone or email">
+          </div>
+        </section>
+
+        <section class="wizard-step" data-step="5">
+          <div class="step-no">Step 6 of 6 · Pay</div>
           <h3 class="display">Your dating brief.</h3>
-          <p>One clean handoff. Copy it, then send it to Crackdoor on Instagram.</p>
+          <p>Copy your brief, then pay through Venmo. We’ll follow up using the contact you gave us.</p>
           <div class="route-card">
             <div class="route-top"><div class="route-kicker">Conversion brief</div><div class="route-badge">Ready</div></div>
             <div class="summary-box" id="summaryBox"></div>
@@ -1757,7 +1783,7 @@ body:hover .cursor-glow{opacity:1}
   const progress=qs('#wizardProgress');
   const nextBtn=qs('#nextBtn'), backBtn=qs('#backBtn'), copyBtn=qs('#copyBtn');
   const projectForm=qs('#projectForm');
-  const audience=qs('#audience'), projectStage=qs('#projectStage'), goal=qs('#goal'), service=qs('#service');
+  const audience=qs('#audience'), projectStage=qs('#projectStage'), goal=qs('#goal'), service=qs('#service'), contactName=qs('#contactName'), contactHandle=qs('#contactHandle');
   const summaryBox=qs('#summaryBox'), copyStatus=qs('#copyStatus');
   const funnelNodes=qsa('.funnel-node');
   const routePlatform=qs('#routePlatform'), routeLeak=qs('#routeLeak'), routeGoal=qs('#routeGoal');
@@ -1812,8 +1838,8 @@ body:hover .cursor-glow{opacity:1}
 
   function updateFunnel(){
     funnelNodes.forEach((node,i)=>{
-      node.classList.toggle('active',i===Math.min(currentStep,3));
-      node.classList.toggle('done',i<Math.min(currentStep,4));
+      node.classList.toggle('active',i===Math.min(currentStep,5));
+      node.classList.toggle('done',i<Math.min(currentStep,6));
     });
   }
 
@@ -1821,6 +1847,8 @@ body:hover .cursor-glow{opacity:1}
     const brief=[
       'CRACKDOOR DATING BRIEF',
       '',
+      `Name: ${contactName.value}`,
+      `Contact: ${contactHandle.value}`,
       `Platforms: ${audience.value}`,
       `Funnel leak: ${projectStage.value}`,
       `Goal: ${goal.value}`,
@@ -1840,7 +1868,7 @@ body:hover .cursor-glow{opacity:1}
     progress.style.width=`${((currentStep+1)/steps.length)*100}%`;
     backBtn.style.visibility=currentStep===0?'hidden':'visible';
     copyBtn.style.display=currentStep===steps.length-1?'inline-flex':'none';
-    nextBtn.textContent=currentStep===steps.length-1?'Open Instagram →':'Continue →';
+    nextBtn.textContent=currentStep===steps.length-1?'Pay with Venmo →':'Continue →';
     updateFunnel();
     if(currentStep===steps.length-1)buildBrief();
   }
@@ -1862,6 +1890,16 @@ body:hover .cursor-glow{opacity:1}
       qsa('.choice',qs('#serviceChoices'))[0]?.focus();
       return false;
     }
+    if(currentStep===4){
+      if(!contactName.value.trim()){
+        contactName.focus();
+        return false;
+      }
+      if(!contactHandle.value.trim()){
+        contactHandle.focus();
+        return false;
+      }
+    }
     return true;
   }
 
@@ -1874,7 +1912,7 @@ body:hover .cursor-glow{opacity:1}
     });
     qsa('.choice',projectForm).forEach(btn=>btn.classList.remove('selected'));
     platformOther?.classList.remove('show');
-    audience.value='';projectStage.value='';goal.value='';service.value='';
+    audience.value='';projectStage.value='';goal.value='';service.value='';contactName.value='';contactHandle.value='';
     copyStatus.textContent='';
     showStep(0);
   }
