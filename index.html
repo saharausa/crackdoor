@@ -215,6 +215,60 @@ h2{margin:0;max-width:790px;font-size:clamp(36px,5vw,62px);line-height:1;letter-
 .showcase-caption h3{font-size:clamp(24px,3.6vw,42px);letter-spacing:-.042em;margin:0 0 9px}
 .showcase-caption p{max-width:690px;margin:auto;color:#7b7b82;font-size:13px;line-height:1.65}
 
+
+/* Equalize Read / Rebuild / Reset visual proportions without clipping */
+.showcase-panel .app-frame{
+  width:100%;
+  min-height:360px;
+  display:flex;
+  flex-direction:column;
+}
+.showcase-panel .app-topbar{flex:0 0 44px}
+.showcase-panel .app-body{
+  flex:1 1 auto;
+  min-height:0;
+}
+.showcase-panel .app-body.flow{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.showcase-panel .app-body.flow .flow-card{
+  flex:1 1 0;
+  min-height:72px;
+}
+.flow-summary{
+  margin-top:2px;
+  border-top:1px solid #242429;
+  padding:13px 2px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  font-size:10px;
+  color:#67676e;
+}
+.flow-summary strong{
+  color:#b9b9bf;
+  font-weight:550;
+  text-align:right;
+}
+@media(max-width:800px){
+  .showcase-panel .app-frame{min-height:348px}
+  .showcase-panel .app-body.flow .flow-card{min-height:68px}
+}
+@media(max-width:430px){
+  .showcase-panel .app-frame{min-height:336px}
+  .showcase-panel .app-body{padding:15px}
+  .showcase-panel .app-body.flow{gap:8px}
+  .showcase-panel .app-body.flow .flow-card{padding:12px;min-height:66px}
+  .flow-summary{padding-top:11px;align-items:flex-start}
+}
+  .showcase-panel .app-body{padding:15px}
+  .showcase-panel .app-body.flow{gap:8px}
+  .showcase-panel .app-body.flow .flow-card{padding:12px}
+}
+
 /* portfolio */
 .project-card{
   position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#0b0b0c,#080809);
@@ -665,9 +719,10 @@ body:hover .cursor-glow{opacity:1}
               <div class="app-frame">
                 <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Profile blueprint</div></div>
                 <div class="app-body flow">
-                  <div class="flow-card"><div><strong>Lead photo</strong><span>The image that earns the next swipe</span></div><div class="pill">01</div></div>
-                  <div class="flow-card"><div><strong>Middle sequence</strong><span>Proof of personality, lifestyle and range</span></div><div class="pill">02</div></div>
-                  <div class="flow-card"><div><strong>Closer</strong><span>The final impression that makes the profile feel complete</span></div><div class="pill">03</div></div>
+                  <div class="flow-card"><div><strong>Lead photo</strong><span>Open with the strongest immediate signal</span></div><div class="pill">01</div></div>
+                  <div class="flow-card"><div><strong>Middle sequence</strong><span>Add range: lifestyle, social proof and personality</span></div><div class="pill">02</div></div>
+                  <div class="flow-card"><div><strong>Closer</strong><span>End on a memorable photo that completes the story</span></div><div class="pill">03</div></div>
+                  <div class="flow-summary"><span>Example rebuild</span><strong>1 → 4 → 2 → 5 → 3 → new closer</strong></div>
                 </div>
               </div>
             </article>
@@ -681,9 +736,10 @@ body:hover .cursor-glow{opacity:1}
               <div class="app-frame">
                 <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Dating reset</div></div>
                 <div class="app-body flow">
-                  <div class="flow-card"><div><strong>Profile order</strong><span>Best sequence locked</span></div><div class="pill">Ready</div></div>
-                  <div class="flow-card"><div><strong>Dating reset checklist</strong><span>Solo · Social · Activity · Lifestyle</span></div><div class="pill">4 items</div></div>
-                  <div class="flow-card"><div style="flex:1"><strong>Next move</strong><span>Change the profile, then go meet people</span><div class="progress"><i></i></div></div><div class="pill">Go</div></div>
+                  <div class="flow-card"><div><strong>Profile order</strong><span>Your strongest sequence is locked and ready to use</span></div><div class="pill">Ready</div></div>
+                  <div class="flow-card"><div><strong>Missing-photo list</strong><span>Solo · Social · Activity · Lifestyle</span></div><div class="pill">4 shots</div></div>
+                  <div class="flow-card"><div style="flex:1"><strong>Next move</strong><span>Update the profile, stop over-editing and get back into circulation</span><div class="progress"><i></i></div></div><div class="pill">Go</div></div>
+                  <div class="flow-summary"><span>Reset outcome</span><strong>Profile fixed · shot list ready · next move clear</strong></div>
                 </div>
               </div>
             </article>
