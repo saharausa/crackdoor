@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Crackdoor — Dating, reviewed</title>
-<meta name="description" content="Crackdoor is a dating company for profile reviews, dating resets and products built around better real-world connection.">
+<meta name="description" content="Crackdoor reviews dating profiles, helps people reset their dating game and builds products for better real-world connection.">
 <meta name="theme-color" content="#050505">
 <meta name="color-scheme" content="dark">
 <meta name="format-detection" content="telephone=no">
@@ -439,10 +439,51 @@ body.collab-mode .mode-collab{display:list-item}
 .fact span:first-child{color:#626269}.fact span:last-child{color:#aaaab0;text-align:right}
 
 /* principles */
-.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.principle{border:1px solid var(--line);border-radius:17px;padding:27px;min-height:220px;transition:transform .22s,border-color .22s}
-.principle:hover{transform:translateY(-2px);border-color:#333339}
-.principle .n{font-size:10px;color:#58585f;margin-bottom:72px}.principle h3{font-size:17px;margin:0 0 9px}.principle p{font-size:12px;line-height:1.65;color:#74747b;margin:0}
+.principles{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px
+}
+.principle{
+  position:relative;overflow:hidden;
+  border:1px solid var(--line);border-radius:19px;
+  padding:28px;min-height:250px;
+  background:linear-gradient(180deg,#0a0a0b,#070708);
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .22s,border-color .22s,background .22s
+}
+.principle:before{
+  content:"";position:absolute;inset:auto -70px -90px auto;
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.055),transparent 70%);
+  pointer-events:none
+}
+.principle:hover{
+  transform:translateY(-3px);border-color:#3a3a40;background:#0c0c0e
+}
+.principle-top{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  position:relative;z-index:1
+}
+.principle .n{
+  font-size:10px;color:#707078;letter-spacing:.12em;text-transform:uppercase
+}
+.principle-chip{
+  font-size:9px;color:#8f8f96;border:1px solid #2b2b31;border-radius:999px;
+  padding:6px 8px;background:#0e0e10
+}
+.principle-copy{position:relative;z-index:1}
+.principle h3{
+  font-size:clamp(24px,2.7vw,34px);line-height:1;letter-spacing:-.04em;
+  margin:0 0 12px;font-weight:600
+}
+.principle p{
+  font-size:12px;line-height:1.65;color:#818188;margin:0;max-width:280px
+}
+.principle-verb{
+  margin-top:22px;padding-top:16px;border-top:1px solid #242429;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  color:#a7a7ad;font-size:10px;letter-spacing:.02em
+}
+.principle-verb strong{font-weight:550;color:#d5d5d9}
 
 /* modal wizard */
 .modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.76);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
@@ -526,7 +567,7 @@ body:hover .cursor-glow{opacity:1}
   .stage-card{padding:24px}.detail-grid{grid-template-columns:1fr}
   .studio-toolbar{align-items:flex-start}.free-brief{flex-direction:column;align-items:flex-start}.free-brief .btn{width:100%}
   .plans{grid-template-columns:1fr;border-radius:19px}.plan{min-height:auto;border-right:0;border-bottom:1px solid var(--line);padding:25px}.plan:last-child{border-bottom:0}.plan-desc{min-height:0}
-  .founder{grid-template-columns:1fr;gap:44px}.principles{grid-template-columns:1fr}.principle{min-height:170px;padding:24px}.principle .n{margin-bottom:44px}
+  .founder{grid-template-columns:1fr;gap:44px}.principles{grid-template-columns:1fr}.principle{min-height:220px;padding:24px}
   .choice-grid{grid-template-columns:1fr}
   .wizard-actions{align-items:stretch}.wizard-actions,.wizard-actions .right{flex-direction:column}.wizard-actions .right{width:100%}.wizard-actions .btn{width:100%}
   .footer{flex-direction:column;gap:8px}
@@ -777,7 +818,7 @@ body:hover .cursor-glow{opacity:1}
     <div class="wrap reveal">
       <div class="section-head">
         <div class="eyebrow">Sahara</div>
-        <div><h2 class="display">The network behind Crackdoor.</h2><p class="section-lead">Crackdoor also builds products around the same problem from another angle: making it easier for people in the same city to actually find one another.</p></div>
+        <div><h2 class="display">The network behind Crackdoor.</h2><p class="section-lead">Crackdoor also builds products for the other side of dating: actually finding people around you.</p></div>
       </div>
 
       <a class="project-card" href="https://www.sahara.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Sahara.app">
@@ -828,7 +869,7 @@ body:hover .cursor-glow{opacity:1}
         <div class="project-bottom">
           <div>
             <h3 class="display">Sahara</h3>
-            <p>An intracity social network beginning at Indiana University. Sahara is built around local density: nearby people, intentional Pings and connections that can move off-screen and into real life.</p>
+            <p>A local social network starting at Indiana University. See who’s around, send a Ping and take it from the screen to real life.</p>
           </div>
           <div class="arrow">↗</div>
         </div>
@@ -842,7 +883,7 @@ body:hover .cursor-glow{opacity:1}
         <div class="path-intro">
           <div class="eyebrow" style="margin-bottom:18px">The reset</div>
           <h2 class="display">When dating starts feeling like a loop, change the inputs.</h2>
-          <p>Crackdoor is not dating coaching forever. It is a reset: diagnose what is stale, make the useful changes and get you moving again.</p>
+          <p>This is not forever coaching. We fix what’s stale, make the useful changes and get you moving again.</p>
         </div>
 
         <div class="pipeline">
@@ -908,7 +949,7 @@ body:hover .cursor-glow{opacity:1}
         <div class="eyebrow">Services</div>
         <div>
           <h2 class="display">Need a reset? Start here.</h2>
-          <p class="section-lead">No account. No subscription. Send the profile, choose the depth you want and get a clear outside read you can actually use.</p>
+          <p class="section-lead">No account. No subscription. Send the profile, pick what you need and get a straight answer.</p>
         </div>
       </div>
 
@@ -994,11 +1035,50 @@ body:hover .cursor-glow{opacity:1}
 
   <section class="section" id="principles">
     <div class="wrap reveal">
-      <div class="section-head"><div class="eyebrow">Principles</div><h2 class="display">Better signals. Less noise.</h2></div>
+      <div class="section-head">
+        <div class="eyebrow">Principles</div>
+        <div>
+          <h2 class="display">Keep it simple. Make it hit.</h2>
+          <p class="section-lead">No endless optimizing. No fake guru energy. Just a better profile, a clearer move and then you get back out there.</p>
+        </div>
+      </div>
+
       <div class="principles">
-        <div class="principle"><div class="n">01</div><h3>See it clearly.</h3><p>Review the profile as it is experienced, not as you intended it.</p></div>
-        <div class="principle"><div class="n">02</div><h3>Change less.</h3><p>Keep what works, remove what does not and avoid turning dating into a full-time optimization project.</p></div>
-        <div class="principle"><div class="n">03</div><h3>Get moving.</h3><p>The point of the service is to return to dating with more clarity — not to keep buying advice.</p></div>
+        <div class="principle">
+          <div class="principle-top">
+            <div class="n">01</div>
+            <div class="principle-chip">See it</div>
+          </div>
+          <div class="principle-copy">
+            <h3 class="display">Know what’s working.</h3>
+            <p>Figure out what hits, what drags and what needs to go. No guessing.</p>
+            <div class="principle-verb"><span>Read the room</span><strong>Keep / Cut</strong></div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-top">
+            <div class="n">02</div>
+            <div class="principle-chip">Fix it</div>
+          </div>
+          <div class="principle-copy">
+            <h3 class="display">Change less.</h3>
+            <p>Use what you already have. Reorder it. Tighten it. Only shoot what’s actually missing.</p>
+            <div class="principle-verb"><span>Less tweaking</span><strong>More signal</strong></div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-top">
+            <div class="n">03</div>
+            <div class="principle-chip">Move</div>
+          </div>
+          <div class="principle-copy">
+            <h3 class="display">Get back out there.</h3>
+            <p>The profile is not the point. Meeting people is. Fix it, send it and go.</p>
+            <div class="principle-verb"><span>Done is better</span><strong>Go live</strong></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
