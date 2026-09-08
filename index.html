@@ -866,6 +866,105 @@ body:hover .cursor-glow{opacity:1}
   .project-card:hover,.principle:hover,.btn:hover{transform:none}
 }
 
+
+
+.showcase-panel .audit-note strong,
+.showcase-panel .flow-summary strong{
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+@media(max-width:430px){
+  .showcase-panel .audit-note,
+  .showcase-panel .flow-summary{
+    font-size:9.5px;
+    gap:10px;
+  }
+}
+
+/* final mobile showcase lock — identical Read / Rebuild / Reset footprint */
+@media(max-width:800px){
+  .showcase-stage{
+    min-height:600px;
+    height:600px;
+  }
+  .showcase-track{
+    height:100%;
+    align-items:stretch;
+  }
+  .showcase-panel{
+    --product-frame-h:350px;
+    height:600px;
+    min-height:600px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:24px;
+  }
+  .showcase-copy{
+    flex:0 0 154px;
+    min-height:154px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .showcase-panel .app-frame{
+    flex:0 0 var(--product-frame-h);
+    width:100%;
+    height:var(--product-frame-h);
+    min-height:var(--product-frame-h);
+    max-height:var(--product-frame-h);
+  }
+  .showcase-panel .app-body{
+    min-height:0!important;
+    overflow:hidden;
+  }
+  .showcase-panel .app-body.audit-demo,
+  .showcase-panel .app-body.flow{
+    height:calc(var(--product-frame-h) - 44px);
+  }
+}
+
+@media(max-width:430px){
+  .showcase-stage{
+    min-height:574px;
+    height:574px;
+  }
+  .showcase-panel{
+    --product-frame-h:338px;
+    height:574px;
+    min-height:574px;
+    padding:20px;
+    gap:20px;
+  }
+  .showcase-copy{
+    flex:0 0 176px;
+    min-height:176px;
+  }
+  .showcase-panel .app-frame{
+    flex-basis:var(--product-frame-h);
+  }
+}
+
+@media(max-width:360px){
+  .showcase-stage{
+    min-height:558px;
+    height:558px;
+  }
+  .showcase-panel{
+    --product-frame-h:326px;
+    height:558px;
+    min-height:558px;
+    padding:18px;
+    gap:18px;
+  }
+  .showcase-copy{
+    flex:0 0 178px;
+    min-height:178px;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}
 }
