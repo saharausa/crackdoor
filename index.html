@@ -109,7 +109,7 @@ nav{
 .kicker{display:flex;align-items:center;gap:9px;margin-bottom:28px}
 .dot{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.05)}
 h1{
-  margin:0;max-width:970px;font-size:clamp(56px,8.8vw,120px);line-height:.89;
+  margin:0;max-width:1180px;font-size:clamp(56px,8.8vw,120px);line-height:.89;
   letter-spacing:-.068em;font-weight:650
 }
 .hero-copy{
@@ -511,6 +511,19 @@ body.collab-mode .mode-collab{display:list-item}
 .summary-box{border:1px solid #29292f;border-radius:14px;background:#101012;padding:16px;font-size:12px;line-height:1.7;color:#aaaab0;white-space:pre-wrap}
 .copy-status{font-size:10px;color:#77777e;margin-top:8px;min-height:15px}
 
+
+/* tighter copy rhythm */
+.section-head h2,
+.showcase-copy h3,
+.principle h3,
+.plan h3{
+  text-wrap:balance;
+}
+@media(min-width:801px){
+  .section-head h2{white-space:nowrap;max-width:none}
+  .principle h3{white-space:nowrap}
+}
+
 /* misc */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .58s ease,transform .58s ease}.reveal.visible{opacity:1;transform:none}
 footer{padding:clamp(38px,5vw,52px) 0 calc(clamp(42px,5vw,60px) + env(safe-area-inset-bottom))}
@@ -524,6 +537,7 @@ body:hover .cursor-glow{opacity:1}
 
 @media(max-width:800px){
   :root{--gutter:20px;--section:76px}
+  h1{max-width:970px}
   .nav-inner{min-height:62px}.navlinks{display:none}.menu-btn{display:flex}.brand{font-size:13px}.drop{width:20px;height:25px}
   .hero{min-height:auto}.hero-inner{padding:86px 0 80px}
   h1{font-size:clamp(52px,15.5vw,76px);line-height:.92}
@@ -672,11 +686,11 @@ body:hover .cursor-glow{opacity:1}
     </a>
 
     <div class="navlinks">
-      <a href="#product">Profile review</a>
+      <a href="#product">Profile</a>
       <a href="#portfolio">Sahara</a>
-      <a href="#path">The reset</a>
+      <a href="#path">Reset</a>
       <a href="#founder">About</a>
-      <button class="nav-cta open-wizard" type="button">Get reviewed</button>
+      <button class="nav-cta open-wizard" type="button">Review</button>
     </div>
 
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
@@ -688,10 +702,10 @@ body:hover .cursor-glow{opacity:1}
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="wrap">
-    <a href="#product">Profile review</a>
+    <a href="#product">Profile</a>
     <a href="#portfolio">Sahara</a>
-    <a href="#path">The reset</a>
-    <a href="#studio">Get reviewed</a>
+    <a href="#path">Reset</a>
+    <a href="#studio">Review</a>
     <a href="#founder">About</a>
     <a href="#principles">Principles</a>
   </div>
@@ -702,7 +716,7 @@ body:hover .cursor-glow{opacity:1}
     <div class="hero-grid"></div><div class="hero-orb"></div>
     <div class="wrap hero-inner">
       <div class="kicker"><span class="dot"></span> Bloomington, Indiana</div>
-      <h1 class="display">Dating is hard.<br>Your profile shouldn’t be.</h1>
+      <h1 class="display">Dating is hard. Your profile shouldn’t be.</h1>
       <p class="hero-copy"><strong>Crackdoor</strong> is a dating company built around one idea: better presentation, better decisions and better ways to meet. We review dating profiles, help people reset when the apps stop working and build products for real-world connection.</p>
       <div class="actions">
         <button class="btn primary open-wizard" type="button">Get reviewed →</button>
@@ -713,19 +727,19 @@ body:hover .cursor-glow{opacity:1}
 
   <section class="signal-bar">
     <div class="wrap signal-grid">
-      <div class="signal"><strong>Profile reviews</strong><span>A sharp outside read on the photos, order and signals your profile sends.</span></div>
-      <div class="signal"><strong>Dating resets</strong><span>Simple help for getting unstuck, rebuilding your profile and getting back in motion.</span></div>
-      <div class="signal"><strong>Build connection products</strong><span>Sahara is Crackdoor’s social network experiment built around local density and real-world connection.</span></div>
+      <div class="signal"><strong>Profiles</strong><span>A clean read on what hits and what doesn’t.</span></div>
+      <div class="signal"><strong>Reset</strong><span>Fix what’s stale. Get back in rotation.</span></div>
+      <div class="signal"><strong>Network</strong><span>Sahara puts local density to work.</span></div>
     </div>
   </section>
 
   <section class="section" id="product">
     <div class="wrap reveal">
       <div class="section-head">
-        <div class="eyebrow">Profile review</div>
+        <div class="eyebrow">Profile</div>
         <div>
-          <h2 class="display">Your profile is making decisions before you ever speak.</h2>
-          <p class="section-lead">We review the profile the way a stranger experiences it: first impression, photo sequence and the story the whole thing tells. Then we tell you what to keep, cut and replace.</p>
+          <h2 class="display">Your profile speaks first.</h2>
+          <p class="section-lead">We read it cold, then tell you what stays, what moves and what goes.</p>
         </div>
       </div>
 
@@ -735,8 +749,8 @@ body:hover .cursor-glow{opacity:1}
             <article class="showcase-panel">
               <div class="showcase-copy">
                 <div class="mini">01 · Read</div>
-                <h3 class="display">Read the first impression.</h3>
-                <p>We look at what your first few photos communicate in seconds — confidence, lifestyle, approachability and intent.</p>
+                <h3 class="display">Read the signal.</h3>
+                <p>We score the first impression fast: confidence, lifestyle, approachability, intent.</p>
               </div>
               <div class="app-frame">
                 <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Profile read</div></div>
@@ -765,8 +779,8 @@ body:hover .cursor-glow{opacity:1}
             <article class="showcase-panel">
               <div class="showcase-copy">
                 <div class="mini">02 · Rebuild</div>
-                <h3 class="display">Rebuild the sequence.</h3>
-                <p>We reorder the profile around your strongest signals and identify the exact kinds of photos that are missing.</p>
+                <h3 class="display">Rebuild the order.</h3>
+                <p>We put the strongest signals first and flag what’s missing.</p>
               </div>
               <div class="app-frame">
                 <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Profile blueprint</div></div>
@@ -782,8 +796,8 @@ body:hover .cursor-glow{opacity:1}
             <article class="showcase-panel">
               <div class="showcase-copy">
                 <div class="mini">03 · Reset</div>
-                <h3 class="display">Get back in motion.</h3>
-                <p>Leave with a simple plan: what to change now, what photos to capture next and how to stop endlessly tweaking the same profile.</p>
+                <h3 class="display">Get back in rotation.</h3>
+                <p>Leave with the edits, the shot list and the next move.</p>
               </div>
               <div class="app-frame">
                 <div class="app-topbar"><div class="traffic"><i></i><i></i><i></i></div><div class="app-label">Dating reset</div></div>
@@ -807,7 +821,7 @@ body:hover .cursor-glow{opacity:1}
         </div>
 
         <div class="showcase-caption">
-          <h3 class="display" id="showcaseTitle">See the profile before your matches do.</h3>
+          <h3 class="display" id="showcaseTitle">See what they see.</h3>
           <p id="showcaseText">We give you the outside perspective your friends usually cannot: what lands immediately, what weakens the profile and what is missing.</p>
         </div>
       </div>
@@ -818,7 +832,7 @@ body:hover .cursor-glow{opacity:1}
     <div class="wrap reveal">
       <div class="section-head">
         <div class="eyebrow">Sahara</div>
-        <div><h2 class="display">The network behind Crackdoor.</h2><p class="section-lead">Crackdoor also builds products for the other side of dating: actually finding people around you.</p></div>
+        <div><h2 class="display">The network layer.</h2><p class="section-lead">Sahara handles the other side: finding people around you.</p></div>
       </div>
 
       <a class="project-card" href="https://www.sahara.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit Sahara.app">
@@ -869,7 +883,7 @@ body:hover .cursor-glow{opacity:1}
         <div class="project-bottom">
           <div>
             <h3 class="display">Sahara</h3>
-            <p>A local social network starting at Indiana University. See who’s around, send a Ping and take it from the screen to real life.</p>
+            <p>Local network. See who’s around, Ping them, take it offline.</p>
           </div>
           <div class="arrow">↗</div>
         </div>
@@ -882,16 +896,16 @@ body:hover .cursor-glow{opacity:1}
       <div class="path-shell">
         <div class="path-intro">
           <div class="eyebrow" style="margin-bottom:18px">The reset</div>
-          <h2 class="display">When dating starts feeling like a loop, change the inputs.</h2>
-          <p>This is not forever coaching. We fix what’s stale, make the useful changes and get you moving again.</p>
+          <h2 class="display">Change the inputs.</h2>
+          <p>Fix the stale stuff. Keep what works. Move.</p>
         </div>
 
         <div class="pipeline">
           <div class="stage">
             <div class="stage-label">Stage 01 · Audit</div>
             <div class="stage-card" tabindex="0" role="button" aria-expanded="true">
-              <div class="stage-title"><h3 class="display">See it clearly.</h3><span class="stage-plus">+</span></div>
-              <p>Review the photos, prompts and overall impression without the context you already have about yourself.</p>
+              <div class="stage-title"><h3 class="display">Audit it.</h3><span class="stage-plus">+</span></div>
+              <p>Look at the profile without your own bias.</p>
               <div class="stage-details"><div class="detail-grid">
                 <div class="detail">Identify the strongest first impression.</div>
                 <div class="detail">Find the photos or prompts creating drag.</div>
@@ -903,8 +917,8 @@ body:hover .cursor-glow{opacity:1}
           <div class="stage">
             <div class="stage-label">Stage 02 · Reorder</div>
             <div class="stage-card" tabindex="0" role="button" aria-expanded="false">
-              <div class="stage-title"><h3 class="display">Fix what already exists.</h3><span class="stage-plus">+</span></div>
-              <p>Reorder the profile, cut redundant photos and make the strongest version possible before creating anything new.</p>
+              <div class="stage-title"><h3 class="display">Reorder it.</h3><span class="stage-plus">+</span></div>
+              <p>Use what you have before shooting anything new.</p>
               <div class="stage-details"><div class="detail-grid">
                 <div class="detail">Lead with the strongest photo.</div>
                 <div class="detail">Remove repetition and mixed signals.</div>
@@ -916,8 +930,8 @@ body:hover .cursor-glow{opacity:1}
           <div class="stage">
             <div class="stage-label">Stage 03 · Capture</div>
             <div class="stage-card" tabindex="0" role="button" aria-expanded="false">
-              <div class="stage-title"><h3 class="display">Fill the actual gaps.</h3><span class="stage-plus">+</span></div>
-              <p>Create only the photos the profile is actually missing.</p>
+              <div class="stage-title"><h3 class="display">Fill the gaps.</h3><span class="stage-plus">+</span></div>
+              <p>Only shoot what the profile still needs.</p>
               <div class="stage-details"><div class="detail-grid">
                 <div class="detail">Know which photo types you actually need.</div>
                 <div class="detail">Capture range: face, full body, social, activity, environment.</div>
@@ -929,8 +943,8 @@ body:hover .cursor-glow{opacity:1}
           <div class="stage">
             <div class="stage-label">Stage 04 · Re-enter</div>
             <div class="stage-card" tabindex="0" role="button" aria-expanded="false">
-              <div class="stage-title"><h3 class="display">Get moving.</h3><span class="stage-plus">+</span></div>
-              <p>Put the revised profile back into circulation, use the apps deliberately and make room for meeting people beyond them.</p>
+              <div class="stage-title"><h3 class="display">Go.</h3><span class="stage-plus">+</span></div>
+              <p>Ship the profile. Use the apps. Go meet people.</p>
               <div class="stage-details"><div class="detail-grid">
                 <div class="detail">Stop treating every swipe as a verdict.</div>
                 <div class="detail">Use social settings and local networks too.</div>
@@ -948,8 +962,8 @@ body:hover .cursor-glow{opacity:1}
       <div class="section-head">
         <div class="eyebrow">Services</div>
         <div>
-          <h2 class="display">Need a reset? Start here.</h2>
-          <p class="section-lead">No account. No subscription. Send the profile, pick what you need and get a straight answer.</p>
+          <h2 class="display">Pick your reset.</h2>
+          <p class="section-lead">No account. No subscription. Pick the level and send it.</p>
         </div>
       </div>
 
@@ -968,23 +982,23 @@ body:hover .cursor-glow{opacity:1}
         <article class="plan">
           <div class="plan-top"><div class="plan-kicker">01 · Profile</div></div>
           <h3 class="display">Profile Review</h3>
-          <div class="plan-desc">For anyone who wants a second set of eyes on a dating profile before changing everything.</div>
+          <div class="plan-desc">A straight read before you change anything.</div>
           <div class="price">$49</div><div class="price-note">one-time</div>
           <ul>
             <li>Full photo-by-photo review</li>
             <li>Best lead-photo recommendation</li>
             <li>Keep / cut / reorder decisions</li>
             <li>Written profile reset</li>
-            <li class="mode-guided">Written review built for speed</li>
+            <li class="mode-guided">Fast written review</li>
             <li class="mode-collab">20-minute review call</li>
           </ul>
           <button class="btn plan-button" type="button" data-plan="Profile Review" data-price="$49">Start Profile Review</button>
         </article>
 
         <article class="plan featured">
-          <div class="plan-top"><div class="plan-kicker">02 · Reset</div><div class="badge">Best starting point</div></div>
+          <div class="plan-top"><div class="plan-kicker">02 · Reset</div><div class="badge">Best pick</div></div>
           <h3 class="display">Full Reset</h3>
-          <div class="plan-desc">For a profile that needs more than rearranging — including what to shoot next and how to reposition the whole thing.</div>
+          <div class="plan-desc">A full profile reset plus what to shoot next.</div>
           <div class="price">$99</div><div class="price-note">one-time</div>
           <ul>
             <li>Everything in Profile Review</li>
@@ -992,7 +1006,7 @@ body:hover .cursor-glow{opacity:1}
             <li>Exact photo order</li>
             <li>Personalized missing-photo shot list</li>
             <li>Dating reset and iteration plan</li>
-            <li class="mode-guided">Complete written reset delivered to you</li>
+            <li class="mode-guided">Full written reset</li>
             <li class="mode-collab">30-minute reset call</li>
           </ul>
           <button class="btn primary plan-button" type="button" data-plan="Full Reset" data-price="$99">Reset my profile →</button>
@@ -1001,7 +1015,7 @@ body:hover .cursor-glow{opacity:1}
         <article class="plan">
           <div class="plan-top"><div class="plan-kicker">03 · IRL</div></div>
           <h3 class="display">Back in Motion</h3>
-          <div class="plan-desc">For people who are done endlessly tuning a profile and want a simple plan for getting back into real-world circulation.</div>
+          <div class="plan-desc">For getting off the app treadmill and back in circulation.</div>
           <div class="price">$149</div><div class="price-note">one-time</div>
           <ul>
             <li>Everything in Full Reset</li>
@@ -1009,8 +1023,8 @@ body:hover .cursor-glow{opacity:1}
             <li>Personalized real-world re-entry ideas</li>
             <li>Dating reset support</li>
             <li>One follow-up after you make the changes</li>
-            <li class="mode-guided">Built to get you moving, not dependent</li>
-            <li class="mode-collab">Live working session focused on your reset</li>
+            <li class="mode-guided">Built to get you moving</li>
+            <li class="mode-collab">Live reset session</li>
           </ul>
           <button class="btn plan-button" type="button" data-plan="Back in Motion" data-price="$149">Start Back in Motion</button>
         </article>
@@ -1020,9 +1034,9 @@ body:hover .cursor-glow{opacity:1}
 
   <section class="section" id="founder">
     <div class="wrap reveal">
-      <div class="section-head"><div class="eyebrow">About</div><h2 class="display">Built around modern dating.</h2></div>
+      <div class="section-head"><div class="eyebrow">About</div><h2 class="display">Built for modern dating.</h2></div>
       <div class="founder">
-        <p class="founder-copy">Crackdoor was founded by <strong>Dylan Betancourt</strong> at <strong>Indiana University Bloomington</strong>. The company focuses on the parts of modern dating people can actually improve: presentation, momentum and the environments where connection happens.</p>
+        <p class="founder-copy">Crackdoor was founded by <strong>Dylan Betancourt</strong> at <strong>Indiana University Bloomington</strong>. Crackdoor focuses on the stuff you can actually move: presentation, momentum and access.</p>
         <div class="facts">
           <div class="fact"><span>Founder</span><span>Dylan Betancourt</span></div>
           <div class="fact"><span>Based</span><span>Bloomington, Indiana</span></div>
@@ -1038,8 +1052,8 @@ body:hover .cursor-glow{opacity:1}
       <div class="section-head">
         <div class="eyebrow">Principles</div>
         <div>
-          <h2 class="display">Keep it simple. Make it hit.</h2>
-          <p class="section-lead">No endless optimizing. No fake guru energy. Just a better profile, a clearer move and then you get back out there.</p>
+          <h2 class="display">Keep it simple.</h2>
+          <p class="section-lead">No guru energy. No endless tweaking. Fix it and move.</p>
         </div>
       </div>
 
@@ -1050,9 +1064,9 @@ body:hover .cursor-glow{opacity:1}
             <div class="principle-chip">See it</div>
           </div>
           <div class="principle-copy">
-            <h3 class="display">Know what’s working.</h3>
-            <p>Figure out what hits, what drags and what needs to go. No guessing.</p>
-            <div class="principle-verb"><span>Read the room</span><strong>Keep / Cut</strong></div>
+            <h3 class="display">Know what hits.</h3>
+            <p>Keep the signal. Cut the drag.</p>
+            <div class="principle-verb"><span>Read</span><strong>Keep / Cut</strong></div>
           </div>
         </div>
 
@@ -1063,7 +1077,7 @@ body:hover .cursor-glow{opacity:1}
           </div>
           <div class="principle-copy">
             <h3 class="display">Change less.</h3>
-            <p>Use what you already have. Reorder it. Tighten it. Only shoot what’s actually missing.</p>
+            <p>Use what you have. Tighten it. Only add what’s missing.</p>
             <div class="principle-verb"><span>Less tweaking</span><strong>More signal</strong></div>
           </div>
         </div>
@@ -1074,9 +1088,9 @@ body:hover .cursor-glow{opacity:1}
             <div class="principle-chip">Move</div>
           </div>
           <div class="principle-copy">
-            <h3 class="display">Get back out there.</h3>
-            <p>The profile is not the point. Meeting people is. Fix it, send it and go.</p>
-            <div class="principle-verb"><span>Done is better</span><strong>Go live</strong></div>
+            <h3 class="display">Get back out.</h3>
+            <p>The profile is the setup. Meeting people is the point.</p>
+            <div class="principle-verb"><span>Done > perfect</span><strong>Go</strong></div>
           </div>
         </div>
       </div>
@@ -1222,9 +1236,9 @@ body:hover .cursor-glow{opacity:1}
   const showcaseTitle=qs('#showcaseTitle');
   const showcaseText=qs('#showcaseText');
   const showcaseCopy=[
-    ['See the profile before your matches do.','Get the outside perspective friends usually cannot give you: what lands immediately, what creates drag and what is missing.'],
-    ['Build a sequence that earns the next look.','Reorder the strongest signals, remove repetition and identify the exact photo types your profile still needs.'],
-    ['Make the changes, then get back out there.','Leave with a finished order, a focused shot list and a simple reset plan instead of endlessly editing the same profile.']
+    ['See what they see.','Know what lands, what drags and what’s missing.'],
+    ['Build the better order.','Lead with strength. Cut repeats. Fill the gaps.'],
+    ['Fix it. Then go.','Lock the order, get the shots and move on.']
   ];
   let currentShowcase=0;
   function showPanel(i){
