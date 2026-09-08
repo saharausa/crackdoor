@@ -468,36 +468,7 @@ h2{margin:0;max-width:790px;font-size:clamp(36px,5vw,62px);line-height:1;letter-
 .detail{border-top:1px solid #242429;padding-top:12px;font-size:11px;color:#a1a1a8;line-height:1.5}
 
 /* studio */
-/* service intake + format controls */
-.inquiry-card{
-  position:relative;overflow:hidden;isolation:isolate;
-  border:1px solid #303037;border-radius:22px;
-  background:linear-gradient(145deg,#0d0d0f,#09090a 58%,#0b0b0d);
-  padding:clamp(24px,3vw,34px);margin-bottom:16px;
-  box-shadow:0 24px 80px rgba(0,0,0,.24)
-}
-.inquiry-card:before{
-  content:"";position:absolute;z-index:-1;width:360px;height:360px;border-radius:50%;
-  right:-130px;top:-190px;background:radial-gradient(circle,rgba(255,255,255,.075),transparent 68%);
-  pointer-events:none
-}
-.inquiry-head{display:flex;align-items:flex-start;justify-content:space-between;gap:28px}
-.inquiry-kicker{display:flex;align-items:center;gap:9px;color:#7e7e85;font-size:9px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px}
-.inquiry-live{width:6px;height:6px;border-radius:50%;background:#e3e3e6;box-shadow:0 0 0 5px rgba(255,255,255,.045)}
-.inquiry-copy h3{font-size:clamp(24px,3vw,34px);letter-spacing:-.04em;margin:0 0 9px}
-.inquiry-copy p{max-width:590px;margin:0;color:#818188;font-size:12px;line-height:1.65}
-.inquiry-cta{min-width:150px;min-height:46px;align-self:center}
-.inquiry-flow{
-  margin-top:25px;padding-top:18px;border-top:1px solid #25252b;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:10px
-}
-.inquiry-step{
-  min-width:0;border:1px solid #24242a;border-radius:12px;background:rgba(16,16,18,.72);
-  padding:13px 14px;display:flex;align-items:center;justify-content:space-between;gap:14px
-}
-.inquiry-step span{font-size:9px;color:#66666e;text-transform:uppercase;letter-spacing:.1em}
-.inquiry-step strong{font-size:11px;font-weight:550;color:#c7c7cc;white-space:nowrap}
-.inquiry-arrow{color:#515158;font-size:12px}
+/* service format controls */
 .service-controls{
   display:flex;align-items:center;justify-content:space-between;gap:20px;
   margin:0 0 18px;padding:12px 14px;border:1px solid #232328;border-radius:15px;background:#080809
@@ -589,6 +560,113 @@ body.collab-mode .mode-collab{display:list-item}
   color:#a7a7ad;font-size:10px;letter-spacing:.02em
 }
 .principle-verb strong{font-weight:550;color:#d5d5d9}
+
+
+/* platform picker */
+.platform-field{margin-top:18px}
+.platform-field>label{
+  display:block;font-size:11px;color:#86868e;margin-bottom:9px
+}
+.platform-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:9px
+}
+.platform-choice{
+  position:relative;min-width:0;min-height:92px;
+  border:1px solid #29292f;border-radius:14px;background:#101012;
+  padding:14px;text-align:left;color:inherit;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:space-between;gap:18px;
+  transition:border-color .18s,background .18s,transform .18s,box-shadow .18s
+}
+.platform-choice:hover{border-color:#424249;background:#131315;transform:translateY(-1px)}
+.platform-choice.selected{
+  border-color:#e4e4e7;background:#151517;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)
+}
+.platform-choice.selected:after{
+  content:"✓";position:absolute;right:11px;top:10px;
+  width:18px;height:18px;border-radius:50%;display:grid;place-items:center;
+  background:#f2f2f3;color:#080808;font-size:10px;font-weight:700
+}
+.platform-mark{
+  width:28px;height:28px;border:1px solid #303037;border-radius:9px;
+  display:grid;place-items:center;background:#0b0b0d;
+  color:#bcbcc2;font-size:10px;font-weight:650;letter-spacing:-.02em
+}
+.platform-choice strong{font-size:12px;font-weight:550;color:#d4d4d8}
+.platform-choice span{display:block;margin-top:3px;font-size:9.5px;color:#66666e}
+.platform-other{display:none;margin-top:9px}
+.platform-other.show{display:block}
+.platform-other input{font-size:13px!important}
+@media(max-width:800px){
+  .platform-grid{grid-template-columns:repeat(2,1fr)}
+  .platform-choice{min-height:86px}
+}
+@media(max-width:360px){
+  .platform-grid{gap:7px}
+  .platform-choice{padding:12px;min-height:82px}
+}
+
+
+/* conversion funnel wizard */
+.funnel-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+  margin:0 0 24px
+}
+.funnel-node{
+  position:relative;border:1px solid #24242a;border-radius:11px;
+  background:#0f0f11;padding:10px 11px;min-width:0
+}
+.funnel-node span{
+  display:block;font-size:8.5px;text-transform:uppercase;letter-spacing:.11em;color:#606068
+}
+.funnel-node strong{
+  display:block;margin-top:4px;font-size:10px;font-weight:550;color:#a9a9af;white-space:nowrap
+}
+.funnel-node.active{border-color:#505057;background:#141416}
+.funnel-node.active strong{color:#ededf0}
+.funnel-node.done:after{
+  content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:1px;background:#d9d9dd
+}
+.funnel-metric{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:10px
+}
+.funnel-choice{
+  min-height:92px;border:1px solid #29292f;border-radius:14px;background:#101012;
+  padding:15px;text-align:left;color:inherit;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:space-between;gap:16px;
+  transition:border-color .18s,background .18s,transform .18s
+}
+.funnel-choice:hover{border-color:#424249;background:#131315;transform:translateY(-1px)}
+.funnel-choice.selected{border-color:#e3e3e6;background:#151517}
+.funnel-choice .metric{
+  font-size:9px;color:#65656d;text-transform:uppercase;letter-spacing:.11em
+}
+.funnel-choice strong{font-size:13px;font-weight:550;color:#d7d7db}
+.funnel-choice span{display:block;margin-top:4px;font-size:10px;color:#6d6d75;line-height:1.45}
+.route-card{
+  border:1px solid #303037;border-radius:16px;background:linear-gradient(145deg,#111113,#0c0c0e);
+  padding:18px;margin-bottom:12px
+}
+.route-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.route-kicker{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#686870}
+.route-badge{font-size:9px;border:1px solid #34343a;border-radius:999px;padding:6px 8px;color:#b7b7bd}
+.route-card h4{font-size:22px;letter-spacing:-.035em;margin:0 0 7px}
+.route-card p{margin:0!important;font-size:11px!important;color:#77777f!important}
+.route-metrics{
+  margin-top:15px;padding-top:13px;border-top:1px solid #25252b;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px
+}
+.route-metric{font-size:9px;color:#62626a}
+.route-metric strong{display:block;margin-top:3px;color:#bcbcc2;font-size:10px;font-weight:550}
+@media(max-width:800px){
+  .funnel-strip{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+  .funnel-node{padding:9px 7px}
+  .funnel-node span{font-size:7.5px}
+  .funnel-node strong{font-size:8.5px;white-space:normal}
+  .funnel-metric{grid-template-columns:1fr}
+  .funnel-choice{min-height:82px}
+  .route-metrics{grid-template-columns:1fr}
+}
 
 /* modal wizard */
 .modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.76);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
@@ -693,11 +771,6 @@ body:hover .cursor-glow{opacity:1}
   .path-intro p{margin:14px 0 0}
   .pipeline{padding-left:38px}.pipeline:before{left:8px}.stage:before{left:-36px;width:11px;height:11px}
   .stage-card{padding:24px}.detail-grid{grid-template-columns:1fr}
-  .inquiry-card{padding:22px;border-radius:19px;margin-bottom:12px}
-  .inquiry-head{flex-direction:column;gap:20px}
-  .inquiry-cta{width:100%;min-height:48px}
-  .inquiry-flow{grid-template-columns:1fr;gap:8px;margin-top:20px;padding-top:16px}
-  .inquiry-step{min-height:48px}
   .service-controls{display:grid;grid-template-columns:1fr;gap:11px;padding:13px;margin-bottom:16px}
   .format-copy{justify-content:space-between}
   .mode-toggle{width:100%;min-width:0}
@@ -774,8 +847,6 @@ body:hover .cursor-glow{opacity:1}
   .project-card{padding-left:22px;padding-right:22px}
   .plan{padding:23px}
   .mode-toggle{padding:4px}
-  .inquiry-card{padding:20px}
-  .inquiry-copy h3{font-size:28px}
   .format-copy span{font-size:9.5px}
   .fact{align-items:flex-start}
   .fact span:last-child{max-width:58%}
@@ -1090,24 +1161,8 @@ body:hover .cursor-glow{opacity:1}
       <div class="section-head">
         <div class="eyebrow">Services</div>
         <div>
-          <h2 class="display">Pick your reset.</h2>
-          <p class="section-lead">No account. No subscription. Pick the level and send it.</p>
-        </div>
-      </div>
-
-      <div class="inquiry-card">
-        <div class="inquiry-head">
-          <div class="inquiry-copy">
-            <div class="inquiry-kicker"><span class="inquiry-live"></span>Quick Check · Open</div>
-            <h3 class="display">Don’t know what you need?</h3>
-            <p>Send the profile. Give us the issue. We’ll route you to the lightest option that actually makes sense.</p>
-          </div>
-          <button class="btn primary open-wizard inquiry-cta" type="button">Run Quick Check →</button>
-        </div>
-        <div class="inquiry-flow" aria-hidden="true">
-          <div class="inquiry-step"><span>01 · Input</span><strong>Send it</strong><i class="inquiry-arrow">→</i></div>
-          <div class="inquiry-step"><span>02 · Read</span><strong>We scope it</strong><i class="inquiry-arrow">→</i></div>
-          <div class="inquiry-step"><span>03 · Route</span><strong>Best fit</strong><i class="inquiry-arrow">✓</i></div>
+          <h2 class="display">Pick the depth.</h2>
+          <p class="section-lead">Same funnel. Different scope. Pick the level that matches the leak.</p>
         </div>
       </div>
 
@@ -1252,58 +1307,126 @@ body:hover .cursor-glow{opacity:1}
 <div class="modal" id="wizardModal" aria-hidden="true">
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="wizardTitle">
     <div class="modal-head">
-      <strong>Crackdoor Profile Inquiry</strong>
+      <strong>Crackdoor Dating Funnel</strong>
       <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
     </div>
     <div class="wizard-progress"><i id="wizardProgress"></i></div>
     <div class="modal-body">
       <form id="projectForm">
+        <div class="funnel-strip" id="funnelStrip" aria-label="Dating funnel">
+          <div class="funnel-node active" data-funnel="0"><span>01</span><strong>Platform</strong></div>
+          <div class="funnel-node" data-funnel="1"><span>02</span><strong>Leak</strong></div>
+          <div class="funnel-node" data-funnel="2"><span>03</span><strong>Goal</strong></div>
+          <div class="funnel-node" data-funnel="3"><span>04</span><strong>Route</strong></div>
+        </div>
+
         <section class="wizard-step active" data-step="0">
-          <div class="step-no">Step 1 of 4</div>
-          <h3 class="display" id="wizardTitle">What are we reviewing?</h3>
-          <p>Tell us where you date and what feels stuck.</p>
-          <div class="field"><label for="idea">What feels off?</label><textarea id="idea" required placeholder="My matches dropped, I need better photos, I am starting over..."></textarea></div>
-          <div class="field"><label for="audience">Your dating platforms</label><input id="audience" required placeholder="Hinge, Tinder, Bumble, other..."></div>
+          <div class="step-no">Step 1 of 5 · Top of funnel</div>
+          <h3 class="display" id="wizardTitle">Where are you playing?</h3>
+          <p>Pick every app that matters. This changes how we read the profile.</p>
+          <div class="platform-field">
+            <label>Dating platforms</label>
+            <div class="platform-grid" id="platformChoices" role="group" aria-label="Select dating platforms">
+              <button class="platform-choice" type="button" data-platform="Hinge" aria-pressed="false">
+                <div class="platform-mark">H</div><div><strong>Hinge</strong><span>Dates</span></div>
+              </button>
+              <button class="platform-choice" type="button" data-platform="Tinder" aria-pressed="false">
+                <div class="platform-mark">T</div><div><strong>Tinder</strong><span>Volume</span></div>
+              </button>
+              <button class="platform-choice" type="button" data-platform="Bumble" aria-pressed="false">
+                <div class="platform-mark">B</div><div><strong>Bumble</strong><span>Intent</span></div>
+              </button>
+              <button class="platform-choice" type="button" data-platform="Other" aria-pressed="false">
+                <div class="platform-mark">+</div><div><strong>Other</strong><span>Add one</span></div>
+              </button>
+            </div>
+            <input id="audience" type="hidden" required>
+            <div class="platform-other" id="platformOther">
+              <input id="platformOtherInput" type="text" placeholder="Facebook Dating, Raya, Coffee Meets Bagel...">
+            </div>
+          </div>
         </section>
 
         <section class="wizard-step" data-step="1">
-          <div class="step-no">Step 2 of 4</div>
-          <h3 class="display">What best describes the profile?</h3>
-          <p>Pick the closest answer.</p>
-          <div class="choice-grid" id="stageChoices">
-            <button class="choice" type="button" data-value="Starting fresh"><strong>Starting fresh</strong><span>I am building a profile from scratch.</span></button>
-            <button class="choice" type="button" data-value="Some screens or notes"><strong>Profile is live</strong><span>I have a profile but want an outside review.</span></button>
-            <button class="choice" type="button" data-value="Needs new photos"><strong>Needs new photos</strong><span>I know the current photos are not enough.</span></button>
-            <button class="choice" type="button" data-value="Stuck / restarting"><strong>Stuck / restarting</strong><span>I have been on the apps and want a reset.</span></button>
+          <div class="step-no">Step 2 of 5 · Find the leak</div>
+          <h3 class="display">Where does the funnel break?</h3>
+          <p>Pick the closest problem. No overthinking it.</p>
+          <div class="funnel-metric" id="stageChoices">
+            <button class="funnel-choice choice" type="button" data-value="Low match volume">
+              <div class="metric">Reach</div><div><strong>Not enough matches</strong><span>The profile is not earning enough right swipes or likes.</span></div>
+            </button>
+            <button class="funnel-choice choice" type="button" data-value="Wrong match quality">
+              <div class="metric">Quality</div><div><strong>Wrong matches</strong><span>You get attention, just not from the people you want.</span></div>
+            </button>
+            <button class="funnel-choice choice" type="button" data-value="Matches not converting">
+              <div class="metric">Conversion</div><div><strong>Matches stall</strong><span>Matches happen, but dates or momentum do not.</span></div>
+            </button>
+            <button class="funnel-choice choice" type="button" data-value="Starting or restarting">
+              <div class="metric">Reset</div><div><strong>Starting over</strong><span>New profile, new photos or a clean re-entry.</span></div>
+            </button>
           </div>
           <input id="projectStage" type="hidden" required>
         </section>
 
         <section class="wizard-step" data-step="2">
-          <div class="step-no">Step 3 of 4</div>
-          <h3 class="display">What kind of help do you want?</h3>
-          <p>Choose the simplest option that fits.</p>
+          <div class="step-no">Step 3 of 5 · Define the win</div>
+          <h3 class="display">What does success look like?</h3>
+          <p>Pick the outcome. We route backward from there.</p>
+          <div class="funnel-metric" id="goalChoices">
+            <button class="funnel-choice choice" type="button" data-value="More quality matches">
+              <div class="metric">Goal 01</div><div><strong>More quality matches</strong><span>Better top-of-funnel signal and stronger fit.</span></div>
+            </button>
+            <button class="funnel-choice choice" type="button" data-value="More dates">
+              <div class="metric">Goal 02</div><div><strong>More dates</strong><span>Improve the profile-to-date conversion.</span></div>
+            </button>
+            <button class="funnel-choice choice" type="button" data-value="Better positioning">
+              <div class="metric">Goal 03</div><div><strong>Better positioning</strong><span>Make the profile look like the person you actually are.</span></div>
+            </button>
+            <button class="funnel-choice choice" type="button" data-value="Get back in circulation">
+              <div class="metric">Goal 04</div><div><strong>Get back in circulation</strong><span>Stop tweaking and start moving again.</span></div>
+            </button>
+          </div>
+          <input id="goal" type="hidden" required>
+        </section>
+
+        <section class="wizard-step" data-step="3">
+          <div class="step-no">Step 4 of 5 · Route the work</div>
+          <h3 class="display">Pick the depth.</h3>
+          <p>Same thesis. Different scope.</p>
           <div class="choice-grid" id="serviceChoices">
-            <button class="choice" type="button" data-value="Quick Check"><strong>Quick Check</strong><span>I am not sure which service I need.</span></button>
-            <button class="choice" type="button" data-value="Profile Review — $49"><strong>Profile Review · $49</strong><span>I want a photo-by-photo profile review.</span></button>
-            <button class="choice" type="button" data-value="Full Reset — $99"><strong>Full Reset · $99</strong><span>I want the full profile and next-photo plan.</span></button>
-            <button class="choice" type="button" data-value="Back in Motion — $149"><strong>Back in Motion · $149</strong><span>I want help getting out of the app loop too.</span></button>
+            <button class="choice" type="button" data-value="Profile Review — $49">
+              <strong>Profile Review · $49</strong><span>Audit the profile and fix the obvious drag.</span>
+            </button>
+            <button class="choice" type="button" data-value="Full Reset — $99">
+              <strong>Full Reset · $99</strong><span>Rebuild the profile and define the missing-photo pipeline.</span>
+            </button>
+            <button class="choice" type="button" data-value="Back in Motion — $149">
+              <strong>Back in Motion · $149</strong><span>Fix the profile, platform strategy and real-world re-entry.</span>
+            </button>
           </div>
           <input id="service" type="hidden" required>
         </section>
 
-        <section class="wizard-step" data-step="3">
-          <div class="step-no">Step 4 of 4</div>
-          <h3 class="display">Your inquiry.</h3>
-          <p>Copy your inquiry, then continue to Crackdoor on Instagram to send it.</p>
-          <div class="summary-box" id="summaryBox"></div>
+        <section class="wizard-step" data-step="4">
+          <div class="step-no">Step 5 of 5 · Send the brief</div>
+          <h3 class="display">Your dating brief.</h3>
+          <p>One clean handoff. Copy it, then send it to Crackdoor on Instagram.</p>
+          <div class="route-card">
+            <div class="route-top"><div class="route-kicker">Conversion brief</div><div class="route-badge">Ready</div></div>
+            <div class="summary-box" id="summaryBox"></div>
+            <div class="route-metrics">
+              <div class="route-metric">Platform<strong id="routePlatform">—</strong></div>
+              <div class="route-metric">Leak<strong id="routeLeak">—</strong></div>
+              <div class="route-metric">Goal<strong id="routeGoal">—</strong></div>
+            </div>
+          </div>
           <div class="copy-status" id="copyStatus"></div>
         </section>
 
         <div class="wizard-actions">
           <button class="btn" id="backBtn" type="button" style="visibility:hidden">← Back</button>
           <div class="right">
-            <button class="btn" id="copyBtn" type="button" style="display:none">Copy inquiry</button>
+            <button class="btn" id="copyBtn" type="button" style="display:none">Copy brief</button>
             <button class="btn primary" id="nextBtn" type="button">Continue →</button>
           </div>
         </div>
@@ -1442,113 +1565,174 @@ body:hover .cursor-glow{opacity:1}
   }
 
   /* modal wizard */
-  const modal=qs('#wizardModal'), closeModal=qs('#closeModal');
+  /* dating funnel wizard */
+  const modal=qs('#wizardModal'), closeModalBtn=qs('#closeModal');
   const steps=qsa('.wizard-step');
-  const nextBtn=qs('#nextBtn'), backBtn=qs('#backBtn'), copyBtn=qs('#copyBtn'), progress=qs('#wizardProgress');
-  const idea=qs('#idea'), audience=qs('#audience'), projectStage=qs('#projectStage'), service=qs('#service');
+  const progress=qs('#wizardProgress');
+  const nextBtn=qs('#nextBtn'), backBtn=qs('#backBtn'), copyBtn=qs('#copyBtn');
+  const projectForm=qs('#projectForm');
+  const audience=qs('#audience'), projectStage=qs('#projectStage'), goal=qs('#goal'), service=qs('#service');
   const summaryBox=qs('#summaryBox'), copyStatus=qs('#copyStatus');
-  let step=0;
+  const funnelNodes=qsa('.funnel-node');
+  const routePlatform=qs('#routePlatform'), routeLeak=qs('#routeLeak'), routeGoal=qs('#routeGoal');
+  const platformChoices=qs('#platformChoices');
+  const platformOther=qs('#platformOther');
+  const platformOtherInput=qs('#platformOtherInput');
+  const selectedPlatforms=new Set();
+  let currentStep=0;
+  let lastFocus=null;
 
-  function openWizard(prefill=''){
-    if(prefill)service.value=prefill;
+  function syncPlatforms(){
+    const values=[...selectedPlatforms].filter(x=>x!=='Other');
+    const other=platformOtherInput?.value.trim();
+    if(selectedPlatforms.has('Other'))values.push(other||'Other');
+    audience.value=values.join(', ');
+    platformOther?.classList.toggle('show',selectedPlatforms.has('Other'));
+  }
+
+  qsa('.platform-choice',platformChoices).forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const value=btn.dataset.platform;
+      if(selectedPlatforms.has(value))selectedPlatforms.delete(value);
+      else selectedPlatforms.add(value);
+      const active=selectedPlatforms.has(value);
+      btn.classList.toggle('selected',active);
+      btn.setAttribute('aria-pressed',String(active));
+      syncPlatforms();
+      if(value==='Other'&&active)setTimeout(()=>platformOtherInput?.focus(),0);
+    });
+  });
+  platformOtherInput?.addEventListener('input',syncPlatforms);
+
+  function bindSingleChoice(containerId,input){
+    qsa('.choice',qs(containerId)).forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        qsa('.choice',qs(containerId)).forEach(x=>x.classList.remove('selected'));
+        btn.classList.add('selected');
+        input.value=btn.dataset.value||'';
+      });
+    });
+  }
+  bindSingleChoice('#stageChoices',projectStage);
+  bindSingleChoice('#goalChoices',goal);
+  bindSingleChoice('#serviceChoices',service);
+
+  function updateFunnel(){
+    funnelNodes.forEach((node,i)=>{
+      node.classList.toggle('active',i===Math.min(currentStep,3));
+      node.classList.toggle('done',i<Math.min(currentStep,4));
+    });
+  }
+
+  function buildBrief(){
+    const brief=[
+      'CRACKDOOR DATING BRIEF',
+      '',
+      `Platforms: ${audience.value}`,
+      `Funnel leak: ${projectStage.value}`,
+      `Goal: ${goal.value}`,
+      `Scope: ${service.value}`,
+      '',
+      'Objective: tighten the profile, improve conversion and get back in motion.'
+    ].join('\n');
+    summaryBox.textContent=brief;
+    routePlatform.textContent=audience.value||'—';
+    routeLeak.textContent=projectStage.value||'—';
+    routeGoal.textContent=goal.value||'—';
+  }
+
+  function showStep(index){
+    currentStep=Math.max(0,Math.min(index,steps.length-1));
+    steps.forEach((step,i)=>step.classList.toggle('active',i===currentStep));
+    progress.style.width=`${((currentStep+1)/steps.length)*100}%`;
+    backBtn.style.visibility=currentStep===0?'hidden':'visible';
+    copyBtn.style.display=currentStep===steps.length-1?'inline-flex':'none';
+    nextBtn.textContent=currentStep===steps.length-1?'Open Instagram →':'Continue →';
+    updateFunnel();
+    if(currentStep===steps.length-1)buildBrief();
+  }
+
+  function validStep(){
+    if(currentStep===0 && !audience.value){
+      qsa('.platform-choice',platformChoices)[0]?.focus();
+      return false;
+    }
+    if(currentStep===1 && !projectStage.value){
+      qsa('.choice',qs('#stageChoices'))[0]?.focus();
+      return false;
+    }
+    if(currentStep===2 && !goal.value){
+      qsa('.choice',qs('#goalChoices'))[0]?.focus();
+      return false;
+    }
+    if(currentStep===3 && !service.value){
+      qsa('.choice',qs('#serviceChoices'))[0]?.focus();
+      return false;
+    }
+    return true;
+  }
+
+  function resetWizard(){
+    projectForm.reset();
+    selectedPlatforms.clear();
+    qsa('.platform-choice',platformChoices).forEach(btn=>{
+      btn.classList.remove('selected');
+      btn.setAttribute('aria-pressed','false');
+    });
+    qsa('.choice',projectForm).forEach(btn=>btn.classList.remove('selected'));
+    platformOther?.classList.remove('show');
+    audience.value='';projectStage.value='';goal.value='';service.value='';
+    copyStatus.textContent='';
+    showStep(0);
+  }
+
+  function openWizard(prefillService=''){
+    lastFocus=document.activeElement;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     document.body.classList.add('modal-open');
-    renderStep(0);
-    setTimeout(()=>idea?.focus(),80);
+    resetWizard();
+    if(prefillService){
+      const match=qsa('.choice',qs('#serviceChoices')).find(btn=>(btn.dataset.value||'').startsWith(prefillService));
+      if(match){match.click();}
+    }
+    setTimeout(()=>qsa('.platform-choice',platformChoices)[0]?.focus(),50);
   }
+
   function closeWizard(){
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden','true');
     document.body.classList.remove('modal-open');
+    lastFocus?.focus?.();
   }
-  qsa('.open-wizard').forEach(b=>b.addEventListener('click',()=>openWizard('')));
-  qsa('.plan-button').forEach(b=>b.addEventListener('click',()=>openWizard(`${b.dataset.plan}${b.dataset.price==='Application'?' application':' — '+b.dataset.price}`)));
-  closeModal?.addEventListener('click',closeWizard);
+
+  qsa('.open-wizard').forEach(btn=>btn.addEventListener('click',()=>openWizard()));
+  qsa('.plan-button').forEach(btn=>btn.addEventListener('click',()=>openWizard(btn.dataset.plan||'')));
+  closeModalBtn?.addEventListener('click',closeWizard);
   modal?.addEventListener('click',e=>{if(e.target===modal)closeWizard()});
-  addEventListener('keydown',e=>{if(e.key==='Escape'&&modal?.classList.contains('open'))closeWizard()});
 
-  function renderStep(i){
-    step=i;
-    steps.forEach((s,n)=>s.classList.toggle('active',n===i));
-    progress.style.width=((i+1)/steps.length*100)+'%';
-    backBtn.style.visibility=i===0?'hidden':'visible';
-    copyBtn.style.display=i===3?'inline-flex':'none';
-    nextBtn.textContent=i===3?'Message Crackdoor →':'Continue →';
-    if(i===3)buildSummary();
-  }
-  function choose(container,input){
-    qsa('.choice',container).forEach(btn=>btn.addEventListener('click',()=>{
-      qsa('.choice',container).forEach(x=>x.classList.remove('selected'));
-      btn.classList.add('selected'); input.value=btn.dataset.value;
-    }));
-  }
-  choose(qs('#stageChoices'),projectStage);
-  choose(qs('#serviceChoices'),service);
-
-  function valid(){
-    if(step===0)return idea.value.trim()&&audience.value.trim();
-    if(step===1)return projectStage.value;
-    if(step===2)return service.value;
-    return true;
-  }
-  function briefText(){
-    const mode=document.body.classList.contains('collab-mode')?'Call':'Written';
-    return `CRACKDOOR PROFILE INQUIRY
-
-What feels off
-${idea.value.trim()}
-
-Platforms
-${audience.value.trim()}
-
-Profile status
-${projectStage.value || 'Not selected'}
-
-Requested service
-${service.value || 'Quick Check'}
-
-Review format
-${mode}`;
-  }
-  function buildSummary(){summaryBox.textContent=briefText()}
   nextBtn?.addEventListener('click',()=>{
-    if(step<3){
-      if(!valid()){
-        const active=steps[step];
-        active.animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:220});
-        return;
-      }
-      renderStep(step+1);
-    }else{
-      window.open('https://www.instagram.com/crackdoorcom/', '_blank', 'noopener,noreferrer');
+    if(currentStep<steps.length-1){
+      if(!validStep())return;
+      showStep(currentStep+1);
+      return;
     }
+    window.open('https://www.instagram.com/crackdoor/','_blank','noopener,noreferrer');
   });
-  backBtn?.addEventListener('click',()=>{if(step>0)renderStep(step-1)});
-  modal?.addEventListener('click',e=>{if(e.target===modal)closeWizard()});
-  document.addEventListener('keydown',e=>{
-    if(e.key==='Escape'){
-      if(modal?.classList.contains('open')) closeWizard();
-      if(mobileMenu?.classList.contains('open')) setMenu(false);
-    }
-  });
+
+  backBtn?.addEventListener('click',()=>showStep(currentStep-1));
+
   copyBtn?.addEventListener('click',async()=>{
+    buildBrief();
     try{
-      await navigator.clipboard.writeText(briefText());
-      copyStatus.textContent='Copied. Paste this into your Instagram message to @crackdoorcom.';
+      await navigator.clipboard.writeText(summaryBox.textContent);
+      copyStatus.textContent='Brief copied.';
     }catch{
       copyStatus.textContent='Select the brief above and copy it manually.';
     }
   });
 
-  /* if plan prefilled, reflect selection when reaching service step */
-  const originalRender=renderStep;
-  renderStep=function(i){
-    originalRender(i);
-    if(i===2 && service.value){
-      qsa('.choice',qs('#serviceChoices')).forEach(btn=>btn.classList.toggle('selected',service.value.startsWith(btn.dataset.value.split(' — ')[0])));
-    }
-  };
+  showStep(0);
 
   /* honor old bookmarked hashes once, then return to a clean URL */
   if(location.hash){
