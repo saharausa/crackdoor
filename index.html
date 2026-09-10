@@ -4,8 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Crackdoor — Dating, Reviewed</title>
+<!-- Crackdoor MVP: refined from the existing Crackdoor build with selected Sahara interaction patterns. -->
 <meta name="description" content="Crackdoor reviews dating profiles, helps people reset their dating game and builds products for better real-world connection.">
 <meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="color-scheme" content="dark">
 <meta name="format-detection" content="telephone=no">
 
@@ -1066,6 +1069,264 @@ body:hover .cursor-glow{opacity:1}
   }
 }
 
+
+/* =========================================================
+   CRACKDOOR MVP — modern interaction + accessibility pass
+   Sahara-derived patterns: live signal, stronger motion,
+   mobile-safe controls, layered surfaces, reduced-motion.
+   ========================================================= */
+
+:root{
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --ease-spring:cubic-bezier(.16,1,.3,1);
+  --shadow-soft:0 24px 80px rgba(0,0,0,.20);
+}
+
+html{
+  text-size-adjust:100%;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  min-height:100svh;
+  background:
+    radial-gradient(circle at 50% -12%,rgba(255,255,255,.045),transparent 34%),
+    var(--bg);
+}
+
+::selection{
+  background:#fff;
+  color:#050505;
+}
+
+.btn,
+.nav-cta,
+.menu-btn,
+.showcase-tab,
+.platform-choice,
+.funnel-choice,
+.plan-button,
+.mode-option,
+.stage-card,
+.close{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.btn{
+  min-height:42px;
+}
+
+.btn:active,
+.nav-cta:active,
+.plan-button:active,
+.showcase-tab:active,
+.platform-choice:active,
+.funnel-choice:active{
+  transform:scale(.985);
+}
+
+.nav-inner{
+  transition:min-height .28s var(--ease),transform .28s var(--ease);
+}
+
+nav.scrolled .nav-inner{
+  min-height:60px;
+}
+
+nav.scrolled{
+  background:rgba(5,5,5,.92);
+  box-shadow:0 12px 38px rgba(0,0,0,.16);
+}
+
+.scroll-progress i{
+  box-shadow:0 0 14px rgba(255,255,255,.32);
+}
+
+.hero-inner{
+  isolation:isolate;
+}
+
+.hero-grid{
+  opacity:.30;
+}
+
+.hero-orb{
+  opacity:.82;
+  filter:blur(.2px);
+}
+
+.hero-copy{
+  text-wrap:pretty;
+}
+
+.live-signal{
+  position:relative;
+  width:min(100%,660px);
+  margin-top:38px;
+  border:1px solid #222228;
+  border-radius:16px;
+  background:rgba(9,9,10,.72);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  overflow:hidden;
+  box-shadow:0 24px 70px rgba(0,0,0,.26);
+}
+
+.live-signal-top{
+  min-height:38px;
+  border-bottom:1px solid #202024;
+  padding:0 13px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  color:#64646b;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+.live-signal-top strong{
+  color:#a7a7ad;
+  font-weight:550;
+}
+
+.live-signal-line{
+  position:relative;
+  height:86px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  align-items:center;
+  padding:0 22px;
+  overflow:hidden;
+}
+
+.live-signal-line:before{
+  content:"";
+  position:absolute;
+  left:9%;
+  right:9%;
+  top:50%;
+  height:1px;
+  background:#25252b;
+}
+
+.live-node{
+  position:relative;
+  z-index:2;
+  justify-self:center;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#0b0b0d;
+  border:1px solid #65656d;
+  box-shadow:0 0 0 6px #09090a;
+}
+
+.live-node.core{
+  background:#f4f4f5;
+  border-color:#f4f4f5;
+}
+
+.live-node.core:after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.35);
+  animation:liveNodePulse 2.8s ease-out infinite;
+}
+
+.live-node:nth-child(3):after{animation-delay:.65s}
+.live-node:nth-child(5):after{animation-delay:1.3s}
+
+@keyframes liveNodePulse{
+  0%{opacity:.65;transform:scale(1)}
+  70%,100%{opacity:0;transform:scale(4.4)}
+}
+
+.live-sweep{
+  position:absolute;
+  z-index:1;
+  top:50%;
+  left:9%;
+  height:1px;
+  width:20%;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  filter:drop-shadow(0 0 5px rgba(255,255,255,.35));
+  animation:liveSweep 4.8s var(--ease) infinite;
+}
+
+@keyframes liveSweep{
+  0%{transform:translateX(-110%);opacity:0}
+  10%{opacity:.7}
+  75%{opacity:.7}
+  100%{transform:translateX(410%);opacity:0}
+}
+
+/* Better pointer feedback without making touch interactions noisy. */
+@media(hover:hover) and (pointer:fine){
+  .btn:hover{
+    box-shadow:0 10px 30px rgba(0,0,0,.22);
+  }
+  .showcase,
+  .plans,
+  .project-card{
+    will-change:transform;
+  }
+}
+
+/* Safer mobile layout for the new live signal. */
+@media(max-width:800px){
+  .live-signal{
+    margin-top:30px;
+  }
+  .live-signal-line{
+    height:72px;
+  }
+}
+
+/* Small-screen readability / tap targets. */
+@media(max-width:430px){
+  .live-signal{
+    border-radius:14px;
+  }
+  .live-signal-top{
+    font-size:8px;
+  }
+}
+
+/* Keyboard users should get an unmistakable state. */
+:where(button,a,input,textarea,select):focus-visible{
+  outline:2px solid #fff;
+  outline-offset:3px;
+}
+
+/* Prevent accidental text selection while dragging the showcase. */
+#showcase{
+  touch-action:pan-y;
+}
+
+/* Modal safety on mobile browsers. */
+.modal-card{
+  max-height:calc(100dvh - 28px);
+  overscroll-behavior:contain;
+}
+
+@supports(height:100svh){
+  .hero{
+    min-height:min(830px,calc(100svh - 68px));
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .live-node.core:after,
+  .live-sweep{
+    animation:none!important;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}
 }
@@ -1105,6 +1366,7 @@ body:hover .cursor-glow{opacity:1}
     <a href="#portfolio">Sahara</a>
     <a href="#path">Reset</a>
     <a href="#studio">Review</a>
+    <button class="mobile-primary open-wizard" type="button">Get reviewed →</button>
     <a href="#founder">About</a>
     <a href="#principles">Principles</a>
   </div>
@@ -1120,6 +1382,20 @@ body:hover .cursor-glow{opacity:1}
       <div class="actions">
         <button class="btn primary open-wizard" type="button">Get reviewed →</button>
         <a class="btn" href="#portfolio">See Sahara</a>
+      </div>
+      <div class="live-signal" aria-label="Crackdoor live product signal">
+        <div class="live-signal-top">
+          <span>Live signal</span>
+          <strong>Profile → Network → IRL</strong>
+        </div>
+        <div class="live-signal-line" aria-hidden="true">
+          <span class="live-sweep"></span>
+          <span class="live-node"></span>
+          <span class="live-node core"></span>
+          <span class="live-node"></span>
+          <span class="live-node core"></span>
+          <span class="live-node"></span>
+        </div>
       </div>
     </div>
   </section>
@@ -1722,6 +1998,14 @@ body:hover .cursor-glow{opacity:1}
   addEventListener('resize',updateScrollUI,{passive:true});
   updateScrollUI();
 
+  /* Sahara-derived navigation state: compact nav after the user enters the page. */
+  function updateNavState(){
+    document.querySelector('nav')?.classList.toggle('scrolled',window.scrollY>18);
+  }
+  addEventListener('scroll',updateNavState,{passive:true});
+  updateNavState();
+
+
   /* interactive showcase */
   const track=qs('#showcaseTrack');
   const tabs=qsa('.showcase-tab');
@@ -1953,6 +2237,12 @@ body:hover .cursor-glow{opacity:1}
   qsa('.plan-button').forEach(btn=>btn.addEventListener('click',()=>openWizard(btn.dataset.plan||'')));
   closeModalBtn?.addEventListener('click',closeWizard);
   modal?.addEventListener('click',e=>{if(e.target===modal)closeWizard()});
+  addEventListener('keydown',e=>{
+    if(e.key==='Escape' && modal?.classList.contains('open'))closeWizard();
+  });
+
+
+  const CRACKDOOR_PAYMENT_URL='https://venmo.com/u/saharausa'; // MVP: replace with Crackdoor payment URL before launch.
 
   nextBtn?.addEventListener('click',()=>{
     if(currentStep<steps.length-1){
@@ -1960,7 +2250,7 @@ body:hover .cursor-glow{opacity:1}
       showStep(currentStep+1);
       return;
     }
-    window.open('https://venmo.com/u/saharausa','_blank','noopener,noreferrer');
+    window.open(CRACKDOOR_PAYMENT_URL,'_blank','noopener,noreferrer');
   });
 
   backBtn?.addEventListener('click',()=>showStep(currentStep-1));
@@ -1973,6 +2263,12 @@ body:hover .cursor-glow{opacity:1}
     }catch{
       copyStatus.textContent='Select the brief above and copy it manually.';
     }
+  });
+
+
+  /* MVP resilience: optional UI effects should never break the purchase wizard. */
+  window.addEventListener('error',event=>{
+    if(event?.error) console.warn('Crackdoor UI recovered from an optional error:',event.error);
   });
 
   showStep(0);
